@@ -1,0 +1,6 @@
+- Page title, icon, keywords, fonts, etc... are defined here Page styles however are managed automatically by the construct script, that's how I solved dark and light page variants.
+- Use the HEAD template I provided, otherwise Construct.sh may have trouble assembling pages...
+- Use the deep template in the Projects, and Archived folders... (it's essentially the same except most paths needs a "../" in front...)
+
+- Note that if the head content file is missing, the construct script will keep trying to read a non existent file indefinitely, thus never fininsh generating the page... that's an issue I'll try to solve later, since it works fine using the templates... If that happens use Ctrl+C to stop the script, and add a head content file, then try again.
+- Head content file should have the same name, as this one, but other content, and it should be in the HeadContent directory...

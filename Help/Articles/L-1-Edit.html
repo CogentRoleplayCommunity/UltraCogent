@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+<!-- Beginning of head content -->
+
+    <!-- Meta data (Title, keywords, and description should be changed for each page...) -->
+    <title>OSRC/HowToBasics</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <link rel="icon" href="../Images/Common/Icon.png" type="image/x-icon">
+    <!-- Google font(s) -->
+    <link href="https://fonts.googleapis.com/css?family=Spectral+SC|Vollkorn" rel="stylesheet">
+    <!-- Style -->
+    <!-- Style sheets are managed by the construct.sh scipt, if you need to add another style sheet do it here for this page, of in the construct script for all pages or for Dark/Light pages separately-->
+    <link rel="stylesheet" type="text/css" href="../CSS/PageStyleLight.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/ContentStyleLight.css">
+<!-- Animation -->
+
+<!-- End of head content -->
+
+  </head>
+  <body>
+    <div class="Shading">
+      <div class="PageContent">
+      <div class="TopOffset"></div>
+
+<!-- Beginning of page content -->
+
+    <!-- Remember! In order to insert an image or link to downloadable file, from Files or Images folder, the path must start with ../ in front instead of ./ since this file is in a subdirectory already. -->
+    <!-- Leave the markers untouched! -->
+<!--TitleMarker--><h1 style="text-align: center">Edit.sh
+</h1>
+
+<div class="TranslucentPanel"><div class="PanelArea">
+<h2>Creating/editing/deleting pages</h2>
+<p>To create a regular page content >> Run: Edit.sh -c fielname (no extension just filename, cause it acutally creates multiple files with the same name... filename can't have spaces characters...)
+<br>To edit a regular page content >> Run: Edit.sh fielname
+<br>To edit a regular page header >> Run: Edit.sh -h fielname
+<br>To remove a regular page content >> Run: Edit.sh -r fielname
+<br>
+<br>To create a project page content >> Run: Edit.sh -cp fielname
+<br>To edit a project page content >> Run: Edit.sh -p fielname
+<br>To edit a project page header >> Run: Edit.sh -ph fielname
+<br>To edit a project page description >> Run: Edit.sh -pd fielname
+<br>To remove a project page content >> Run: Edit.sh -rp fielname
+<br>
+<br>To create an article page content >> Run: Edit.sh -cA fielname
+<br>To edit an article page content >> Run: Edit.sh -A fielname
+<br>To edit an article page header >> Run: Edit.sh -Ah fielname
+<br>To edit an article page description >> Run: Edit.sh -Ad fielname
+<br>To remove an article page content >> Run: Edit.sh -rA fielname
+<br>
+<br>Both project, and article pages are automatically added to the projects.html or articles.html, however it does not do that by default.(This prevents half done pages from being added automatically. This also allows having sub pages that you link in to a particular project/article page but not listed as an individual project.) you need to creat a short description for it by running Edit.sh -pd filename or Edit.sh -Ad filename depending on the page type (project/article).
+<br>
+<br>Run the Edit.sh script with -l option to list files
+<br>Run the Edit.sh script with --help option to see all your options
+<br>In the interactive terminal(when editing a page) you can type help to list available commands. Make sure you save before you type a command if you have made changes. (Currently this only inserts code at the end of the file, in the next version I'll make it work like my BashTool, and insert code at the specified line... My BashTool project was actually inspired by this so this was already made by the time I had that idea...)</p>
+</div></div>
+
+<!-- End of page content -->
+
+        <div class="BottomOffset"></div>
+      </div>
+
+<!-- Beginning of page title -->
+
+      <div class="TitleArea">
+        <span style="position: absolute; top: 0px; left: 0px;"><img src="../Images/Common/M.svg"></span>
+        <span style="position: absolute; top: 0px; right: 0px;"><a href="./1-Edit.html"><img src="../Images/Light/Moon.svg"></a></span>
+        <div class="PageTitle">
+          <b><span style="color: rgb(0,180,255)">O</span>pen <span style="color: rgb(0,180,255)">S</span>ource <span style="color: rgb(0,180,255)">R</span>esearch <span style="color: rgb(0,180,255)">C</span>enter</b>
+        </div>
+        <div class="PageSubtitle">
+          <span class="Slogan"><span style="color: rgb(0,180,255)">R</span>esearch <span style="color: rgb(0,180,255)">I</span>n <span style="color: rgb(0,180,255)">P</span>rogress
+            <span class="Loader">
+              <span class="PointA">.</span>
+              <span class="PointB">.</span>
+              <span class="PointC">.</span>
+            </span>
+          </span>
+        </div>
+        <div class="FadeUp"></div>
+      </div>
+
+<!-- End of page title -->
+
+      <div class="FadeDown"></div>
+
+<!-- Beginning of Menu -->
+
+      <div class="Menu">
+        <div class="TopOffset"></div>
+        <a href="../L-index.html"><div class="MenuPoint">Start Page</div></a>
+        <a href="../L-Articles.html"><div class="MenuPoint">Articles</div></a>
+        <a href="../L-LatestUpdates.html"><div class="MenuPoint">Latest Updates</div></a>
+        <div class="BottomOffset"></div>
+      </div>
+
+<!-- End of Menu -->
+
+    </div>
+  </body>
+</html>

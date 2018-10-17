@@ -1,0 +1,30 @@
+    <!-- Remember! In order to insert an image or link to downloadable file, from Files or Images folder, the path must start with ../ in front instead of ./ since this file is in a subdirectory already. -->
+    <!-- Leave the markers untouched! -->
+<!--TitleMarker--><h1 style="text-align: center">Edit.sh
+</h1>
+
+<div class="TranslucentPanel"><div class="PanelArea">
+<h2>Creating/editing/deleting pages</h2>
+<p>To create a regular page content >> Run: Edit.sh -c fielname (no extension just filename, cause it acutally creates multiple files with the same name... filename can't have spaces characters...)
+<br>To edit a regular page content >> Run: Edit.sh fielname
+<br>To edit a regular page header >> Run: Edit.sh -h fielname
+<br>To remove a regular page content >> Run: Edit.sh -r fielname
+<br>
+<br>To create a project page content >> Run: Edit.sh -cp fielname
+<br>To edit a project page content >> Run: Edit.sh -p fielname
+<br>To edit a project page header >> Run: Edit.sh -ph fielname
+<br>To edit a project page description >> Run: Edit.sh -pd fielname
+<br>To remove a project page content >> Run: Edit.sh -rp fielname
+<br>
+<br>To create an article page content >> Run: Edit.sh -cA fielname
+<br>To edit an article page content >> Run: Edit.sh -A fielname
+<br>To edit an article page header >> Run: Edit.sh -Ah fielname
+<br>To edit an article page description >> Run: Edit.sh -Ad fielname
+<br>To remove an article page content >> Run: Edit.sh -rA fielname
+<br>
+<br>Both project, and article pages are automatically added to the projects.html or articles.html, however it does not do that by default.(This prevents half done pages from being added automatically. This also allows having sub pages that you link in to a particular project/article page but not listed as an individual project.) you need to creat a short description for it by running Edit.sh -pd filename or Edit.sh -Ad filename depending on the page type (project/article).
+<br>
+<br>Run the Edit.sh script with -l option to list files
+<br>Run the Edit.sh script with --help option to see all your options
+<br>In the interactive terminal(when editing a page) you can type help to list available commands. Make sure you save before you type a command if you have made changes. (Currently this only inserts code at the end of the file, in the next version I'll make it work like my BashTool, and insert code at the specified line... My BashTool project was actually inspired by this so this was already made by the time I had that idea...)</p>
+</div></div>

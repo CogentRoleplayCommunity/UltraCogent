@@ -1,0 +1,3 @@
+- Images come here.
+- Images that are used on both light and dark pages are in the common directory, but it's not really a rule, it's just better organized... You can create your own directory in here if you want
+- Directory checking only goes 2 level deep, so Images directory is level 1, any directory inside is level 2, if you create another directory deeper in, let's say Images/Common/NewDir any file inside the NewDir directory will be ignored...

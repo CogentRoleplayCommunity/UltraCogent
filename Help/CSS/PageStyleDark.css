@@ -1,0 +1,334 @@
+@charset "UTF-8";
+
+body
+{
+  background-color: rgb(0,0,40);
+  background-image: url("../Images/Common/Logo.svg");
+  background-size: 35%; /*small >> 200%, large >> 35%*/
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+div
+{
+  background-size: 100%;
+  background-position: top center;
+  background-repeat: repeat-y;
+  background-attachment: fixed;
+}
+
+.TitleArea
+{
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0px;
+  font-family: 'Spectral SC', serif;
+  text-align: center;
+}
+
+.PageTitle
+{
+  min-height: 50px;
+  font-family: 'Spectral SC', serif;
+  text-align: center;
+  font-size: 32px;
+  color: rgb(0,80,255);
+  background: rgb(0, 0, 15);
+}
+
+.PageSubtitle
+{
+  position: relative;
+  float: center;
+  width: 100%;
+  background: rgb(0, 0, 15);
+}
+
+.Slogan
+{
+  font-family: 'Vollkorn', serif;
+  text-align: center;
+  font-size: 20px;
+  color: rgb(0,80,255);
+}
+
+.FadeUp
+{
+  width: 100%;
+  height: 100px;
+  background: rgb(0, 0, 15); /* For browsers that do not support gradients */
+  background: linear-gradient(to bottom , rgba(0, 0, 15, 1), rgba(0, 0, 15, 0)); /* must be last */
+}
+
+.FadeDown
+{
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100px;
+  background: rgb(0, 0, 15); /* For browsers that do not support gradients */
+  background: linear-gradient(to bottom , rgba(0, 0, 15, 0), rgba(0, 0, 15, 1)); /* must be last */
+}
+
+.Menu
+{
+  position: fixed;
+  width: 60px;
+  height: 100%;
+  border: 0px;
+  padding: 0px;
+  left: 0px;
+  font-family: 'Spectral SC', serif;
+  font-size: 20 px;
+  color: rgba(0, 100, 255, 0);
+  opacity: 0;
+  background: rgb(0, 0, 15); /* For browsers that do not support gradients */
+  background: linear-gradient(to left , rgba(0, 0, 15, 0), rgba(0, 0, 15, 1)); /* must be last */
+  -webkit-transition: all 0.7s;
+  transition: all 0.7s;
+}
+
+.Menu:hover
+{
+  width: 400px;
+  color: rgba(0, 100, 255, 1);
+  opacity: 1;
+  background: rgb(0, 0, 15); /* For browsers that do not support gradients */
+  background: linear-gradient(to left , rgba(0, 0, 15, 0), rgba(0, 0, 15, 1)); /* must be last */
+}
+
+.MenuPoint
+{
+  width: 75%;
+  border: 2px solid rgba(0, 80, 255, 1);
+  padding: 2px;
+  color: rgba(0, 100, 255, 1);
+  background-color: rgba(0, 80, 255, 0);
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+.MenuPoint:hover
+{
+  padding: 5px;
+  color: rgba(0, 170, 255, 1);
+  background-color: rgba(0, 80, 255, 0.2);
+}
+
+.Shading /* This thing applies a layer of dark colour on the entire background. */
+{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  min-height: 100%;
+  background-color: rgba(0, 0, 35, 0.65); /*A=0.55*/
+
+}
+
+.PageContent
+{
+  position: relative;
+  float: left;
+  width: 92%;
+  padding-left: 4%;
+  padding-right: 4%;
+  font-family: 'Vollkorn', serif;
+  font-size: 16 px;
+  text-align: left;
+  color: rgb(0, 115, 153);
+}
+
+.BottomOffset
+{
+  position: relative;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100px;
+}
+
+.TopOffset
+{
+  position: relative;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 160px;
+}
+
+
+/* >>> Animation <<< */
+.PointA
+{
+  position: relative;
+  font-family: 'Vollkorn', serif;
+  text-align: left;
+  font-size: 20px;
+  color: rgb(0,100,255);
+  animation-name: Appear_PointA;
+  -webkit-animation-name: Appear_PointA;
+  animation-duration: 3s;
+  -webkit-animation-duration: 3s;
+  animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
+  animation-direction: normal;
+  -webkit-animation-direction: normal;
+}
+
+.PointB
+{
+  position: relative;
+  font-family: 'Vollkorn', serif;
+  text-align: left;
+  font-size: 20px;
+  color: rgb(0,100,255);
+  animation-name: Appear_PointB;
+  -webkit-animation-name: Appear_PointB;
+  animation-duration: 3s;
+  -webkit-animation-duration: 3s;
+  animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
+  animation-direction: normal;
+  -webkit-animation-direction: normal;
+}
+
+.PointC
+{
+  position: relative;
+  font-family: 'Vollkorn', serif;
+  text-align: left;
+  font-size: 20px;
+  color: rgb(0,100,255);
+  animation-name: Appear_PointC;
+  -webkit-animation-name: Appear_PointC;
+  animation-duration: 3s;
+  -webkit-animation-duration: 3s;
+  animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
+  animation-direction: normal;
+  -webkit-animation-direction: normal;
+}
+
+@keyframes Appear_PointA
+{
+  0%
+  {
+    color:rgba(0,100,255,0);
+  }
+  15%
+  {
+    color:rgba(0,100,255,0);
+  }
+  26%
+  {
+    color:rgba(0,100,255,1);
+  }
+  85%
+  {
+    color:rgba(0,100,255,1);
+  }
+}
+
+@keyframes Appear_PointB
+{
+  0%
+  {
+    color:rgba(0,100,255,0);
+  }
+  40%
+  {
+    color:rgba(0,100,255,0);
+  }
+  51%
+  {
+    color:rgba(0,100,255,1);
+  }
+  85%
+  {
+    color:rgba(0,100,255,1);
+  }
+}
+
+@keyframes Appear_PointC
+{
+  0%
+  {
+    color:rgba(0,100,255,0);
+  }
+  65%
+  {
+    color:rgba(0,100,255,0);
+  }
+  76%
+  {
+    color:rgba(0,100,255,1);
+  }
+  85%
+  {
+    color:rgba(0,100,255,1);
+  }
+}
+
+@-webkit-keyframes Appear_PointA
+{
+  0%
+  {
+    color:rgba(0,100,255,0);
+  }
+  15%
+  {
+    color:rgba(0,100,255,0);
+  }
+  26%
+  {
+    color:rgba(0,100,255,1);
+  }
+  85%
+  {
+    color:rgba(0,100,255,1);
+  }
+}
+
+@-webkit-keyframes Appear_PointB
+{
+  0%
+  {
+    color:rgba(0,100,255,0);
+  }
+  40%
+  {
+    color:rgba(0,100,255,0);
+  }
+  51%
+  {
+    color:rgba(0,100,255,1);
+  }
+  85%
+  {
+    color:rgba(0,100,255,1);
+  }
+}
+
+@-webkit-keyframes Appear_PointC
+{
+  0%
+  {
+    color:rgba(0,100,255,0);
+  }
+  65%
+  {
+    color:rgba(0,100,255,0);
+  }
+  76%
+  {
+    color:rgba(0,100,255,1);
+  }
+  85%
+  {
+    color:rgba(0,100,255,1);
+  }
+}

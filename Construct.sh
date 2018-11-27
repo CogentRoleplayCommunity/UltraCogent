@@ -70,7 +70,6 @@ fi
 
 # variables
 HeadSource="./HeadContent"
-PageSource="./PageContent"
 Destination="./www"
 DeepMenu=false
 ArchiveFlag=false
@@ -739,6 +738,7 @@ function Build
 }
 
 # Building Dark pages
+PageSource="./PageContent"
 echo "  Dark pages:"
 for i in $(ls $PageSource)
 do
@@ -814,6 +814,7 @@ if [[ $DarkOnly != "-d" ]]
 then
   Variant="Light"
   # Build light Pages
+  PageSource="./PageContent"
   echo "  Light pages:"
   for i in $(ls $PageSource)
   do

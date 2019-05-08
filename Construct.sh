@@ -810,6 +810,7 @@ do
   fi
 done
 
+# Building Light pages
 if [[ $DarkOnly != "-d" ]]
 then
   Variant="Light"
@@ -882,6 +883,9 @@ then
     fi
   done
 fi
+
+# Adding custom pages
+cp -R ./CustomPages/* ./www
 
 # Creating directories for additional files
 DirList="CSS Images Files"

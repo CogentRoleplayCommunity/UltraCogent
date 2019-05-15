@@ -8,6 +8,7 @@
 
 # PreDefined variables
 UpdateLimit=10
+MainURL="http://osrc.rip" # !!! Change this to your own domain !!!
 
 
 # Finding roots
@@ -140,6 +141,8 @@ function Build
       done
     else
       # Deep-Light
+      # For crawler bots: Light pages should not be crawled, and should point to the same dark(canonical) page.
+      echo "    <link rel=\"canonical\" href=\"./${File:2:250}\" />" >> $Destination/$File
       LN=1
       while [[ -z $(sed "${LN}q;d" $HeadSource/${File:2:250} | grep "PageStyleDark.css") ]]
       do
@@ -163,6 +166,16 @@ function Build
     if [[ $Variant == "Dark" ]]
     then
       # Dark
+      if [[ $File == "LatestUpdates.html" ]]
+      then
+        echo '    <meta name="googlebot" content="noindex">' >> $Destination/$File
+        echo '    <meta name="robots" content="noindex">' >> $Destination/$File
+      fi
+      if [[ $File == "index.html" ]]
+      then
+        echo -n "    " >> $Destination/$File
+        cat ./GoogleHTMLVerificationTag >> $Destination/$File
+      fi
       LN=1
       while [[ -z $(sed "${LN}q;d" $HeadSource/$File | grep "PageStyleDark.css") ]]
       do
@@ -183,6 +196,18 @@ function Build
       done
     else
       # Light
+      # For crawler bots: Light pages should not be crawled, and should point to the same dark(canonical) page.
+      if [[ ${File:2:250} == "index.html" ]]
+      then
+        echo "    <link rel=\"canonical\" href=\"$MainURL\" />" >> $Destination/$File
+      else
+        echo "    <link rel=\"canonical\" href=\"./${File:2:250}\" />" >> $Destination/$File
+      fi
+      if [[ ${File:2:250} == "LatestUpdates.html" ]]
+      then
+        echo '    <meta name="googlebot" content="noindex">' >> $Destination/$File
+        echo '    <meta name="robots" content="noindex">' >> $Destination/$File
+      fi
       LN=1
       while [[ -z $(sed "${LN}q;d" $HeadSource/${File:2:250} | grep "PageStyleDark.css") ]]
       do
@@ -810,6 +835,14 @@ do
   fi
 done
 
+# Clearing sitemap
+if [[ -f "./www/Sitemap.txt" ]]
+then
+  echo -n "" > "./www/Sitemap.txt"
+else
+  touch "./www/Sitemap.txt"
+fi
+
 # Building Light pages
 if [[ $DarkOnly != "-d" ]]
 then
@@ -832,6 +865,14 @@ then
         then
           echo "Building: $File"
           Build
+          if [[ ${File:2:250} == "index.html" ]]
+          then
+            echo "$MainURL" >> "./www/Sitemap.txt" # Sitemap entry
+            echo "$MainURL/L-index.html" >> "./www/Sitemap.txt" # Sitemap entry
+          else
+            echo "$MainURL/${Destination:6:10000}${File:2:250}" >> "./www/Sitemap.txt" # Sitemap entry
+            echo "$MainURL/${Destination:6:10000}$File" >> "./www/Sitemap.txt" # Sitemap entry
+          fi
         else
           echo "Error: $HeadSource/${File:2:250} does not exit! Skipping page..."
         fi
@@ -855,6 +896,8 @@ then
               then
                 echo "Building: ${Destination:6:250}/$File"
                 Build
+                echo "$MainURL/${Destination:6:10000}/${File:2:250}" >> "./www/Sitemap.txt" # Sitemap entry
+                echo "$MainURL/${Destination:6:10000}/$File" >> "./www/Sitemap.txt" # Sitemap entry
               else
                 echo "Error: $HeadSource/${File:2:250} does not exit! Skipping page..."
               fi
@@ -874,6 +917,8 @@ then
                 echo "Building: ${Destination:6:250}/$File"
               fi
               Build
+              echo "$MainURL/${Destination:6:10000}/${File:2:250}" >> "./www/Sitemap.txt" # Sitemap entry
+              echo "$MainURL/${Destination:6:10000}/$File" >> "./www/Sitemap.txt" # Sitemap entry
             else
               echo "Error: $HeadSource/${File:2:250} does not exit! Skipping page..."
             fi

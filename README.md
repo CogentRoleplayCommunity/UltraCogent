@@ -11,3 +11,9 @@ Step by step instructions for creating pages, changing theme, and uploading:
 0. You need a linux PC to work on... (I recommend ubuntu for simplicity as I know for sure that it contains everything that is necessary by default, requirements are: bash, gedit, and a browser.)
 1. Enter the directory in the terminal, and run the Construct.sh script to build the pages...
 2. Open the index.html in your browser from the www folder...
+
+V1.1 Features
+- Added google verification tag to index page.
+- Site map generation for google crawlers. (Don't forget to specify the "YourURL/Sitemap.txt" in the google search console!)
+- Added canonical links from light to dark pages.
+- Added noindex tag for LatestUpdates.html page.

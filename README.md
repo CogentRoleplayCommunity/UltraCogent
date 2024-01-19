@@ -1,6 +1,6 @@
 # Ultra Cogent - Ultra Realistic Universal Roleplaying System
 
-*** In early development! ***
+***In early development!***
 
 ## Author's message
 
@@ -20,7 +20,7 @@
 Ultra Cogent is developed based on Cognet Roleplay and with appreciation to its creators is under the the Cogent Roleplay Open License.
 
 - Any and all game mechanics and game systems contained within this document are open and freely available for anyone to re-use, include, adapt or develop, in their own projects that are also based on Cogent Roleplay.
-- Any and all of the code licenced under MIT license.
+- Any and all of the code licenced under BSD 3-Clause License (as my old website).
 - Any and all artwork licensed under Creative Commons Attribution-ShareAlike 4.0 International License
 
 Long live open source fun. :)

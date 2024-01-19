@@ -54,13 +54,13 @@ then
       mv ./PageContent/Projects/A-$i.html ./PageContent/Projects/$i.html
     fi
     # Archiving
-    if [[ -f ./PageContent/Articles/$i.html ]]
+    if [[ -f ./PageContent/Resources/$i.html ]]
     then
       echo "Archiving article $i..."
-      mv ./PageContent/Articles/$i.html ./PageContent/Articles/A-$i.html
+      mv ./PageContent/Resources/$i.html ./PageContent/Resources/A-$i.html
       continue
     else
-      if [[ -f ./PageContent/Articles/A-$i.html ]]
+      if [[ -f ./PageContent/Resources/A-$i.html ]]
       then
         echo "Archiving article $i..."
         echo "Warning: Article $i is already archived!"
@@ -234,13 +234,13 @@ else
         continue
       fi
       # Unarchiving
-      if [[ -f ./PageContent/Articles/A-$i.html ]]
+      if [[ -f ./PageContent/Resources/A-$i.html ]]
       then
         echo "Unarchiving article $i..."
-        mv ./PageContent/Articles/A-$i.html ./PageContent/Articles/$i.html
+        mv ./PageContent/Resources/A-$i.html ./PageContent/Resources/$i.html
         continue
       else
-        if [[ -f ./PageContent/Articles/$i.html ]]
+        if [[ -f ./PageContent/Resources/$i.html ]]
         then
           echo "Unarchiving article $i..."
           echo "Warning: Article $i is already unarchived!"

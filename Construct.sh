@@ -66,7 +66,7 @@ else
   NoArchives=""
 fi
 
-# Generating submenu pages (Projects.html, Articles.html)
+# Generating submenu pages (Projects.html, Resources.html)
 ./SubmenuGenerator.sh
 
 # variables
@@ -254,7 +254,7 @@ function Build
       cp $PageSource/A-${File:2:250} $PageSource/$File
     fi
     # Searching for links, and re-directing...
-    if [[ -z $(echo $PageSource | grep Projects) && -z $(echo $PageSource | grep Archived) && -z $(echo $PageSource | grep Articles) ]] # For normal pages
+    if [[ -z $(echo $PageSource | grep Projects) && -z $(echo $PageSource | grep Archived) && -z $(echo $PageSource | grep Resources) ]] # For normal pages
     then
       for n in $(ls ./PageContent)
       do
@@ -293,18 +293,18 @@ function Build
           fi
         fi
       done
-      for n in $(ls ./PageContent/Articles)
+      for n in $(ls ./PageContent/Resources)
       do
-        if [[ -f ./PageContent/Articles/$n ]] # Only search in files
+        if [[ -f ./PageContent/Resources/$n ]] # Only search in files
         then
           if [[ ${n:0:2} == "A-" ]]
           then
             n=${n:2:250}
           fi
-          if [[ ! -z $(cat $PageSource/$File | grep "\./Articles/$n") ]]
+          if [[ ! -z $(cat $PageSource/$File | grep "\./Resources/$n") ]]
           then
-            echo "Page $File contains reference to ./Articles/$n --> Switching reference to ./Articles/L-$n"
-            sed -i "s/\.\/Articles\/${n}/\.\/Articles\/L-${n}/g" $PageSource/$File
+            echo "Page $File contains reference to ./Resources/$n --> Switching reference to ./Resources/L-$n"
+            sed -i "s/\.\/Resources\/${n}/\.\/Resources\/L-${n}/g" $PageSource/$File
           fi
         fi
       done
@@ -348,18 +348,18 @@ function Build
             fi
           fi
         done
-        for n in $(ls ./PageContent/Articles)
+        for n in $(ls ./PageContent/Resources)
         do
-          if [[ -f ./PageContent/Articles/$n ]] # Only search in files
+          if [[ -f ./PageContent/Resources/$n ]] # Only search in files
           then
             if [[ ${n:0:2} == "A-" ]]
             then
               n=${n:2:250}
             fi
-            if [[ ! -z $(cat $PageSource/$File | grep "\.\./Articles/$n") ]]
+            if [[ ! -z $(cat $PageSource/$File | grep "\.\./Resources/$n") ]]
             then
-              echo "Page Projects/$File contains reference to ../Articles/$n --> Switching reference to ../Articles/L-$n"
-              sed -i "s/\.\.\/Articles\/${n}/\.\.\/Articles\/L-${n}/g" $PageSource/$File
+              echo "Page Projects/$File contains reference to ../Resources/$n --> Switching reference to ../Resources/L-$n"
+              sed -i "s/\.\.\/Resources\/${n}/\.\.\/Resources\/L-${n}/g" $PageSource/$File
             fi
           fi
         done
@@ -403,23 +403,23 @@ function Build
             fi
           fi
         done
-        for n in $(ls ./PageContent/Articles)
+        for n in $(ls ./PageContent/Resources)
         do
-          if [[ -f ./PageContent/Articles/$n ]] # Only search in files
+          if [[ -f ./PageContent/Resources/$n ]] # Only search in files
           then
             if [[ ${n:0:2} == "A-" ]]
             then
               n=${n:2:250}
             fi
-            if [[ ! -z $(cat $PageSource/$File | grep "\.\./Articles/$n") ]]
+            if [[ ! -z $(cat $PageSource/$File | grep "\.\./Resources/$n") ]]
             then
-              echo "Page Archived/$File contains reference to ../Articles/$n --> Switching reference to ../Articles/L-$n"
-              sed -i "s/\.\.\/Articles\/${n}/\.\.\/Articles\/L-${n}/g" $PageSource/$File
+              echo "Page Archived/$File contains reference to ../Resources/$n --> Switching reference to ../Resources/L-$n"
+              sed -i "s/\.\.\/Resources\/${n}/\.\.\/Resources\/L-${n}/g" $PageSource/$File
             fi
           fi
         done
       fi
-      if [[ ! -z $(echo $PageSource | grep Articles) ]] # For article pages
+      if [[ ! -z $(echo $PageSource | grep Resources) ]] # For article pages
       then
         for n in $(ls ./PageContent)
         do
@@ -427,7 +427,7 @@ function Build
           then
             if [[ ! -z $(cat $PageSource/$File | grep "\.\./$n") ]]
             then
-              echo "Page Articles/$File contains reference to ../$n --> Switching reference to ../L-$n"
+              echo "Page Resources/$File contains reference to ../$n --> Switching reference to ../L-$n"
               sed -i "s/\.\.\/${n}/\.\.\/L-${n}/g" $PageSource/$File
             fi
           fi
@@ -438,7 +438,7 @@ function Build
           then
             if [[ ! -z $(cat $PageSource/$File | grep "\.\./Archived/$n") ]]
             then
-              echo "Page Articles/$File contains reference to ../Archived/$n --> Switching reference to ../Archived/L-$n"
+              echo "Page Resources/$File contains reference to ../Archived/$n --> Switching reference to ../Archived/L-$n"
               sed -i "s/\.\.\/Archived\/${n}/\.\.\/Archived\/L-${n}/g" $PageSource/$File
             fi
           fi
@@ -453,14 +453,14 @@ function Build
             fi
             if [[ ! -z $(cat $PageSource/$File | grep "\.\./Projects/$n") ]]
             then
-              echo "Page Articles/$File contains reference to ../Projects/$n --> Switching reference to ../Projects/L-$n"
+              echo "Page Resources/$File contains reference to ../Projects/$n --> Switching reference to ../Projects/L-$n"
               sed -i "s/\.\.\/Projects\/${n}/\.\.\/Projects\/L-${n}/g" $PageSource/$File
             fi
           fi
         done
-        for n in $(ls ./PageContent/Articles)
+        for n in $(ls ./PageContent/Resources)
         do
-          if [[ -f ./PageContent/Articles/$n ]] # Only search in files
+          if [[ -f ./PageContent/Resources/$n ]] # Only search in files
           then
             if [[ ${n:0:2} == "A-" ]]
             then
@@ -468,7 +468,7 @@ function Build
             fi
             if [[ ! -z $(cat $PageSource/$File | grep "\./$n") && $n != $File ]]
             then
-              echo "Page Articles/$File contains reference to ./$n --> Switching reference to ./L-$n"
+              echo "Page Resources/$File contains reference to ./$n --> Switching reference to ./L-$n"
               sed -i "s/\.\/${n}/\.\/L-${n}/g" $PageSource/$File
             fi
           fi

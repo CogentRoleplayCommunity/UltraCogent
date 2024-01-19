@@ -3,7 +3,7 @@
 # Rules:1. Menu order is from top to bottom. 2. List starts form line 5 and should not contain empty lines or comments. 3. Filename and text is separated by space, keep the text(menu item) under 32 characters. filename and text can olnly contain english alpha numeric characters, and these: .+-()
 
 index.html Start Page
-Articles.html Articles
+Resources.html Resources
 Projects.html Projects
 Contact.html Contact
 Support.html Support

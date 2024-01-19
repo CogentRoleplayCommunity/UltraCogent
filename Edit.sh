@@ -61,7 +61,7 @@ do
     done
     echo ""
     echo ">> Article pages <<"
-    for i in $(ls -p ./PageContent/Articles | grep -v /)
+    for i in $(ls -p ./PageContent/Resources | grep -v /)
     do
       if [[ ${i:0:2} != "A-" ]]
       then
@@ -226,21 +226,21 @@ then
   else
     if [[ $Article == true ]]
     then
-      if [[ -e ./HeadContent/Articles/$FileName.html ]]
+      if [[ -e ./HeadContent/Resources/$FileName.html ]]
       then
-        DList="$DList HeadContent/Articles/$FileName.html"
+        DList="$DList HeadContent/Resources/$FileName.html"
       fi
-      if [[ -e ./PageContent/Articles/$FileName.html ]]
+      if [[ -e ./PageContent/Resources/$FileName.html ]]
       then
-        DList="$DList PageContent/Articles/$FileName.html"
+        DList="$DList PageContent/Resources/$FileName.html"
       fi
-      if [[ -e ./PageContent/Articles/A-$FileName.html ]]
+      if [[ -e ./PageContent/Resources/A-$FileName.html ]]
       then
-        DList="$DList PageContent/Articles/A-$FileName.html"
+        DList="$DList PageContent/Resources/A-$FileName.html"
       fi
-      if [[ -e ./PageContent/Articles/Description/D-$FileName ]]
+      if [[ -e ./PageContent/Resources/Description/D-$FileName ]]
       then
-        DList="$DList PageContent/Articles/Description/D-$FileName"
+        DList="$DList PageContent/Resources/Description/D-$FileName"
       fi
     else
       if [[ -e ./HeadContent/$FileName.html ]]
@@ -279,7 +279,7 @@ then
       do
         if [[ -f ./PageContent/$n && -z $(echo $i | grep $n) ]] # avoid searching in itself
         then
-          if [[ ! -z $(cat ./PageContent/$n | grep $FileName.html) && -z $(echo $n | grep Projects.html) && -z $(echo $n | grep Articles.html) ]]
+          if [[ ! -z $(cat ./PageContent/$n | grep $FileName.html) && -z $(echo $n | grep Projects.html) && -z $(echo $n | grep Resources.html) ]]
           then
             echo "Warning: Page $n contains reference to $FileName.html. Please remove the link(s)! Deleting this project will break the link, leading to 404 error!"
             echo ''
@@ -323,11 +323,11 @@ then
           fi
         fi
       done
-      for n in $(ls ./PageContent/Articles)
+      for n in $(ls ./PageContent/Resources)
       do
-        if [[ -f ./PageContent/Articles/$n && -z $(echo $i | grep $n) ]] # avoid searching in itself but this has no placeholder... it's just renamed to avoid re-generating each time
+        if [[ -f ./PageContent/Resources/$n && -z $(echo $i | grep $n) ]] # avoid searching in itself but this has no placeholder... it's just renamed to avoid re-generating each time
         then
-          if [[ ! -z $(cat ./PageContent/Articles/$n | grep $FileName.html) ]]
+          if [[ ! -z $(cat ./PageContent/Resources/$n | grep $FileName.html) ]]
           then
             echo "Warning: Article $n contains reference to $FileName.html. Please remove the link(s)! Deleting this article will break the link, leading to 404 error!"
             echo ''
@@ -366,9 +366,9 @@ then
   then
     DList="$DList PageContent/Projects/Description/D-$FileName"
   fi
-  if [[ $Article == true && -e ./PageContent/Articles/Description/D-$FileName ]]
+  if [[ $Article == true && -e ./PageContent/Resources/Description/D-$FileName ]]
   then
-    DList="$DList PageContent/Articles/Description/D-$FileName"
+    DList="$DList PageContent/Resources/Description/D-$FileName"
   fi
   if [[ ! -z $DList ]]
   then
@@ -398,7 +398,7 @@ if [[ $NewFile == true ]]
 then
   if [[ $Project == true || $Archived == true ]]
   then
-    if [[ -f ./PageContent/$FileName.html || -f ./PageContent/Projects/$FileName.html || -f ./PageContent/Archived/$FileName.html || -f ./PageContent/Projects/A-$FileName.html || -f ./PageContent/Articles/$FileName.html || -f ./PageContent/Articles/A-$FileName.html ]]
+    if [[ -f ./PageContent/$FileName.html || -f ./PageContent/Projects/$FileName.html || -f ./PageContent/Archived/$FileName.html || -f ./PageContent/Projects/A-$FileName.html || -f ./PageContent/Resources/$FileName.html || -f ./PageContent/Resources/A-$FileName.html ]]
     then
       echo 'Fatal: Specified file name already exists! Please pick something else...'
       exit
@@ -543,7 +543,7 @@ then
       fi
     fi
   else
-    if [[ -f ./PageContent/$FileName.html || -f ./PageContent/Projects/$FileName.html || -f ./PageContent/Archived/$FileName.html || -f ./PageContent/Projects/A-$FileName.html || -f ./PageContent/Articles/$FileName.html || -f ./PageContent/Articles/A-$FileName.html ]]
+    if [[ -f ./PageContent/$FileName.html || -f ./PageContent/Projects/$FileName.html || -f ./PageContent/Archived/$FileName.html || -f ./PageContent/Projects/A-$FileName.html || -f ./PageContent/Resources/$FileName.html || -f ./PageContent/Resources/A-$FileName.html ]]
     then
       echo 'Fatal: Specified file name already exists! Please pick something else...'
       exit
@@ -551,26 +551,26 @@ then
       if [[ $Article == true ]]
       then
         echo 'Creating Article page'
-        touch ./PageContent/Articles/$FileName.html
-        echo '    <!-- Remember! In order to insert an image or link to downloadable file, from Files or Images folder, the path must start with ../ in front instead of ./ since this file is in a subdirectory already. -->' >> ./PageContent/Articles/$FileName.html
-        echo '    <!-- Leave the markers untouched! -->' >> ./PageContent/Articles/$FileName.html
-        echo -n '<!--TitleMarker--><h1 style="text-align: center">' >> ./PageContent/Articles/$FileName.html
-        echo "Project: $FileName" >> ./PageContent/Articles/$FileName.html
-        echo '</h1>' >> ./PageContent/Articles/$FileName.html
-        touch ./HeadContent/Articles/$FileName.html
-        echo '    <!-- Meta data (Title, keywords, and description should be changed for each page...) -->' >> ./HeadContent/Articles/$FileName.html
-        echo "    <title>OSRC/$FileName</title>" >> ./HeadContent/Articles/$FileName.html
-        echo '    <meta charset="utf-8">' >> ./HeadContent/Articles/$FileName.html
-        echo '    <meta name="viewport" content="width=device-width, initial-scale=1">' >> ./HeadContent/Articles/$FileName.html
-        echo '    <meta name="Keywords" content="">' >> ./HeadContent/Articles/$FileName.html
-        echo '    <meta name="Description" content="">' >> ./HeadContent/Articles/$FileName.html
-        echo '    <link rel="icon" href="../Images/Common/Icon.png" type="image/x-icon">' >> ./HeadContent/Articles/$FileName.html
-        echo '    <!-- Google font(s) -->' >> ./HeadContent/Articles/$FileName.html
-        echo '    <link href="https://fonts.googleapis.com/css?family=Spectral+SC|Vollkorn" rel="stylesheet">' >> ./HeadContent/Articles/$FileName.html
-        echo '    <!-- Style -->' >> ./HeadContent/Articles/$FileName.html
-        echo '    <!-- Style sheets are managed by the construct.sh scipt, if you need to add another style sheet do it here for this page, of in the construct script for all pages or for Dark/Light pages separately-->' >> ./HeadContent/Articles/$FileName.html
-        echo '    <!-- PageStyleDark.css (Leave this comment here for the Construct script to find where to insert style sheets) -->' >> ./HeadContent/Articles/$FileName.html
-        echo '    <!-- Animation -->' >> ./HeadContent/Articles/$FileName.html
+        touch ./PageContent/Resources/$FileName.html
+        echo '    <!-- Remember! In order to insert an image or link to downloadable file, from Files or Images folder, the path must start with ../ in front instead of ./ since this file is in a subdirectory already. -->' >> ./PageContent/Resources/$FileName.html
+        echo '    <!-- Leave the markers untouched! -->' >> ./PageContent/Resources/$FileName.html
+        echo -n '<!--TitleMarker--><h1 style="text-align: center">' >> ./PageContent/Resources/$FileName.html
+        echo "Project: $FileName" >> ./PageContent/Resources/$FileName.html
+        echo '</h1>' >> ./PageContent/Resources/$FileName.html
+        touch ./HeadContent/Resources/$FileName.html
+        echo '    <!-- Meta data (Title, keywords, and description should be changed for each page...) -->' >> ./HeadContent/Resources/$FileName.html
+        echo "    <title>OSRC/$FileName</title>" >> ./HeadContent/Resources/$FileName.html
+        echo '    <meta charset="utf-8">' >> ./HeadContent/Resources/$FileName.html
+        echo '    <meta name="viewport" content="width=device-width, initial-scale=1">' >> ./HeadContent/Resources/$FileName.html
+        echo '    <meta name="Keywords" content="">' >> ./HeadContent/Resources/$FileName.html
+        echo '    <meta name="Description" content="">' >> ./HeadContent/Resources/$FileName.html
+        echo '    <link rel="icon" href="../Images/Common/Icon.png" type="image/x-icon">' >> ./HeadContent/Resources/$FileName.html
+        echo '    <!-- Google font(s) -->' >> ./HeadContent/Resources/$FileName.html
+        echo '    <link href="https://fonts.googleapis.com/css?family=Spectral+SC|Vollkorn" rel="stylesheet">' >> ./HeadContent/Resources/$FileName.html
+        echo '    <!-- Style -->' >> ./HeadContent/Resources/$FileName.html
+        echo '    <!-- Style sheets are managed by the construct.sh scipt, if you need to add another style sheet do it here for this page, of in the construct script for all pages or for Dark/Light pages separately-->' >> ./HeadContent/Resources/$FileName.html
+        echo '    <!-- PageStyleDark.css (Leave this comment here for the Construct script to find where to insert style sheets) -->' >> ./HeadContent/Resources/$FileName.html
+        echo '    <!-- Animation -->' >> ./HeadContent/Resources/$FileName.html
       else
         echo 'Creating regular page'
         touch ./PageContent/$FileName.html
@@ -607,7 +607,7 @@ then
     else
       if [[ $Article == true ]]
       then
-        Path="./HeadContent/Articles"
+        Path="./HeadContent/Resources"
       else
         Path="./HeadContent"
       fi
@@ -661,15 +661,15 @@ else
       else
         if [[ $Article == true ]]
         then
-          Path="./PageContent/Articles/Description"
+          Path="./PageContent/Resources/Description"
           if [[ ! -e $Path/$FileName ]]
           then
-            if [[ -e ./PageContent/Articles/A-${FileName:2:250}.html ]]
+            if [[ -e ./PageContent/Resources/A-${FileName:2:250}.html ]]
             then
               echo 'Error: The article is archived! Please unarchive it and try again!'
               exit
             else
-              if [[ -e ./PageContent/Articles/${FileName:2:250}.html ]]
+              if [[ -e ./PageContent/Resources/${FileName:2:250}.html ]]
               then
                 echo 'Creating description file! (You can remove this file anytime with -u option.)'
                 touch $Path/$FileName
@@ -694,7 +694,7 @@ else
       else
         if [[ $Article == true ]]
         then
-          Path="./PageContent/Articles"
+          Path="./PageContent/Resources"
         else
           Path="./PageContent"
         fi

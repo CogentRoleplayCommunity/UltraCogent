@@ -1,5 +1,9 @@
 .
 ./L-index.html
+./Resources/RuleBook-V1.0.html
+./Resources/L-RuleBook-V1.0.html
+./Resources.html
+./L-Resources.html
 ./ZZZ-Dev-Archiver.html
 ./L-ZZZ-Dev-Archiver.html
 ./ZZZ-Dev-Construct.html

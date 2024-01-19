@@ -1,19 +1,32 @@
-OSRC Page source... (see http://www.osrc.rip)
+# Ultra Cogent - Ultra Realistic Universal Roleplaying System
 
-Disclaimer:
-The method used in here was designed from the beginning to handle hundreds, possibly thousands of pages easily by running a few commands in linux shell, requiring only a basic text editor capable of detecting changed content(gedit is fine), but no additional software what so ever. This is for sites that are constantly expanding, like OSRC, blogs, news page, shops, etc, where changes must be applied to possibly thousands of pages at once... This process may not be appropriate, if you're looking for a few page online presence.
-Even with that in mind, the scripts may or may not require changes to suit your specific needs. I can not guarantee that this is gonna make your life easier.
-I also will not add features on request! I only add features that I need, the rest is up to you. Open source does not mean that I'm gonna make your wish a reality, it means that it's available for you to use/modify/re-distribuite it according to the license.
+*** In early development! ***
 
-The package contains the help page sources initially... You can play with that to se what does what...
+## Author's message
 
-Step by step instructions for creating pages, changing theme, and uploading:
-0. You need a linux PC to work on... (I recommend ubuntu for simplicity as I know for sure that it contains everything that is necessary by default, requirements are: bash, gedit, and a browser.)
-1. Enter the directory in the terminal, and run the Construct.sh script to build the pages...
-2. Open the index.html in your browser from the www folder...
+- As a fan of Shad's and Jazza's simple and realistic approach to roleplaying, I'm a bit concerned by the realistic aspect getting lost since they handed it over to the community. Quite frankly: While I have no problem sharing stuff, I don't trust public voting to make the right decisions. Cogent is not mine to manage, I have 1 vote of many, and even if the comminity would accept all of my suggestions, the adoption process is far too slow for me, so I started Ultra Cogent (my homebrew) with even more realism in mind. :)
+- Ultra Cogent has substantial changes, mostly my own ideas, but also some adopted ideas.
 
-V1.1 Features
-- Added google verification tag to index page.
-- Site map generation for google crawlers. (Don't forget to specify the "YourURL/Sitemap.txt" in the google search console!)
-- Added canonical links from light to dark pages.
-- Added noindex tag for LatestUpdates.html page.
+
+
+## Contribution
+
+- You may use it, share it, fork it and/or make suggestions, but keep in mind that Ultra Cogent is mine and thus I may or may not accept your input.
+
+
+
+# License
+
+Ultra Cogent is developed based on Cognet Roleplay and with appreciation to its creators is under the the Cogent Roleplay Open License.
+
+- Any and all game mechanics and game systems contained within this document are open and freely available for anyone to re-use, include, adapt or develop, in their own projects that are also based on Cogent Roleplay.
+- Any and all of the code licenced under MIT license.
+- Any and all artwork licensed under Creative Commons Attribution-ShareAlike 4.0 International License
+
+Long live open source fun. :)
+
+Link to Cogent Roleplay Website: <https://cogentroleplay.com/>
+
+![CogentRoleplayAttribution](Attribution/CogentRoleplayAttribution_Wide.png)
+
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.

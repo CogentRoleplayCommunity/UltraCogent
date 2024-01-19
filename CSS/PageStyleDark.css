@@ -3,7 +3,7 @@
 body
 {
   background-color: rgb(0,0,40);
-  background-image: url("../Images/Common/Logo.svg");
+  /*background-image: url("../Images/Common/Logo.svg");*/
   background-size: 35%; /*small >> 200%, large >> 35%*/
   background-position: center;
   background-repeat: no-repeat;

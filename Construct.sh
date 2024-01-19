@@ -8,7 +8,7 @@
 
 # PreDefined variables
 UpdateLimit=10
-MainURL="http://osrc.rip" # !!! Change this to your own domain !!!
+MainURL="." # !!! Change this to your own domain !!! (for github pages this should point to ".")
 
 
 # Finding roots

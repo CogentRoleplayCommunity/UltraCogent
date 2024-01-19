@@ -4,7 +4,7 @@
 
 <!-- Beginning of head content -->
 
-    <meta name="google-site-verification" content="I2oXwNcWKeSbz8-57lpNu77OAPehfyu_FII9L1grvxw" />
+    <!-- Get your own tag at: https://search.google.com/search-console/about and replace this comment with it. Also get a verification page, and put it in the custom pages folder. -->
     <!-- Meta data -->
     <title>Welcome to Ultra Cogent</title>
     <meta charset="utf-8">
@@ -15,217 +15,93 @@
     <!-- Google font(s) -->
     <link href="https://fonts.googleapis.com/css?family=Spectral+SC|Vollkorn" rel="stylesheet">
     <!-- Style -->
-    <style>
-	body
-	{
-	  background-color: rgb(0,0,40);
-	  /*background-image: url("Images/Common/Logo.svg");*/
-	  background-size: 35%; /*small >> 200%, large >> 35%*/
-	  background-position: center;
-	  background-repeat: no-repeat;
-	  background-attachment: fixed;
-	}
-	
-	div
-	{
-	  background-size: 100%;
-	  background-position: top center;
-	  background-repeat: repeat-y;
-	  background-attachment: fixed;
-	}
+    <!-- Style sheets are managed by the construct.sh scipt, if you need to add another style sheet do it here for this page, of in the construct script for all pages or for Dark/Light pages separately-->
+    <link rel="stylesheet" type="text/css" href="CSS/PageStyleDark.css">
+    <link rel="stylesheet" type="text/css" href="CSS/ContentStyleDark.css">
+<!-- Animation -->
 
-	.TitleArea
-	{
-	  width: 100%;
-	  position: fixed;
-	  top: 0;
-	  left: 0px;
-	  font-family: 'Spectral SC', serif;
-	  text-align: center;
-	}
+<!-- End of head content -->
 
-	.PageTitle
-	{
-	  min-height: 50px;
-	  font-family: 'Spectral SC', serif;
-	  text-align: center;
-	  font-size: 32px;
-	  color: rgb(0,80,255);
-	  background: rgb(0, 0, 15);
-	}
-
-	.PageSubtitle
-	{
-	  position: relative;
-	  float: center;
-	  width: 100%;
-	  background: rgb(0, 0, 15);
-	}
-
-	.Slogan
-	{
-	  font-family: 'Vollkorn', serif;
-	  text-align: center;
-	  font-size: 20px;
-	  color: rgb(0,80,255);
-	}
-
-	.FadeUp
-	{
-	  width: 100%;
-	  height: 100px;
-	  background: rgb(0, 0, 15); /* For browsers that do not support gradients */
-	  background: linear-gradient(to bottom , rgba(0, 0, 15, 1), rgba(0, 0, 15, 0)); /* must be last */
-	}
-
-	.FadeDown
-	{
-	  position: fixed;
-	  bottom: 0px;
-	  left: 0px;
-	  width: 100%;
-	  height: 100px;
-	  background: rgb(0, 0, 15); /* For browsers that do not support gradients */
-	  background: linear-gradient(to bottom , rgba(0, 0, 15, 0), rgba(0, 0, 15, 1)); /* must be last */
-	}
-
-	.Menu
-	{
-	  position: fixed;
-	  width: 60px;
-	  height: 100%;
-	  border: 0px;
-	  padding: 0px;
-	  left: 0px;
-	  font-family: 'Spectral SC', serif;
-	  font-size: 20 px;
-	  color: rgba(0, 100, 255, 0);
-	  opacity: 0;
-	  background: rgb(0, 0, 15); /* For browsers that do not support gradients */
-	  background: linear-gradient(to left , rgba(0, 0, 15, 0), rgba(0, 0, 15, 1)); /* must be last */
-	  -webkit-transition: all 0.7s;
-	  transition: all 0.7s;
-	}
-
-	.Menu:hover
-	{
-	  width: 400px;
-	  color: rgba(0, 100, 255, 1);
-	  opacity: 1;
-	  background: rgb(0, 0, 15); /* For browsers that do not support gradients */
-	  background: linear-gradient(to left , rgba(0, 0, 15, 0), rgba(0, 0, 15, 1)); /* must be last */
-	}
-
-	.MenuPoint
-	{
-	  width: 75%;
-	  border: 2px solid rgba(0, 80, 255, 1);
-	  padding: 2px;
-	  color: rgba(0, 100, 255, 1);
-	  background-color: rgba(0, 80, 255, 0);
-	  -webkit-transition: all 0.2s;
-	  transition: all 0.2s;
-	}
-
-	.MenuPoint:hover
-	{
-	  padding: 5px;
-	  color: rgba(0, 170, 255, 1);
-	  background-color: rgba(0, 80, 255, 0.2);
-	}
-
-	.Shading /* This thing applies a layer of dark colour on the entire background. */
-	{
-	  position: absolute;
-	  top: 0px;
-	  left: 0px;
-	  width: 100%;
-	  min-height: 100%;
-	  background-color: rgba(0, 0, 35, 0.65); /*A=0.55*/
-
-	}
-
-	.PageContent
-	{
-	  position: relative;
-	  float: left;
-	  width: 92%;
-	  padding-left: 4%;
-	  padding-right: 4%;
-	  font-family: 'Vollkorn', serif;
-	  font-size: 16 px;
-	  text-align: left;
-	  color: rgb(0, 115, 153);
-	}
-
-	.BottomOffset
-	{
-	  position: relative;
-	  bottom: 0px;
-	  left: 0px;
-	  width: 100%;
-	  height: 100px;
-	}
-
-	.TopOffset
-	{
-	  position: relative;
-	  bottom: 0px;
-	  left: 0px;
-	  width: 100%;
-	  height: 160px;
-	}
-
-
-	/* >>> Animation <<< */
-	.Centered
-	{
-	  position: relative;
-	  left: 15%;
-	  width: 70%;
-	}
-
-	.TranslucentPanel
-	{
-	  color: rgb(0, 150, 200);
-	  border: 3px solid rgb(0, 40, 128);
-	  background-color: rgba(0, 0, 20, 0.3);
-	}
-
-	.PanelArea
-	{
-	  padding: 5px;
-	  border: 0px;
-	}
-
-	.Link
-	{
-	  text-align: left;
-	  padding-left: 60px;
-	}
-
-	.ProjectList
-	{
-	  padding-left: 5px;
-	  padding-right: 5px;
-	  font-weight: bold;
-	}
-
-	.ProjectListDescription
-	{
-	  padding-left: 5px;
-	  padding-right: 5px;
-	}
-    </style>
   </head>
-<body>
+  <body>
     <div class="Shading">
       <div class="PageContent">
       <div class="TopOffset"></div>
 
 <!-- Beginning of page content -->
 
-<h1 style="text-align: center">Under construction... </h1>
+<h1 style="text-align: center">Welcome to Ultra Cogent - Ultra Realistic Universal Roleplaying System (In early development!)</h1>
+
+<h2>Author's message</h2>
+<p>- As a fan of Shad's and Jazza's simple and realistic approach to roleplaying, I'm a bit concerned by the realistic aspect getting lost since they handed it over to the community. Quite frankly: While I have no problem sharing stuff, I don't trust public voting to make the right decisions. Cogent is not mine to manage, I have 1 vote of many, and even if the comminity would accept all of my suggestions, the adoption process is far too slow for me, so I started Ultra Cogent (my homebrew) with even more realism in mind. :)
+<br>- Ultra Cogent has substantial changes, mostly my own ideas, but also some adopted ideas.
+</p>
+
+<h2>Contribution</h2>
+<p>- You may use it, share it, fork it and/or make suggestions, but keep in mind that Ultra Cogent is mine and thus I may or may not accept your input.
+</p>
+
+<h2>Navigation tips</h2>
+<p>- Hover the mouse to the left, or tap the arrow at the top left corner to reveal the menu.
+<br>- Click/tap the Sun/Moon in the top right corner to switch between light and dark themes.</p>
+
+
+
+<div class="TranslucentPanel"><div class="PanelArea">
+<h2>Software License: BSD 3-Clause License</h2>
+<p>Copyright (c) 2018, Tibor Áser Veres
+<br>All rights reserved.
+<br>
+<br>Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+<br>
+<br>* Redistributions of source code must retain the above copyright notice, this
+  list of conditions and the following disclaimer.
+<br>
+<br>* Redistributions in binary form must reproduce the above copyright notice,
+  this list of conditions and the following disclaimer in the documentation
+  and/or other materials provided with the distribution.
+<br>
+<br>* Neither the name of the copyright holder nor the names of its
+  contributors may be used to endorse or promote products derived from
+  this software without specific prior written permission.
+<br>
+<br>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
+</div></div>
+<br>
+
+
+
+<div class="TranslucentPanel"><div class="PanelArea">
+<h2>License for any and every Game Mechanics or Game System</h2>
+<p><b>Cogent Roleplay Open License</b>
+<br>
+<br>- Attribution is required if you adapt, develop or include the Cogent Roleplay System (in part or in whole), by including one of the official Attribution Logos provided <a href="https://bit.ly/CogentAttribution">HERE: https://bit.ly/CogentAttribution</a>
+<br>- This must be included on the cover (back or front) of any published works and in the credits, and must be clear and legible.
+<br>- You cannot say "published by" Cogent Roleplay, or imply your project is an official Cogent Roleplay product, nor can you use the Cogent Roleplay logo in any form other than in the context of attribution outlined in this License.
+<br>- Any game mechanic or game system you develop based on Cogent Roleplay will be open and freely available for anyone to re-use, include, adapt or develop, in their own projects that are also based on Cogent Roleplay. This is to ensure the continuing open nature, accessibility, and freedom of this system. Just as we are giving you this free license to use Cogent Roleplay, we require you to give the same open license for any game mechanic you develop based on Cogent Roleplay, including commercial ventures. Any intellectual property (characters, brands, stories, designs, etc) will be entirely owned by their original creators and not subject to the same licence.
+<br>- Use of the Cogent Roleplay System (in part or in whole) in any project constitutes acceptance of this license.
+<br>
+<br><a href="https://cogentroleplay.com/"><img src="../Attribution/CogentRoleplayAttribution_Wide.png" alt="https://cogentroleplay.com"></a>
+</p>
+</div></div>
+<br>
+
+
+
+<div class="TranslucentPanel"><div class="PanelArea">
+<h2>License for any artwork</h2>
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" alt="Creative Commons Licence"></a>
+</div></div>
 
 <!-- End of page content -->
 
@@ -235,9 +111,10 @@
 <!-- Beginning of page title -->
 
       <div class="TitleArea">
-        <span style="position: absolute; top: 0px; left: 0px;"><img src="./Images/Common/M.svg" alt="SVG Arrow"></span>
+        <span style="position: absolute; top: 0px; left: 0px;"><img src="./Images/Common/M.svg"></span>
+        <span style="position: absolute; top: 0px; right: 0px;"><a href="./L-index.html"><img src="./Images/Dark/Sun.svg"></a></span>
         <div class="PageTitle">
-          <b>Welcome to <span style="color: rgb(0,180,255)">U</span>ltra <span style="color: rgb(0,180,255)">C</span>ogent</b>
+          <b><span style="color: rgb(0,180,255)">U</span>ltra <span style="color: rgb(0,180,255)">C</span>ogent</b>
         </div>
         <div class="PageSubtitle">
           <span class="Slogan"><span style="color: rgb(0,180,255)">U</span>ltra <span style="color: rgb(0,180,255)">R</span>ealistic <span style="color: rgb(0,180,255)">U</span>niversal <span style="color: rgb(0,180,255)">R</span>oleplay <span style="color: rgb(0,180,255)">S</span>ystem
@@ -254,11 +131,13 @@
 
       <div class="Menu">
         <div class="TopOffset"></div>
-        <a href="./"><div class="MenuPoint">Welcome Page</div></a>
+        <a href="./www/index.html"><div class="MenuPoint">Start Page</div></a>
+        <a href="./www/ZZZ-Dev-DevHelp.html"><div class="MenuPoint">Dev Section</div></a>
         <div class="BottomOffset"></div>
       </div>
 
 <!-- End of Menu -->
 
     </div>
-</body>
+  </body>
+</html>

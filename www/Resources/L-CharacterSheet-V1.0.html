@@ -44,7 +44,8 @@
 <div class="TranslucentPanel" style="position: static; max-width: 100%; height: fit-content; float: left;">
 
     <div class="PanelArea" style="position: static; max-width: 100%; height: fit-content; float: left;">
-        <div class="PanelArea" style="position: static; width: 52%; min-width: 30%; height: fit-content; float: left;">
+        <!--When adjustung the style of the div below also need to change it in ImgOrientation function-->
+        <div id="BasicCharacterData" class="PanelArea" style="position: static; width: 52%; min-width: 30%; height: fit-content; float: left;">
 
             <div class="PanelArea" style="position: static; min-width: 450px; max-width: 520px; height: max-content; min-height: fit-content; margin-right: 10px; float: left;">
                 <h2 class="IOLabel">
@@ -73,19 +74,24 @@
             </div>
         </div>
 
-        <div class="PanelArea" style="position: static; max-width: 30%; min-width: 300px; height: fit-content; max-height: 640px; margin-right: 10px; float: right;">
-            <img alt="(no art to show)" id="CharacterProfilePicture" src="" style="position: static; max-height: 100%; max-width: 100%;">
+        <!--When adjustung the style of the div below also need to change it in ImgOrientation function-->
+        <div id="ProfilePictureDiv" class="PanelArea" style="position: static; max-width: 30%; min-width: 300px; height: fit-content; max-height: 640px; margin-right: 10px; float: right;">
+            <img alt="(no art to show)" id="CharacterProfilePicture" src="" onload="ImgOrientation (this.naturalWidth, this.naturalHeight)" style="position: static; max-height: 100%; max-width: 100%;">
         </div>
 
-        <div class="PanelArea" style="position: static; max-width: 52%; min-width: 600px; height: 100%; min-height: fit-content; float: left;">
+        <!--When adjustung the style of the div below also need to change it in ImgOrientation function-->
+        <div id="BeliefsAndMorality" class="PanelArea" style="position: static; max-width: 52%; min-width: 600px; height: 100%; min-height: fit-content; float: left;">
             <h3 class="IOLabel" style="white-space: nowrap; overflow: hidden;">Image URL: &nbsp; <input class="InputField" type="text" id="IMGURL_I" style="width: 100%; display: inline;"><span class="OutputField" id="IMGURL_O" style="display: none;"></span></h3>
+            <p>(The image will be scaled to fit 30% of window width or max 640 pixel hight, whichever maxes out first.)</p>
             <h2 class="IOLabel">Beliefs and Morality:</h2>
             <p class="IOLabel"><input class="InputField" type="text" id="BaM_I" style="display: inline;"><span class="OutputField" id="BaM_O" style="display: none;"></span></p>
+            <h2 class="IOLabel">Disposition:</h2>
+            <p class="IOLabel"><input class="InputField" type="text" id="Disposition_I" style="display: inline;"><span class="OutputField" id="Disposition_O" style="display: none;"></span></p>
         </div>
     </div>
 
     <div class="PanelArea" style="position: static; width: max-content; height: fit-content; float: left;"></div>
-        <div style="position: static; width: 100%; min-width: 400px; float: left;">
+        <div style="position: static; width: 98%; min-width: 400px; float: left;">
             <h2 class="IOLabel">
             <a class="IOLabel" id="SaveDataLink" href="#" style="margin: 30px; float: left; display: inline;">Save</a>
             <a class="IOLabel" id="EditDataLink" href="#" style="margin: 30px; float: left; display: none;">Edit</a>
@@ -168,30 +174,51 @@
 
 
 
+/* May be reusable */
+
+
+    function ImgOrientation (NaturalWidth, NaturalHeight)
+    {
+        // The image element by default expects pirtrait, if the image is square or landscpe, this should change the settings automagically so that the page still flows well and looks good.
+        if (NaturalWidth >= NaturalHeight)
+        {
+            // As a general rule keep ProfilePictureDiv between 30 and 40% and BeliefsAndMorality above 50%
+            document.getElementById ("BasicCharacterData").style.cssText = "position: static; max-width: 52%; min-width: 0%; height: fit-content; float: left;";
+            // FIX THIS! The 2 inner divs also need to be shrinked shrinked but I'm too tired now...
+
+            document.getElementById ("ProfilePictureDiv").style.cssText = "position: static; max-width: 36%; min-width: 480px; height: fit-content; max-height: 480px; margin-right: 10px; float: right;";
+            document.getElementById ("BeliefsAndMorality").style.cssText = "position: static; width: 52%; min-width: 720px; height: 100%; min-height: fit-content; margin-right: 10px; float: left;";
+        }
+        // FIX THIS Probably better the image is hidden when inactive and hopefully automatically replaced by beliefs and morality section
+        // FIX THIS Probably better the portrait mode is also adjusted here in the else block, but it may not work if no image give, or may need default settings...
+    }
+
+
+
 
 
 /* Document specific */
 
     let Character = {};
-    let ListOfKeys = ["PName","Campaign","CName","Age","Race","Sex","IMGURL"];
+    let ListOfKeys = ["PName","Campaign","CName","Age","Race","Sex","IMGURL","PhyInt","Str","Ref","Int","MenInt","BaM","Disposition"];
 
 
     function EditMode ()
     {
         HideClass ("OutputField");
-        document.getElementById("EditDataLink").style.display = "none";
+        document.getElementById ("EditDataLink").style.display = "none";
         ShowClassInline ("InputField");
-        document.getElementById("SaveDataLink").style.display = "inline";
-        document.getElementById("ClearDataLink").style.display = "inline";
+        document.getElementById ("SaveDataLink").style.display = "inline";
+        document.getElementById ("ClearDataLink").style.display = "inline";
     }
 
     function DisplayMode ()
     {
         ShowClassInline ("OutputField");
-        document.getElementById("EditDataLink").style.display = "inline";
+        document.getElementById ("EditDataLink").style.display = "inline";
         HideClass ("InputField");
-        document.getElementById("SaveDataLink").style.display = "none";
-        document.getElementById("ClearDataLink").style.display = "none";
+        document.getElementById ("SaveDataLink").style.display = "none";
+        document.getElementById ("ClearDataLink").style.display = "none";
     }
 
     function FillOutput ()

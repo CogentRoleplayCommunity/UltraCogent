@@ -1,0 +1,240 @@
+    <!-- Remember! In order to insert an image or link to downloadable file, from Files or Images folder, the path must start with ../ in front instead of ./ since this file is in a subdirectory already. -->
+    <!-- Leave the markers untouched! -->
+<!--TitleMarker--><h1 style="text-align: center"> Ultra Cogent - V1.0 - Character Sheet - V1.0
+</h1>
+
+<h2 class="IOLabel"> UNFINISHED! Please come back later. </h2>
+
+<div class="TranslucentPanel" style="position: static; max-width: 100%; height: fit-content; float: left;">
+
+    <div class="PanelArea" style="position: static; max-width: 100%; height: fit-content; float: left;">
+        <div class="PanelArea" style="position: static; width: 52%; min-width: 30%; height: fit-content; float: left;">
+
+            <div class="PanelArea" style="position: static; min-width: 450px; max-width: 520px; height: max-content; min-height: fit-content; margin-right: 10px; float: left;">
+                <h2 class="IOLabel">
+                Player: &nbsp; <input class="InputField" type="text" id="PName_I" style="display: inline;"><span class="OutputField" id="PName_O" style="display: none;"></span></h2>
+                <h3 class="IOLabel">
+                Campaign: &nbsp; <input class="InputField" type="text" id="Campaign_I" style="display: inline;"><span class="OutputField" id="Campaign_O" style="display: none;"></span>
+                </h3>
+                <h2 class="IOLabel">
+                Character: &nbsp; <input class="InputField" type="text" id="CName_I" style="display: inline;"><span class="OutputField" id="CName_O" style="display: none;"></span></h2>
+                <h3 class="IOLabel">
+                Age: &nbsp; <input class="InputField" type="text" id="Age_I" style="display: inline;"><span class="OutputField" id="Age_O" style="display: none;"></span>
+                <br>Race: &nbsp; <input class="InputField" type="text" id="Race_I" style="display: inline;"><span class="OutputField" id="Race_O" style="display: none;"></span>
+                <br>Sex: &nbsp; <input class="InputField" type="text" id="Sex_I" style="display: inline;"><span class="OutputField" id="Sex_O" style="display: none;"></span>
+                </h3>
+            </div>
+
+            <div class="PanelArea" style="position: static; min-width: 200px; max-width: 400px; height: max-content; min-height: fit-content; margin-right: 10px; float: left;">
+                <h2 class="IOLabel">Attributes:</h2>
+                <h3 class="IOLabel">
+                    <br>Physical Integrity (Phy.Int.): &nbsp; <input class="InputField" type="text" id="PhyInt_I" style="display: inline;"><span class="OutputField" id="PhyInt_O" style="display: none;"></span>
+                    <br>Strength (Str.): &nbsp; <input class="InputField" type="text" id="Str_I" style="display: inline;"><span class="OutputField" id="Str_O" style="display: none;"></span>
+                    <br>Reflex (Ref.): &nbsp; <input class="InputField" type="text" id="Ref_I" style="display: inline;"><span class="OutputField" id="Ref_O" style="display: none;"></span>
+                    <br>Intelligence (Int.): &nbsp; <input class="InputField" type="text" id="Int_I" style="display: inline;"><span class="OutputField" id="Int_O" style="display: none;"></span>
+                    <br>Mental Integrity (Men.Int.): &nbsp; <input class="InputField" type="text" id="MenInt_I" style="display: inline;"><span class="OutputField" id="MenInt_O" style="display: none;"></span>
+                </h3>
+            </div>
+        </div>
+
+        <div class="PanelArea" style="position: static; max-width: 30%; min-width: 300px; height: fit-content; max-height: 640px; margin-right: 10px; float: right;">
+            <img alt="(no art to show)" id="CharacterProfilePicture" src="" style="position: static; max-height: 100%; max-width: 100%;">
+        </div>
+
+        <div class="PanelArea" style="position: static; max-width: 52%; min-width: 600px; height: 100%; min-height: fit-content; float: left;">
+            <h3 class="IOLabel" style="white-space: nowrap; overflow: hidden;">Image URL: &nbsp; <input class="InputField" type="text" id="IMGURL_I" style="width: 100%; display: inline;"><span class="OutputField" id="IMGURL_O" style="display: none;"></span></h3>
+            <h2 class="IOLabel">Beliefs and Morality:</h2>
+            <p class="IOLabel"><input class="InputField" type="text" id="BaM_I" style="display: inline;"><span class="OutputField" id="BaM_O" style="display: none;"></span></p>
+        </div>
+    </div>
+
+    <div class="PanelArea" style="position: static; width: max-content; height: fit-content; float: left;"></div>
+        <div style="position: static; width: 100%; min-width: 400px; float: left;">
+            <h2 class="IOLabel">
+            <a class="IOLabel" id="SaveDataLink" href="#" style="margin: 30px; float: left; display: inline;">Save</a>
+            <a class="IOLabel" id="EditDataLink" href="#" style="margin: 30px; float: left; display: none;">Edit</a>
+            <a class="IOLabel" id="ClearDataLink" href="#" style="margin: 30px; float: right; display: none;">Clear</a>
+            </h2>
+        </div>
+    </div>
+
+</div>
+
+
+<!--Due to the static posisioning of above divs above the generated bottom offset isn't working.-->
+<div class="PanelArea" style="position: static; width: max-content; height: 100px; float: left;"></div>
+
+
+<script>
+
+/* Reusable code */
+
+    // Element visibility
+    function HideClass (ClassName)
+    {
+        Elements = document.getElementsByClassName (ClassName);
+        for (var i = 0; i < Elements.length; i++) 
+            Elements[i].style.display = 'none';
+    }
+
+    function ShowClassInline (ClassName)
+    {
+        Elements = document.getElementsByClassName (ClassName);
+        for (var i = 0; i < Elements.length; i++) 
+            Elements[i].style.display = "inline";
+    }
+
+
+    // Cookies
+    function SetCookie (Name, Value, ExpirationDate = undefined)
+    {
+        if (Name !== undefined && Name !== "" && Value !== undefined && Value !== "")
+            if (ExpirationDate)
+            {
+                let Expiry = new Date();
+                if (ExpirationDate > 0)
+                {
+                    Expiry.setTime (Expiry.getTime () + (ExpirationDate * 24 * 60 * 60 * 1000));
+                    Expiry = "expires=" + Expiry.toUTCString ();
+                }
+                document.cookie = Name + "=" + Value + ";" + Expiry + ";path=/;SameSite=Strict";
+            }
+            else
+                document.cookie = Name + "=" + Value + ";SameSite=Strict";
+    }
+
+    function GetCookieValue (Name)
+    {
+        let CookieReturnValue = undefined;
+        let Cookies = document.cookie.split(";");
+        for (let i = 0; i < Cookies.length; i++)
+        {
+            let Cookie = Cookies[i].trim();
+            if (Cookie.indexOf(Name + "=") === 0)
+            {
+                CookieReturnValue = Cookie.substring (Name.length + 1, Cookie.length);
+                break;
+            }
+        }
+        return CookieReturnValue;
+    }
+
+    function RefreshCookie (Name, ExpirationDate)
+    {
+        let Value = GetCookieValue (Name);
+        if (Value !== "") SetCookie (Name, Value, ExpirationDate);
+    }
+
+    function DeleteCookie (Name)
+    {
+        document.cookie = Name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;SameSite=Strict";
+    }
+
+
+
+
+
+/* Document specific */
+
+    let Character = {};
+    let ListOfKeys = ["PName","Campaign","CName","Age","Race","Sex","IMGURL"];
+
+
+    function EditMode ()
+    {
+        HideClass ("OutputField");
+        document.getElementById("EditDataLink").style.display = "none";
+        ShowClassInline ("InputField");
+        document.getElementById("SaveDataLink").style.display = "inline";
+        document.getElementById("ClearDataLink").style.display = "inline";
+    }
+
+    function DisplayMode ()
+    {
+        ShowClassInline ("OutputField");
+        document.getElementById("EditDataLink").style.display = "inline";
+        HideClass ("InputField");
+        document.getElementById("SaveDataLink").style.display = "none";
+        document.getElementById("ClearDataLink").style.display = "none";
+    }
+
+    function FillOutput ()
+    {
+        Object.keys(Character).forEach (key => {if (Character[key] !== undefined) {document.getElementById (key + "_O").textContent = Character[key];}});
+        if (Character.IMGURL !== "" && Character.IMGURL !== undefined)
+            document.getElementById("CharacterProfilePicture").src = Character.IMGURL;
+    }
+
+    function FillInput ()
+    {
+        if (Object.keys(Character).length !== 0)
+            Object.keys(Character).forEach (key => {if (Character[key] !== undefined) {document.getElementById (key + "_I").value = Character[key];}});
+        if (Character.IMGURL !== "" && Character.IMGURL !== undefined)
+            document.getElementById("CharacterProfilePicture").src = Character.IMGURL;
+    }
+
+
+    function SaveCharacterData ()
+    {
+        // Clear object and collect data
+        ListOfKeys.forEach (key => {delete Character[key];});
+        ListOfKeys.forEach (key => {if (document.getElementById (key + "_I").value !== "") {Character[key] = document.getElementById (key + "_I").value;}});
+
+        // Save to cookie
+        if (Object.keys(Character).length !== 0)
+            SetCookie ("CharacterCookie", JSON.stringify (Character), 365);
+        else
+            DeleteCookie ("CharacterCookie");
+
+        // Switch to Display mode
+        DisplayMode ();
+        FillOutput ();
+    }
+    // Save on click
+    document.getElementById("SaveDataLink").addEventListener("click", function(event) {event.preventDefault (); SaveCharacterData ();});
+
+
+    function EditCharacterData ()
+    {
+        EditMode ();
+        FillInput ();
+    }
+    // Edit on click
+    document.getElementById("EditDataLink").addEventListener("click", function(event) {event.preventDefault (); EditCharacterData ();});
+
+
+    function ClearCharacterData ()
+    {
+        // Clear Character
+        ListOfKeys.forEach(key => {Character[key] = "";});
+        FillInput ();
+        FillOutput ();
+        ListOfKeys.forEach(key => {delete Character[key];});
+    }
+    // Clear on click
+    document.getElementById("ClearDataLink").addEventListener("click", function(event) {event.preventDefault (); ClearCharacterData ();});
+
+
+    // Load from cookie
+    function LoadCookies ()
+    {
+        // Character data
+        let CharacterDataJson = GetCookieValue ("CharacterCookie");
+
+        // Parse Character if exists.
+        if (CharacterDataJson !== "" && CharacterDataJson !== undefined)
+        {
+            Character = JSON.parse(CharacterDataJson);
+            DisplayMode ();
+            FillOutput ();
+        }
+        else
+            EditMode ();
+
+        // Refresh cookie for 30 more days
+        RefreshCookie ("CharacterCookie", 365);
+    }
+    // Load cookies when opening the page.
+    window.onload = function() {LoadCookies ();};
+
+</script>

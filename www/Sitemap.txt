@@ -6,6 +6,8 @@
 ./Resources/L-RuleBook-V1.0.html
 ./Resources.html
 ./L-Resources.html
+./Support.html
+./L-Support.html
 ./ZZZ-Dev-Archiver.html
 ./L-ZZZ-Dev-Archiver.html
 ./ZZZ-Dev-Construct.html

@@ -13,28 +13,15 @@
 
             <div class="PanelArea" style="position: static; min-width: 450px; max-width: 520px; height: max-content; min-height: fit-content; margin-right: 10px; float: left;">
                 <h2 class="IOLabel">
-                Player: &nbsp; <input class="InputField" type="text" id="PName_I" style="display: inline;"><span class="OutputField" id="PName_O" style="display: none;"></span></h2>
-                <h3 class="IOLabel">
-                Campaign: &nbsp; <input class="InputField" type="text" id="Campaign_I" style="display: inline;"><span class="OutputField" id="Campaign_O" style="display: none;"></span>
-                </h3>
+                Player: &nbsp; <input class="InputField" type="text" id="PName_I" style="display: inline;"><span class="OutputField" id="PName_O" style="display: none;"></span>
+                <br>Campaign: &nbsp; <input class="InputField" type="text" id="Campaign_I" style="display: inline;"><span class="OutputField" id="Campaign_O" style="display: none;"></span>
+                </h2>
                 <h2 class="IOLabel">
-                Character: &nbsp; <input class="InputField" type="text" id="CName_I" style="display: inline;"><span class="OutputField" id="CName_O" style="display: none;"></span></h2>
-                <h3 class="IOLabel">
-                Age: &nbsp; <input class="InputField" type="text" id="Age_I" style="display: inline;"><span class="OutputField" id="Age_O" style="display: none;"></span>
+                Character: &nbsp; <input class="InputField" type="text" id="CName_I" style="display: inline;"><span class="OutputField" id="CName_O" style="display: none;"></span>
+                <br>Age: &nbsp; <input class="InputField" type="text" id="Age_I" style="display: inline;"><span class="OutputField" id="Age_O" style="display: none;"></span>
                 <br>Race: &nbsp; <input class="InputField" type="text" id="Race_I" style="display: inline;"><span class="OutputField" id="Race_O" style="display: none;"></span>
                 <br>Sex: &nbsp; <input class="InputField" type="text" id="Sex_I" style="display: inline;"><span class="OutputField" id="Sex_O" style="display: none;"></span>
-                </h3>
-            </div>
-
-            <div class="PanelArea" style="position: static; min-width: 200px; max-width: 400px; height: max-content; min-height: fit-content; margin-right: 10px; float: left;">
-                <h2 class="IOLabel">Attributes:</h2>
-                <h3 class="IOLabel">
-                    <br>Physical Integrity (Phy.Int.): &nbsp; <input class="InputField" type="text" id="PhyInt_I" style="display: inline;"><span class="OutputField" id="PhyInt_O" style="display: none;"></span>
-                    <br>Strength (Str.): &nbsp; <input class="InputField" type="text" id="Str_I" style="display: inline;"><span class="OutputField" id="Str_O" style="display: none;"></span>
-                    <br>Reflex (Ref.): &nbsp; <input class="InputField" type="text" id="Ref_I" style="display: inline;"><span class="OutputField" id="Ref_O" style="display: none;"></span>
-                    <br>Intelligence (Int.): &nbsp; <input class="InputField" type="text" id="Int_I" style="display: inline;"><span class="OutputField" id="Int_O" style="display: none;"></span>
-                    <br>Mental Integrity (Men.Int.): &nbsp; <input class="InputField" type="text" id="MenInt_I" style="display: inline;"><span class="OutputField" id="MenInt_O" style="display: none;"></span>
-                </h3>
+                </h2>
             </div>
         </div>
 
@@ -54,8 +41,195 @@
         </div>
     </div>
 
-    <div class="PanelArea" style="position: static; width: max-content; height: fit-content; float: left;"></div>
-        <div style="position: static; width: 98%; min-width: 400px; float: left;">
+    <div class="PanelArea" style="position: static; width: max-content; height: fit-content; float: left;">
+        <div class="PanelArea" style="position: static; min-width: 200px; max-width: 400px; height: max-content; min-height: fit-content; margin-right: 10px; float: left;">
+            <h1 class="IOLabel">Attributes:</h1>
+            <h2 class="IOLabel">
+                <br>Strength (Str.): &nbsp; <span class="OutputField" id="Str_O" style="display: none;"></span>
+                <br>Reflex (Ref.): &nbsp; <span class="OutputField" id="Ref_O" style="display: none;"></span>
+                <br>Intelligence (Int.): &nbsp; <span class="OutputField" id="Int_O" style="display: none;"></span>
+                <br>Str Bonus/Malus: &nbsp; <input class="InputField" type="text" id="StrTweak_I" style="display: inline;"><span class="OutputField" id="StrTweak_O" style="display: none;"></span>
+                <br>Ref Bonus/Malus: &nbsp; <input class="InputField" type="text" id="RefTweak_I" style="display: inline;"><span class="OutputField" id="RefTweak_O" style="display: none;"></span>
+                <br>Int Bonus/Malus: &nbsp; <input class="InputField" type="text" id="IntTweak_I" style="display: inline;"><span class="OutputField" id="IntTweak_O" style="display: none;"></span>
+            </h2>
+        </div>
+    </div>
+
+    <div class="PanelArea" style="position: static; min-width: 200px; max-width: 400px; height: max-content; min-height: fit-content; margin-right: 10px; float: left;">
+
+        <!--I've tried 2 methods to load the SVG using javascript with no success, so I ended up copy pasting it's content-->
+
+        <svg id="Diagram" style="height: 350px; width: 400px">
+            <path
+            style="fill:#000000;fill-opacity:0.8;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+            d="M 192.76863,51.690831 87.768625,233.69083 l 15.000005,26 h 210 l 15,-26 -105,-181.999999 z"
+            id="Background" />
+            <path
+            style="fill:#00ff00;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+            d="m 132.76863,207.69083 -15,26 h 30 z"
+            id="Green3"
+            sodipodi:nodetypes="cccc" />
+            <path
+            style="fill:#4dff4d;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+            d="m 177.76863,181.69083 -15,26 h 30 z"
+            id="Green1"
+            sodipodi:nodetypes="cccc" />
+            <path
+            style="fill:#9999ff;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+            d="m 237.76863,181.69083 -15,26 h 30 z"
+            id="Blue1"
+            sodipodi:nodetypes="cccc" />
+            <path
+            style="fill:#4d4dff;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+            d="m 260.26863,194.69083 -15,26 h 30 z"
+            id="Blue2"
+            sodipodi:nodetypes="cccc" />
+            <path
+            style="fill:#4dff4d;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+            d="m 155.26863,194.69083 -15,26 h 30 z"
+            id="Green2"
+            sodipodi:nodetypes="cccc" />
+            <path
+            style="fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+            d="m 207.76863,77.69083 -15,26 h 30 z"
+            id="Red3"
+            sodipodi:nodetypes="cccc" />
+            <path
+            style="fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+            d="m 282.76863,207.69083 -15,26 h 30 z"
+            id="Blue3"
+            sodipodi:nodetypes="cccc" />
+            <path
+            style="fill:#ff9999;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+            d="m 207.76863,129.69083 -15,26 h 30 z"
+            id="Red1"
+            sodipodi:nodetypes="cccc" />
+            <path
+            style="fill:#ff4d4d;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+            d="m 207.76863,103.69083 -15,26 h 30 z"
+            id="Red2"
+            sodipodi:nodetypes="cccc" />
+            <path
+            style="fill:#99ffff;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+            d="m 192.76863,207.69083 15,26 15,-26 z"
+            id="Cyan1" />
+            <path
+            style="fill:#ff99ff;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+            d="m 222.76863,155.69083 15,26 15,-26 z"
+            id="Magenta1" />
+            <path
+            style="fill:#ffff99;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+            d="m 162.76863,155.69083 15,26 15,-26 z"
+            id="Yellow1" />
+            <path
+            style="fill:#dbdbdb;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+            d="m 192.76863,155.69083 h 30 l 15,26 -15,26 h -30 l -15,-26 z"
+            id="Grey" />
+            <path
+            style="fill:#4dffa6;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+            d="m 177.76863,233.69083 -15,-26 h 30 l 15,26 z"
+            id="Emerald2" />
+            <path
+            style="fill:#4da6ff;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+            d="m 207.76863,233.69083 15,-26 h 30 l -15,26 z"
+            id="Royal2" />
+            <path
+            style="fill:#a64dff;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+            d="m 267.76863,181.69083 -15,26 -15,-26 15,-26 z"
+            id="Purple2" />
+            <path
+            style="fill:#ff4da6;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+            d="m 237.76863,129.69083 h -30 l 15,26 h 30 z"
+            id="Rose2" />
+            <path
+            style="fill:#ffa64d;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+            d="m 177.76863,129.69083 h 30 l -15,26 h -30 z"
+            id="Orange2" />
+            <path
+            style="fill:#a6ff4d;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+            d="m 147.76862,181.69083 15.00001,26 15,-26 -15,-26 z"
+            id="Apple2" />
+            <text
+            xml:space="preserve"
+            style="font-style:normal;font-weight:normal;font-size:16.9333px;line-height:1.25;font-family:sans-serif;fill:#808080;fill-opacity:1;stroke:none;stroke-width:0.264583"
+            x="209.58534"
+            y="24.423878"
+            id="RedName"><tspan
+                sodipodi:role="line"
+                id="RedNameTSpan"
+                style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:16.9333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold Italic';text-align:center;text-anchor:middle;fill:#808080;fill-opacity:1;stroke-width:0.264583"
+                x="209.58534"
+                y="24.423878">Strength</tspan></text>
+            <text
+            xml:space="preserve"
+            style="font-style:normal;font-weight:normal;font-size:16.9333px;line-height:1.25;font-family:sans-serif;fill:#808080;fill-opacity:1;stroke:none;stroke-width:0.264583"
+            x="207.89514"
+            y="44.126221"
+            id="RedValue"><tspan
+                sodipodi:role="line"
+                style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:16.9333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold Italic';text-align:center;text-anchor:middle;fill:#808080;fill-opacity:1;stroke-width:0.264583"
+                x="207.89514"
+                y="44.126221"
+                id="RedValueTSpan">0</tspan></text>
+            <text
+            xml:space="preserve"
+            style="font-style:normal;font-weight:normal;font-size:16.9333px;line-height:1.25;font-family:sans-serif;fill:#808080;fill-opacity:1;stroke:none;stroke-width:0.264583"
+            x="340.89514"
+            y="264.12622"
+            id="BlueValue"><tspan
+                sodipodi:role="line"
+                id="BlueValueTSpan"
+                style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:16.9333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold Italic';text-align:center;text-anchor:middle;fill:#808080;fill-opacity:1;stroke-width:0.264583"
+                x="340.89514"
+                y="264.12622">0</tspan></text>
+            <text
+            xml:space="preserve"
+            style="font-style:normal;font-weight:normal;font-size:16.9333px;line-height:1.25;font-family:sans-serif;text-align:center;text-anchor:middle;fill:#808080;fill-opacity:1;stroke:none;stroke-width:0.264583"
+            x="77.895149"
+            y="264.12622"
+            id="GreenValue"><tspan
+                sodipodi:role="line"
+                id="GreenValueTSpan"
+                style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:16.9333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold Italic';text-align:center;text-anchor:middle;fill:#808080;fill-opacity:1;stroke-width:0.264583"
+                x="77.895149"
+                y="264.12622">0</tspan></text>
+            <text
+            xml:space="preserve"
+            style="font-style:normal;font-weight:normal;font-size:16.9333px;line-height:1.25;font-family:sans-serif;text-align:center;text-anchor:middle;fill:#808080;fill-opacity:1;stroke:none;stroke-width:0.264583"
+            x="76.968056"
+            y="284.42386"
+            id="GreenName"><tspan
+                sodipodi:role="line"
+                style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:16.9333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold Italic';text-align:center;text-anchor:middle;fill:#808080;fill-opacity:1;stroke-width:0.264583"
+                x="76.968056"
+                y="284.42386"
+                id="GreenNameTSpan">Reflex</tspan></text>
+            <text
+            xml:space="preserve"
+            style="font-style:normal;font-weight:normal;font-size:16.9333px;line-height:1.25;font-family:sans-serif;fill:#808080;fill-opacity:1;stroke:none;stroke-width:0.264583"
+            x="340.52554"
+            y="284.42386"
+            id="BlueName"><tspan
+                sodipodi:role="line"
+                id="BlueNameTSpan"
+                style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:16.9333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold Italic';text-align:center;text-anchor:middle;fill:#808080;fill-opacity:1;stroke-width:0.264583"
+                x="340.52554"
+                y="284.42386">Intelligence</tspan></text>
+        </svg>
+
+
+
+    </div>
+
+    <div class="PanelArea" style="position: static; min-width: 200px; max-width: 400px; height: max-content; min-height: fit-content; margin-right: 10px; float: left;">
+        <h2>
+            Physical Integrity (Phy.Int.): &nbsp; <input class="InputField" type="text" id="PhyInt_I" style="display: inline;"><span class="OutputField" id="PhyInt_O" style="display: none;"></span>
+            <br>Mental Integrity (Men.Int.): &nbsp; <input class="InputField" type="text" id="MenInt_I" style="display: inline;"><span class="OutputField" id="MenInt_O" style="display: none;"></span>
+        </h2>
+    </div>
+
+    <div class="PanelArea" style="position: static; width: 98%; height: fit-content;">
+        <div style="position: static; width: 100%; min-width: 400px; float: left;">
             <h2 class="IOLabel">
             <a class="IOLabel" id="SaveDataLink" href="#" style="margin: 30px; float: left; display: inline;">Save</a>
             <a class="IOLabel" id="EditDataLink" href="#" style="margin: 30px; float: left; display: none;">Edit</a>
@@ -66,21 +240,30 @@
 
 </div>
 
-
 <!--Due to the static posisioning of above divs above the generated bottom offset isn't working.-->
-<div class="PanelArea" style="position: static; width: max-content; height: 100px; float: left;"></div>
+<div class="PanelArea" style="position: static; width: max-content; height: 150px; float: left;"></div>
 
 
 <script>
 
 /* Reusable code */
 
-    // Element visibility
+    // Element / Class visibility
+    function HideElement (ElementID)
+    {
+        document.getElementById (ElementID).style.display = "none";
+    }
+
+    function ShowElementInline (ElementID)
+    {
+        document.getElementById (ElementID).style.display = "inline";
+    }
+
     function HideClass (ClassName)
     {
         Elements = document.getElementsByClassName (ClassName);
         for (var i = 0; i < Elements.length; i++) 
-            Elements[i].style.display = 'none';
+            Elements[i].style.display = "none";
     }
 
     function ShowClassInline (ClassName)
@@ -138,7 +321,7 @@
 
 
 
-/* May be reusable */
+/* May be reusable at least as example... */
 
 
     function ImgOrientation (NaturalWidth, NaturalHeight)
@@ -157,6 +340,57 @@
         // FIX THIS Probably better the portrait mode is also adjusted here in the else block, but it may not work if no image give, or may need default settings...
     }
 
+    // FIX THIS! - SVG is currently embedded because the first method didn't work with no errors, the second at least told me to use a web server, but that's for another day.
+
+    /*function LoadSVG (SVGImage, ContainerDiv)
+    {
+        console.log ("Attempting to load: " + SVGImage);
+        
+        let XHR = new XMLHttpRequest ();
+        XHR.open ("GET", SVGImage, true);
+        XHR.responseType = "text";
+
+        XHR.onreadystatechange = function()
+        {
+            console.log ("Onreadystatechange called!");
+            if (XHR.readyState === 4 && XHR.status === 200)
+            {
+                // Step 6: Get the response text
+                var SVGContent = XHR.responseText;
+
+                // Step 7: Split the response text into an array of lines
+                let Lines = SVGContent.split ("\n");
+
+                // Step 8: Append each line to the div element
+                Lines.forEach (function (Line)
+                {
+                    document.getElementById (ContainerDiv).innerHTML += Line;
+                    console.log ("Loading line: " + Line);
+                });
+            }
+        };
+    }
+    window.onload = LoadSVG ("../Images/ResourcePages/UltraCogent-StrRefIntDiagram.svg", "SVGContainer");*/
+
+    /* This does not work without a web server... I'm not going out of my way to test it right now.
+    function LoadSVG (SVGImage, ContainerDiv)
+    {
+        console.log ("Attempting to load: " + SVGImage);
+        
+        fetch (SVGImage)
+        .then (response => response.text ())
+        .then (svgContent => {
+            let lines = svgContent.split ('\n');
+            lines.forEach (line => {
+                document.getElementById (ContainerDiv).innerHTML += line + '<br>';
+            });
+        })
+        .catch (error => {
+            console.error ('Error:', error);
+        });
+    }
+    window.onload = LoadSVG ("../Images/ResourcePages/UltraCogent-StrRefIntDiagram.svg", "SVGContainer");*/
+
 
 
 
@@ -164,40 +398,58 @@
 /* Document specific */
 
     let Character = {};
-    let ListOfKeys = ["PName","Campaign","CName","Age","Race","Sex","IMGURL","PhyInt","Str","Ref","Int","MenInt","BaM","Disposition"];
+    let ListOfKeys = ["PName","Campaign","CName","Age","Race","Sex","IMGURL","BaM","Disposition","StrTweak","RefTweak","IntTweak","PhyInt","MenInt"];
+    let SpecialKeys = ["BaseStr","BaseRef","BaseInt"];
+    let CharacterCalc = {};
+    let CalcKeys = ["Str","Ref","Int"];
+    let EditModeFlag = false;
 
 
     function EditMode ()
     {
         HideClass ("OutputField");
-        document.getElementById ("EditDataLink").style.display = "none";
+        HideElement ("EditDataLink");
         ShowClassInline ("InputField");
-        document.getElementById ("SaveDataLink").style.display = "inline";
-        document.getElementById ("ClearDataLink").style.display = "inline";
+        ShowElementInline ("SaveDataLink");
+        ShowElementInline ("ClearDataLink");
+        EditModeFlag = true;
     }
 
     function DisplayMode ()
     {
         ShowClassInline ("OutputField");
-        document.getElementById ("EditDataLink").style.display = "inline";
+        ShowElementInline ("EditDataLink");
         HideClass ("InputField");
-        document.getElementById ("SaveDataLink").style.display = "none";
-        document.getElementById ("ClearDataLink").style.display = "none";
+        HideElement ("SaveDataLink");
+        HideElement ("ClearDataLink");
+        EditModeFlag = false;
     }
 
     function FillOutput ()
     {
-        Object.keys(Character).forEach (key => {if (Character[key] !== undefined) {document.getElementById (key + "_O").textContent = Character[key];}});
+        ListOfKeys.forEach (key => {if (Character[key] !== undefined) {document.getElementById (key + "_O").textContent = Character[key];}});
+        document.getElementById ("RedValueTSpan").textContent = Character.BaseStr;
+        document.getElementById ("GreenValueTSpan").textContent = Character.BaseRef;
+        document.getElementById ("BlueValueTSpan").textContent = Character.BaseInt;
+        CalcKeys.forEach (key => {if (CharacterCalc[key] !== undefined) {document.getElementById (key + "_O").textContent = CharacterCalc[key];}});
         if (Character.IMGURL !== "" && Character.IMGURL !== undefined)
             document.getElementById("CharacterProfilePicture").src = Character.IMGURL;
     }
 
     function FillInput ()
     {
-        if (Object.keys(Character).length !== 0)
-            Object.keys(Character).forEach (key => {if (Character[key] !== undefined) {document.getElementById (key + "_I").value = Character[key];}});
+        if (Object.keys (Character).length !== 0)
+            ListOfKeys.forEach (key => {if (Character[key] !== undefined) {document.getElementById (key + "_I").value = Character[key];}});
         if (Character.IMGURL !== "" && Character.IMGURL !== undefined)
             document.getElementById("CharacterProfilePicture").src = Character.IMGURL;
+    }
+
+    function Calculate ()
+    {
+        // Calculate Values
+        CharacterCalc.Str = parseInt (Character.BaseStr) + parseInt (Character.StrTweak);
+        CharacterCalc.Ref = parseInt (Character.BaseRef) + parseInt (Character.RefTweak);
+        CharacterCalc.Int = parseInt (Character.BaseInt) + parseInt (Character.IntTweak);
     }
 
 
@@ -206,6 +458,15 @@
         // Clear object and collect data
         ListOfKeys.forEach (key => {delete Character[key];});
         ListOfKeys.forEach (key => {if (document.getElementById (key + "_I").value !== "") {Character[key] = document.getElementById (key + "_I").value;}});
+        Character.BaseStr = document.getElementById ("RedValueTSpan").textContent;
+        Character.BaseRef = document.getElementById ("GreenValueTSpan").textContent;
+        Character.BaseInt = document.getElementById ("BlueValueTSpan").textContent;
+
+        // Calculate Values
+        Calculate ();
+
+        console.log (Character);
+        console.log (CharacterCalc);
 
         // Save to cookie
         if (Object.keys(Character).length !== 0)
@@ -242,6 +503,48 @@
     document.getElementById("ClearDataLink").addEventListener("click", function(event) {event.preventDefault (); ClearCharacterData ();});
 
 
+    function StrFefIntByDiagram (Strength, Reflex, Intelligence)
+    {
+        if (EditModeFlag)
+        {
+            document.getElementById ("RedValueTSpan").textContent = Strength;
+            document.getElementById ("GreenValueTSpan").textContent = Reflex;
+            document.getElementById ("BlueValueTSpan").textContent = Intelligence;
+        }
+    }
+
+    // SVG Path Click Action
+    function SVGClickEvent (PathID)
+    {
+        document.getElementById ("Grey").onclick = function () {StrFefIntByDiagram (0, 0, 0);};
+
+        document.getElementById ("Red3").onclick = function () {StrFefIntByDiagram (3, -1, -1);};
+        document.getElementById ("Red2").onclick = function () {StrFefIntByDiagram (2, 0, 0);};
+        document.getElementById ("Red1").onclick = function () {StrFefIntByDiagram (1, 0, 0);};
+
+        document.getElementById ("Orange2").onclick = function () {StrFefIntByDiagram (2, 1, -1);};
+        document.getElementById ("Yellow1").onclick = function () {StrFefIntByDiagram (1, 1, 0);};
+        document.getElementById ("Apple2").onclick = function () {StrFefIntByDiagram (1, 2, -1);};
+
+        document.getElementById ("Green3").onclick = function () {StrFefIntByDiagram (-1, 3, -1);};
+        document.getElementById ("Green2").onclick = function () {StrFefIntByDiagram (0, 2, 0);};
+        document.getElementById ("Green1").onclick = function () {StrFefIntByDiagram (0, 1, 0);};
+
+        document.getElementById ("Emerald2").onclick = function () {StrFefIntByDiagram (-1, 2, 1);};
+        document.getElementById ("Cyan1").onclick = function () {StrFefIntByDiagram (0, 1, 1);};
+        document.getElementById ("Royal2").onclick = function () {StrFefIntByDiagram (-1, 1, 2);};
+
+        document.getElementById ("Blue3").onclick = function () {StrFefIntByDiagram (-1, -1, 3);};
+        document.getElementById ("Blue2").onclick = function () {StrFefIntByDiagram (0, 0, 2);};
+        document.getElementById ("Blue1").onclick = function () {StrFefIntByDiagram (0, 0, 1);};
+
+        document.getElementById ("Rose2").onclick = function () {StrFefIntByDiagram (2, -1, 1);};
+        document.getElementById ("Magenta1").onclick = function () {StrFefIntByDiagram (1, 0, 1);};
+        document.getElementById ("Purple2").onclick = function () {StrFefIntByDiagram (1, -1, 2);};
+    }
+    window.onload = SVGClickEvent ();
+
+
     // Load from cookie
     function LoadCookies ()
     {
@@ -252,6 +555,7 @@
         if (CharacterDataJson !== "" && CharacterDataJson !== undefined)
         {
             Character = JSON.parse(CharacterDataJson);
+            Calculate ();
             DisplayMode ();
             FillOutput ();
         }

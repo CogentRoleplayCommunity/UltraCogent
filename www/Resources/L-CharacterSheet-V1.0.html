@@ -19,7 +19,7 @@
     <link rel="stylesheet" type="text/css" href="../CSS/PageStyleLight.css">
     <link rel="stylesheet" type="text/css" href="../CSS/ContentStyleLight.css">
 <!-- Animation -->
-<style>.IOLabel{color: rgb(0,180,255);} .OutputField{color: rgb(0, 150, 200);} .InputField{width: 200;}</style>
+<style>.IOLabel{color: rgb(0,180,255);} .InputField{width: 200;} .OutputField{color: rgb(0, 150, 200);} .IOField{color: rgb(0, 150, 200);}</style>
 
 <!-- End of head content -->
 
@@ -43,32 +43,33 @@
     <!--Line 1-->
     <div class="PanelArea" style="position: static; width: 98%; height: fit-content;">
         <!--When adjustung the style of the div below also need to change it in ImgOrientation function-->
-        <div id="BasicCharacterData" class="PanelArea" style="position: static; width: 52%; min-width: 30%; height: fit-content; float: left;">
-
-            <div class="PanelArea" style="position: static; min-width: 450px; max-width: 520px; height: max-content; min-height: fit-content; margin-right: 10px; float: left;">
-                <h1 class="IOLabel">Basic information:</h1>
-                <h2 class="IOLabel">
-                Player: &nbsp; <input class="InputField" type="text" id="PName_I" style="display: inline;"><span class="OutputField" id="PName_O" style="display: none;"></span>
-                <br>Campaign: &nbsp; <input class="InputField" type="text" id="Campaign_I" style="display: inline;"><span class="OutputField" id="Campaign_O" style="display: none;"></span>
-                <br>
-                <br>Character: &nbsp; <input class="InputField" type="text" id="CName_I" style="display: inline;"><span class="OutputField" id="CName_O" style="display: none;"></span>
-                <br>Age: &nbsp; <input class="InputField" type="text" id="Age_I" style="display: inline;"><span class="OutputField" id="Age_O" style="display: none;"></span>
-                <br>Race: &nbsp; <input class="InputField" type="text" id="Race_I" style="display: inline;"><span class="OutputField" id="Race_O" style="display: none;"></span>
-                <br>Sex: &nbsp; <input class="InputField" type="text" id="Sex_I" style="display: inline;"><span class="OutputField" id="Sex_O" style="display: none;"></span>
-                </h2>
-            </div>
+        <div id="BasicCharacterData" class="PanelArea" style="position: static; float: left;">
+            <h1 class="IOLabel">Basic information:</h1>
+            <h2 class="IOLabel">
+            Player: &nbsp; <input class="InputField" type="text" id="PName_I" style="display: inline;"><span class="OutputField" id="PName_O" style="display: none;"></span>
+            <br>Campaign: &nbsp; <input class="InputField" type="text" id="Campaign_I" style="display: inline;"><span class="OutputField" id="Campaign_O" style="display: none;"></span>
+            <br>
+            <br>Character: &nbsp; <input class="InputField" type="text" id="CName_I" style="display: inline;"><span class="OutputField" id="CName_O" style="display: none;"></span>
+            <br>Sex: &nbsp; 
+            <input class="InputField" type="radio" id="Male_I" name="Sex_I" value="0" checked><span class="IOField" id="Male_O"> Male &nbsp; &nbsp; </span>
+            <input class="InputField" type="radio" id="Female_I" name="Sex_I" value="1"><span class="IOField" id="Female_O"> Female &nbsp; &nbsp; </span>
+            <br class="InputField"><input class="InputField" type="radio" id="n/a (Machine)_I" name="Sex_I" value="2"><span class="IOField" id="n/a (Machine)_O"> n/a (Machine)</span>
+            <br>Race: &nbsp; <input class="InputField" type="text" id="Race_I" style="display: inline;"><span class="OutputField" id="Race_O" style="display: none;"></span>
+            <br>Age: &nbsp; <input class="InputField" type="text" id="Age_I" style="display: inline;"><span class="OutputField" id="Age_O" style="display: none;"></span>
+            &nbsp; (<input class="InputField" type="range" min="-2" max="1" value="0" id="AgeInterval_I" style="display: inline;"><span class="IOField" id="AgeInterval_O"></span>)
+            <br>Physique: &nbsp; <input class="InputField" type="range" min="4" max="8" value="6" id="Physique_I"><span class="IOField" id="Physique_O"></span>
+            </h2>
         </div>
 
         <!--When adjustung the style of the div below also need to change it in ImgOrientation function-->
-        <div id="ProfilePictureDiv" class="PanelArea" style="position: static; max-width: 30%; min-width: 300px; height: fit-content; max-height: 640px; float: right;">
+        <div id="ProfilePictureDiv" class="PanelArea" style="position: static; float: right;">
             <img alt="(no art to show)" id="CharacterProfilePicture" src="" onload="ImgOrientation (this.naturalWidth, this.naturalHeight)" style="position: static; max-height: 100%; max-width: 100%;">
         </div>
 
         <!--When adjustung the style of the div below also need to change it in ImgOrientation function-->
-        <div id="BeliefsAndMorality" class="PanelArea" style="position: static; max-width: 68%; min-width: 650px; height: 100%; min-height: fit-content; float: left;">
-            <h2 class="IOLabel" style="white-space: nowrap; overflow: hidden;">Image URL: &nbsp; <input class="InputField" type="text" id="IMGURL_I" style="width: 100%; display: inline;"><span class="OutputField" id="IMGURL_O" style="display: none;"></span></h2>
-            <p>(The image will be scaled automatically depending on it's orientation.)</p>
-            <br>
+        <div id="BeliefsAndMorality" class="PanelArea" style="position: static; float: left;">
+            <h2 class="IOLabel" id="IMGLabel" style="white-space: nowrap; overflow: hidden;">Image URL: &nbsp; <input class="InputField" type="text" id="IMGURL_I" style="width: 80%; text-align: left; display: inline;"></h2>
+            <p class="InputField"><br> &nbsp &nbsp - The image will be scaled automatically depending on it's orientation.<br> &nbsp &nbsp - You can also use image from the internet or your PC (although your local image fill will not be visible on other PC if you send the exported data to someone.): Right click on the image on your pc -> Open with other application or something like that -> choose your web browser to open it -> copy-paste the URL from the address bar as usual and save it. (It should be something like "file://path/to/file.jpg". I only tested it on linux, but should work similarly on windows as well.)<br></p>
             <h2 class="IOLabel">Beliefs and Morality:</h2>
             <p class="IOLabel"><input class="InputField" type="text" id="BaM_I" style="display: inline;"><span class="OutputField" id="BaM_O" style="display: none;"></span></p>
             <h2 class="IOLabel">Disposition:</h2>
@@ -78,194 +79,212 @@
 
     <!--Line 2-->
     <div class="PanelArea" style="position: static;  width: 98%; height: fit-content; float: left;">
-        <div class="PanelArea" style="position: static; min-width: 200px; max-width: 400px; height: max-content; min-height: fit-content; margin-right: 10px; float: left;">
-            <h1 class="IOLabel">Attributes:</h1>
-            <h2 class="IOLabel">
-                <br>Strength (Str.): &nbsp; <span class="OutputField" id="Str_O" style="display: none;"></span>
-                <br>Reflex (Ref.): &nbsp; <span class="OutputField" id="Ref_O" style="display: none;"></span>
-                <br>Intelligence (Int.): &nbsp; <span class="OutputField" id="Int_O" style="display: none;"></span>
-                <br>Str Bonus/Malus: &nbsp; <input class="InputField" type="number" min="-1" max="5" id="StrTweak_I" style="width: 40px; display: inline;"><span class="OutputField" id="StrTweak_O" style="display: none;"></span>
-                <br>Ref Bonus/Malus: &nbsp; <input class="InputField" type="number" min="-1" max="5" id="RefTweak_I" style="width: 40px; display: inline;"><span class="OutputField" id="RefTweak_O" style="display: none;"></span>
-                <br>Int Bonus/Malus: &nbsp; <input class="InputField" type="number" min="-1" max="5" id="IntTweak_I" style="width: 40px; display: inline;"><span class="OutputField" id="IntTweak_O" style="display: none;"></span>
-            </h2>
-            <p class="InputField">Bonus/malus depends on your GM.</p>
-        </div>
+        <h1 class="IOLabel">Attributes:</h1>
+        <div class="PanelArea" style="position: static; width: fit-content; min-width: fit-content; height: fit-content; min-height: fit-content;">
+            <div class="PanelArea" style="position: static; width: fit-content; min-width: fit-content; height: fit-content; min-height: fit-content; margin-right: 10px; float: left;">
+                <h2 class="IOLabel">
+                    Strength (Str.): &nbsp; <span class="IOField" id="Str_O"></span>
+                    <br>Reflex (Ref.): &nbsp; <span class="IOField" id="Ref_O"></span>
+                    <br>Intelligence (Int.): &nbsp; <span class="IOField" id="Int_O"></span>
+                    <br>Str Bonus/Malus: &nbsp; <input class="InputField" type="number" min="-1" max="5" id="StrTweak_I" style="width: 40px; display: inline;"><span class="OutputField" id="StrTweak_O" style="display: none;"></span>
+                    <br>Ref Bonus/Malus: &nbsp; <input class="InputField" type="number" min="-1" max="5" id="RefTweak_I" style="width: 40px; display: inline;"><span class="OutputField" id="RefTweak_O" style="display: none;"></span>
+                    <br>Int Bonus/Malus: &nbsp; <input class="InputField" type="number" min="-1" max="5" id="IntTweak_I" style="width: 40px; display: inline;"><span class="OutputField" id="IntTweak_O" style="display: none;"></span>
+                </h2>
+            </div>
 
-        <div class="PanelArea" style="position: static; min-width: 200px; max-width: 400px; height: max-content; min-height: fit-content; float: left;">
+            <div class="PanelArea" style="position: static; width: fit-content; min-width: fit-content; height: fit-content; min-height: fit-content; margin-right: 10px; float: left;">
 
-            <!--I've tried 2 methods to load the SVG using javascript with no success, so I ended up copy pasting it's content-->
-    
-            <svg id="Diagram" style="height: 350px; width: 400px">
-                <path
-                style="fill:#000000;fill-opacity:0.8;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-                d="M 192.76863,51.690831 87.768625,233.69083 l 15.000005,26 h 210 l 15,-26 -105,-181.999999 z"
-                id="Background" />
-                <path
-                style="fill:#00ff00;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-                d="m 132.76863,207.69083 -15,26 h 30 z"
-                id="Green3"
-                sodipodi:nodetypes="cccc" />
-                <path
-                style="fill:#4dff4d;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-                d="m 177.76863,181.69083 -15,26 h 30 z"
-                id="Green1"
-                sodipodi:nodetypes="cccc" />
-                <path
-                style="fill:#9999ff;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-                d="m 237.76863,181.69083 -15,26 h 30 z"
-                id="Blue1"
-                sodipodi:nodetypes="cccc" />
-                <path
-                style="fill:#4d4dff;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-                d="m 260.26863,194.69083 -15,26 h 30 z"
-                id="Blue2"
-                sodipodi:nodetypes="cccc" />
-                <path
-                style="fill:#4dff4d;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-                d="m 155.26863,194.69083 -15,26 h 30 z"
-                id="Green2"
-                sodipodi:nodetypes="cccc" />
-                <path
-                style="fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-                d="m 207.76863,77.69083 -15,26 h 30 z"
-                id="Red3"
-                sodipodi:nodetypes="cccc" />
-                <path
-                style="fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-                d="m 282.76863,207.69083 -15,26 h 30 z"
-                id="Blue3"
-                sodipodi:nodetypes="cccc" />
-                <path
-                style="fill:#ff9999;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-                d="m 207.76863,129.69083 -15,26 h 30 z"
-                id="Red1"
-                sodipodi:nodetypes="cccc" />
-                <path
-                style="fill:#ff4d4d;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-                d="m 207.76863,103.69083 -15,26 h 30 z"
-                id="Red2"
-                sodipodi:nodetypes="cccc" />
-                <path
-                style="fill:#99ffff;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-                d="m 192.76863,207.69083 15,26 15,-26 z"
-                id="Cyan1" />
-                <path
-                style="fill:#ff99ff;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-                d="m 222.76863,155.69083 15,26 15,-26 z"
-                id="Magenta1" />
-                <path
-                style="fill:#ffff99;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-                d="m 162.76863,155.69083 15,26 15,-26 z"
-                id="Yellow1" />
-                <path
-                style="fill:#dbdbdb;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-                d="m 192.76863,155.69083 h 30 l 15,26 -15,26 h -30 l -15,-26 z"
-                id="Grey" />
-                <path
-                style="fill:#4dffa6;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-                d="m 177.76863,233.69083 -15,-26 h 30 l 15,26 z"
-                id="Emerald2" />
-                <path
-                style="fill:#4da6ff;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-                d="m 207.76863,233.69083 15,-26 h 30 l -15,26 z"
-                id="Royal2" />
-                <path
-                style="fill:#a64dff;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-                d="m 267.76863,181.69083 -15,26 -15,-26 15,-26 z"
-                id="Purple2" />
-                <path
-                style="fill:#ff4da6;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-                d="m 237.76863,129.69083 h -30 l 15,26 h 30 z"
-                id="Rose2" />
-                <path
-                style="fill:#ffa64d;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-                d="m 177.76863,129.69083 h 30 l -15,26 h -30 z"
-                id="Orange2" />
-                <path
-                style="fill:#a6ff4d;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-                d="m 147.76862,181.69083 15.00001,26 15,-26 -15,-26 z"
-                id="Apple2" />
-                <text
-                xml:space="preserve"
-                style="font-style:normal;font-weight:normal;font-size:16.9333px;line-height:1.25;font-family:sans-serif;fill:#808080;fill-opacity:1;stroke:none;stroke-width:0.264583"
-                x="209.58534"
-                y="24.423878"
-                id="RedName"><tspan
-                    sodipodi:role="line"
-                    id="RedNameTSpan"
-                    style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:16.9333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold Italic';text-align:center;text-anchor:middle;fill:#808080;fill-opacity:1;stroke-width:0.264583"
+                <!--I've tried 2 methods to load the SVG using javascript with no success, so I ended up copy pasting it's content-->
+                <svg id="Diagram" style="height: 350px; width: 400px;">
+                    <path
+                    style="fill:#000000;fill-opacity:0.8;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                    d="M 192.76863,51.690831 87.768625,233.69083 l 15.000005,26 h 210 l 15,-26 -105,-181.999999 z"
+                    id="Background" />
+                    <path
+                    style="fill:#00ff00;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                    d="m 132.76863,207.69083 -15,26 h 30 z"
+                    id="Green3"
+                    sodipodi:nodetypes="cccc" />
+                    <path
+                    style="fill:#4dff4d;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                    d="m 177.76863,181.69083 -15,26 h 30 z"
+                    id="Green1"
+                    sodipodi:nodetypes="cccc" />
+                    <path
+                    style="fill:#9999ff;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                    d="m 237.76863,181.69083 -15,26 h 30 z"
+                    id="Blue1"
+                    sodipodi:nodetypes="cccc" />
+                    <path
+                    style="fill:#4d4dff;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                    d="m 260.26863,194.69083 -15,26 h 30 z"
+                    id="Blue2"
+                    sodipodi:nodetypes="cccc" />
+                    <path
+                    style="fill:#4dff4d;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                    d="m 155.26863,194.69083 -15,26 h 30 z"
+                    id="Green2"
+                    sodipodi:nodetypes="cccc" />
+                    <path
+                    style="fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                    d="m 207.76863,77.69083 -15,26 h 30 z"
+                    id="Red3"
+                    sodipodi:nodetypes="cccc" />
+                    <path
+                    style="fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                    d="m 282.76863,207.69083 -15,26 h 30 z"
+                    id="Blue3"
+                    sodipodi:nodetypes="cccc" />
+                    <path
+                    style="fill:#ff9999;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                    d="m 207.76863,129.69083 -15,26 h 30 z"
+                    id="Red1"
+                    sodipodi:nodetypes="cccc" />
+                    <path
+                    style="fill:#ff4d4d;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                    d="m 207.76863,103.69083 -15,26 h 30 z"
+                    id="Red2"
+                    sodipodi:nodetypes="cccc" />
+                    <path
+                    style="fill:#99ffff;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                    d="m 192.76863,207.69083 15,26 15,-26 z"
+                    id="Cyan1" />
+                    <path
+                    style="fill:#ff99ff;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                    d="m 222.76863,155.69083 15,26 15,-26 z"
+                    id="Magenta1" />
+                    <path
+                    style="fill:#ffff99;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                    d="m 162.76863,155.69083 15,26 15,-26 z"
+                    id="Yellow1" />
+                    <path
+                    style="fill:#dbdbdb;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                    d="m 192.76863,155.69083 h 30 l 15,26 -15,26 h -30 l -15,-26 z"
+                    id="Grey" />
+                    <path
+                    style="fill:#4dffa6;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                    d="m 177.76863,233.69083 -15,-26 h 30 l 15,26 z"
+                    id="Emerald2" />
+                    <path
+                    style="fill:#4da6ff;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                    d="m 207.76863,233.69083 15,-26 h 30 l -15,26 z"
+                    id="Royal2" />
+                    <path
+                    style="fill:#a64dff;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                    d="m 267.76863,181.69083 -15,26 -15,-26 15,-26 z"
+                    id="Purple2" />
+                    <path
+                    style="fill:#ff4da6;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                    d="m 237.76863,129.69083 h -30 l 15,26 h 30 z"
+                    id="Rose2" />
+                    <path
+                    style="fill:#ffa64d;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                    d="m 177.76863,129.69083 h 30 l -15,26 h -30 z"
+                    id="Orange2" />
+                    <path
+                    style="fill:#a6ff4d;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                    d="m 147.76862,181.69083 15.00001,26 15,-26 -15,-26 z"
+                    id="Apple2" />
+                    <text
+                    xml:space="preserve"
+                    style="font-style:normal;font-weight:normal;font-size:16.9333px;line-height:1.25;font-family:sans-serif;fill:#808080;fill-opacity:1;stroke:none;stroke-width:0.264583"
                     x="209.58534"
-                    y="24.423878">Strength</tspan></text>
-                <text
-                xml:space="preserve"
-                style="font-style:normal;font-weight:normal;font-size:16.9333px;line-height:1.25;font-family:sans-serif;fill:#808080;fill-opacity:1;stroke:none;stroke-width:0.264583"
-                x="207.89514"
-                y="44.126221"
-                id="RedValue"><tspan
-                    sodipodi:role="line"
-                    style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:16.9333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold Italic';text-align:center;text-anchor:middle;fill:#808080;fill-opacity:1;stroke-width:0.264583"
+                    y="24.423878"
+                    id="RedName"><tspan
+                        sodipodi:role="line"
+                        id="RedNameTSpan"
+                        style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:16.9333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold Italic';text-align:center;text-anchor:middle;fill:#808080;fill-opacity:1;stroke-width:0.264583"
+                        x="209.58534"
+                        y="24.423878">Strength</tspan></text>
+                    <text
+                    xml:space="preserve"
+                    style="font-style:normal;font-weight:normal;font-size:16.9333px;line-height:1.25;font-family:sans-serif;fill:#808080;fill-opacity:1;stroke:none;stroke-width:0.264583"
                     x="207.89514"
                     y="44.126221"
-                    id="RedValueTSpan">0</tspan></text>
-                <text
-                xml:space="preserve"
-                style="font-style:normal;font-weight:normal;font-size:16.9333px;line-height:1.25;font-family:sans-serif;fill:#808080;fill-opacity:1;stroke:none;stroke-width:0.264583"
-                x="340.89514"
-                y="264.12622"
-                id="BlueValue"><tspan
-                    sodipodi:role="line"
-                    id="BlueValueTSpan"
-                    style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:16.9333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold Italic';text-align:center;text-anchor:middle;fill:#808080;fill-opacity:1;stroke-width:0.264583"
+                    id="RedValue"><tspan
+                        sodipodi:role="line"
+                        style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:16.9333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold Italic';text-align:center;text-anchor:middle;fill:#808080;fill-opacity:1;stroke-width:0.264583"
+                        x="207.89514"
+                        y="44.126221"
+                        id="RedValueTSpan">0</tspan></text>
+                    <text
+                    xml:space="preserve"
+                    style="font-style:normal;font-weight:normal;font-size:16.9333px;line-height:1.25;font-family:sans-serif;fill:#808080;fill-opacity:1;stroke:none;stroke-width:0.264583"
                     x="340.89514"
-                    y="264.12622">0</tspan></text>
-                <text
-                xml:space="preserve"
-                style="font-style:normal;font-weight:normal;font-size:16.9333px;line-height:1.25;font-family:sans-serif;text-align:center;text-anchor:middle;fill:#808080;fill-opacity:1;stroke:none;stroke-width:0.264583"
-                x="77.895149"
-                y="264.12622"
-                id="GreenValue"><tspan
-                    sodipodi:role="line"
-                    id="GreenValueTSpan"
-                    style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:16.9333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold Italic';text-align:center;text-anchor:middle;fill:#808080;fill-opacity:1;stroke-width:0.264583"
+                    y="264.12622"
+                    id="BlueValue"><tspan
+                        sodipodi:role="line"
+                        id="BlueValueTSpan"
+                        style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:16.9333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold Italic';text-align:center;text-anchor:middle;fill:#808080;fill-opacity:1;stroke-width:0.264583"
+                        x="340.89514"
+                        y="264.12622">0</tspan></text>
+                    <text
+                    xml:space="preserve"
+                    style="font-style:normal;font-weight:normal;font-size:16.9333px;line-height:1.25;font-family:sans-serif;text-align:center;text-anchor:middle;fill:#808080;fill-opacity:1;stroke:none;stroke-width:0.264583"
                     x="77.895149"
-                    y="264.12622">0</tspan></text>
-                <text
-                xml:space="preserve"
-                style="font-style:normal;font-weight:normal;font-size:16.9333px;line-height:1.25;font-family:sans-serif;text-align:center;text-anchor:middle;fill:#808080;fill-opacity:1;stroke:none;stroke-width:0.264583"
-                x="76.968056"
-                y="284.42386"
-                id="GreenName"><tspan
-                    sodipodi:role="line"
-                    style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:16.9333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold Italic';text-align:center;text-anchor:middle;fill:#808080;fill-opacity:1;stroke-width:0.264583"
+                    y="264.12622"
+                    id="GreenValue"><tspan
+                        sodipodi:role="line"
+                        id="GreenValueTSpan"
+                        style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:16.9333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold Italic';text-align:center;text-anchor:middle;fill:#808080;fill-opacity:1;stroke-width:0.264583"
+                        x="77.895149"
+                        y="264.12622">0</tspan></text>
+                    <text
+                    xml:space="preserve"
+                    style="font-style:normal;font-weight:normal;font-size:16.9333px;line-height:1.25;font-family:sans-serif;text-align:center;text-anchor:middle;fill:#808080;fill-opacity:1;stroke:none;stroke-width:0.264583"
                     x="76.968056"
                     y="284.42386"
-                    id="GreenNameTSpan">Reflex</tspan></text>
-                <text
-                xml:space="preserve"
-                style="font-style:normal;font-weight:normal;font-size:16.9333px;line-height:1.25;font-family:sans-serif;fill:#808080;fill-opacity:1;stroke:none;stroke-width:0.264583"
-                x="340.52554"
-                y="284.42386"
-                id="BlueName"><tspan
-                    sodipodi:role="line"
-                    id="BlueNameTSpan"
-                    style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:16.9333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold Italic';text-align:center;text-anchor:middle;fill:#808080;fill-opacity:1;stroke-width:0.264583"
+                    id="GreenName"><tspan
+                        sodipodi:role="line"
+                        style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:16.9333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold Italic';text-align:center;text-anchor:middle;fill:#808080;fill-opacity:1;stroke-width:0.264583"
+                        x="76.968056"
+                        y="284.42386"
+                        id="GreenNameTSpan">Reflex</tspan></text>
+                    <text
+                    xml:space="preserve"
+                    style="font-style:normal;font-weight:normal;font-size:16.9333px;line-height:1.25;font-family:sans-serif;fill:#808080;fill-opacity:1;stroke:none;stroke-width:0.264583"
                     x="340.52554"
-                    y="284.42386">Intelligence</tspan></text>
-            </svg>
-    
-    
-            
-            <p class="InputField">Click any color to set your basic attributes.</p>
+                    y="284.42386"
+                    id="BlueName"><tspan
+                        sodipodi:role="line"
+                        id="BlueNameTSpan"
+                        style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:16.9333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold Italic';text-align:center;text-anchor:middle;fill:#808080;fill-opacity:1;stroke-width:0.264583"
+                        x="340.52554"
+                        y="284.42386">Intelligence</tspan></text>
+                </svg>
+        
+            </div>
         </div>
+
+        <div class="PanelArea" style="position: static; width: fit-content; min-width: fit-content; height: fit-content; min-height: fit-content; margin-right: 10px; float: left;">
+            <h2 class="IOLabel">
+                Physical Integrity (Phy.Int.) &nbsp; <span class="IOField" id="PhyInt_O"></span>
+                <br>Physical immunity problems: &nbsp; <input class="InputField" type="number" min="-2" max="0" id="PhyIntTweak_I" style="width: 40px; display: inline;"><span class="OutputField" id="PhyIntTweak_O" style="display: none;"></span>
+                <br>
+                <br>Mental Integrity (Men.Int.) &nbsp; <span class="IOField" id="MenInt_O"></span>
+                <br>Brain damage and/or mental disorder: &nbsp; <input class="InputField" type="number" min="-2" max="0" id="MenIntTweak_I" style="width: 40px; display: inline;"><span class="OutputField" id="MenIntTweak_O" style="display: none;"></span>
+            </h2>
+        </div>
+
+        <div class="PanelArea" style="position: static; width: 98%; height: fit-content; min-height: fit-content; float: left;">
+            <p class="InputField">
+            Click any color to set your basic attributes.
+            <br>Bonus / malus depends on your GM.</p>
+        </div>
+
     </div>
 
-    <!--Line 3-->
+    <!--Line 3
     <div class="PanelArea" style="position: static; width: 98%; height: fit-content; min-height: fit-content; margin-right: 10px; float: left;">
-        <h2>
-            Physical Integrity (Phy.Int.): &nbsp; <input class="InputField" type="text" id="PhyInt_I" style="display: inline;"><span class="OutputField" id="PhyInt_O" style="display: none;"></span>
-            <br>Mental Integrity (Men.Int.): &nbsp; <input class="InputField" type="text" id="MenInt_I" style="display: inline;"><span class="OutputField" id="MenInt_O" style="display: none;"></span>
+        <h2 class="IOLabel">
+            
         </h2>
-    </div>
+    </div>-->
+
+
+
+
+
 
     <!--Last Line-->
     <div class="PanelArea" style="position: static; width: 98%; height: fit-content;">
@@ -300,6 +319,22 @@
 
 
 <script>
+
+
+/* Globals */
+
+    let Character = {};
+    const ListOfKeys = ["PName","Campaign","CName","Age","Race","BaM","Disposition","StrTweak","RefTweak","IntTweak","PhyIntTweak","MenIntTweak"];
+    const SpecialKeys = ["Sex","AgeInt","Physique","IMGURL","BaseStr","BaseRef","BaseInt"];
+    let CharacterCalc = {};
+    const CalcKeys = ["Str","Ref","Int","PhyInt","MenInt"];
+    let EditModeFlag = false;
+
+
+    const SexTerms = ["Male","Female","n/a (Machine)"];
+    const AgeTerms = ["Child","Youth","Adult","Elderly","Ageless"];
+    const PhysiqueTerms = ["Fragile","Weak","Average","Strong","Monstrous"];
+
 
 /* Reusable code */
 
@@ -378,23 +413,49 @@
 
 /* May be reusable at least as example... */
 
-
+    // Auto layout adjustment by image orientation
     function ImgOrientation (NaturalWidth, NaturalHeight)
     {
         // The image element by default expects pirtrait, if the image is square or landscpe, this should change the settings automagically so that the page still flows well and looks good.
         if (NaturalWidth >= NaturalHeight)
         {
             // As a general rule keep ProfilePictureDiv between 30 and 40% and BeliefsAndMorality above 50%
-            document.getElementById ("BasicCharacterData").style.cssText = "position: static; max-width: 52%; min-width: 0%; height: fit-content; float: left;";
-            // FIX THIS! The 2 inner divs also need to be shrinked shrinked but I'm too tired now...
+            let BasicSection = document.getElementById ("BasicCharacterData").style;
+            BasicSection.width = "fit-content";
+            BasicSection.minWidth = "25%";
+            BasicSection.height = "fit-content";
 
-            document.getElementById ("ProfilePictureDiv").style.cssText = "position: static; max-width: 36%; min-width: 480px; height: fit-content; max-height: 480px; margin-right: 10px; float: right;";
-            document.getElementById ("BeliefsAndMorality").style.cssText = "position: static; width: 52%; min-width: 720px; height: 100%; min-height: fit-content; margin-right: 10px; float: left;";
+            let PicSection = document.getElementById ("ProfilePictureDiv").style;
+            PicSection.maxWidth = "70%";
+            PicSection.minWidth = "480px";
+            PicSection.height = "480px";
+            PicSection.maxHeight = "480px";
+            let MoBSection = document.getElementById ("BeliefsAndMorality").style;
+            MoBSection.height = "fit-content";
+            MoBSection.width = "100%";
         }
-        // FIX THIS Probably better the image is hidden when inactive and hopefully automatically replaced by beliefs and morality section
+        else
+        {
+            // As a general rule keep ProfilePictureDiv between 30 and 40% and BeliefsAndMorality above 50%
+            let BasicSection = document.getElementById ("BasicCharacterData").style;
+            BasicSection.width = "52";
+            BasicSection.minWidth = "25%";
+            BasicSection.height = "fit-content";
+
+            let PicSection = document.getElementById ("ProfilePictureDiv").style;
+            PicSection.maxWidth = "60%";
+            PicSection.minWidth = "300px";
+            PicSection.height = "fit-content";
+            PicSection.maxHeight = "640px";
+
+            let MoBSection = document.getElementById ("BeliefsAndMorality").style;
+            MoBSection.height = "fit-content";
+            MoBSection.width = "68%";
+        }
         // FIX THIS Probably better the portrait mode is also adjusted here in the else block, but it may not work if no image give, or may need default settings...
     }
 
+    // SVG Loading attempt(s)
     // FIX THIS! - SVG is currently embedded because the first method didn't work with no errors, the second at least told me to use a web server, but that's for another day.
 
     /*function LoadSVG (SVGImage, ContainerDiv)
@@ -447,17 +508,130 @@
     window.onload = LoadSVG ("../Images/ResourcePages/UltraCogent-StrRefIntDiagram.svg", "SVGContainer");*/
 
 
+    // Calculate everything...
+    function Calculate (Var = undefined)
+    {
+        // Str, Ref, Int
+        if (!Var || Var === "Attributes")
+        {
+            CharacterCalc.Str = parseInt (Character.BaseStr) + parseInt (Character.StrTweak);
+            CharacterCalc.Ref = parseInt (Character.BaseRef) + parseInt (Character.RefTweak);
+            CharacterCalc.Int = parseInt (Character.BaseInt) + parseInt (Character.IntTweak);
+        }
+
+        // PhyInt
+        if (!Var || Var === "Attributes")
+        {
+            let MaleBonus = 0;
+            if (Character.Sex == 0)
+                MaleBonus = 1;
+            CharacterCalc.PhyInt = parseInt (Character.Physique) + MaleBonus + parseInt (CharacterCalc.Str) + parseInt (Character.PhyIntTweak); // Ageless (Non-Biological)
+            if (Character.AgeInt <= 0) // Child, Youth or Adult
+                CharacterCalc.PhyInt += parseInt (Character.AgeInt);
+            else
+                if (Character.AgeInt == 1) // Elderly
+                    CharacterCalc.PhyInt -= 1;
+        }
+
+        // MenInt
+        if (!Var || Var === "Attributes")
+        {
+            let FemaleBonus = 0;
+            if (Character.Sex == 1)
+                FemaleBonus = 1;
+            CharacterCalc.MenInt = 6 + FemaleBonus + parseInt (CharacterCalc.Int) + parseInt (Character.MenIntTweak); // Ageless (Non-Biological)
+            if (Character.AgeInt <= 0) // Child, Youth or Adult
+                CharacterCalc.MenInt += parseInt (Character.AgeInt);
+            else
+                if (Character.AgeInt == 1) // Elderly
+                    CharacterCalc.MenInt -= 1;
+                    
+        }
+    }
+
+
+    // Age and Physique slider actions
+    function LiveUpdate ()
+    {
+        SexTerms.forEach (key => {let Value = document.getElementById (key + "_I").checked; if (Value) {Character.Sex = parseInt (document.getElementById (key + "_I").value);}});
+        if (Character.Sex == 2)
+        {
+            document.getElementById ("AgeInterval_I").style.display = "none";
+            Character.AgeInt = 2;
+        }
+        else
+        {
+            if (document.getElementById ("AgeInterval_O").textContent === "Ageless")
+                document.getElementById ("AgeInterval_I").value = 0;
+            document.getElementById ("AgeInterval_I").style.display = "inline";
+            Character.AgeInt = parseInt (document.getElementById ("AgeInterval_I").value);
+        }
+        document.getElementById ("AgeInterval_O").textContent = AgeTerms[Character.AgeInt + 2];
+        Character.Physique = parseInt (document.getElementById ("Physique_I").value);
+        document.getElementById ("Physique_O").textContent = PhysiqueTerms[Character.Physique - 4];
+        Character.IntTweak = parseInt (document.getElementById ("IntTweak_I").value);
+        Character.MenIntTweak = parseInt (document.getElementById ("MenIntTweak_I").value);
+        Character.StrTweak = parseInt (document.getElementById ("StrTweak_I").value);
+        Character.PhyIntTweak = parseInt (document.getElementById ("PhyIntTweak_I").value);
+        Calculate ("Attributes");
+        document.getElementById ("Str_O").textContent = CharacterCalc.Str;
+        document.getElementById ("Ref_O").textContent = CharacterCalc.Ref;
+        document.getElementById ("Int_O").textContent = CharacterCalc.Int;
+        document.getElementById ("PhyInt_O").textContent = CharacterCalc.PhyInt;
+        document.getElementById ("MenInt_O").textContent = CharacterCalc.MenInt;
+    }
+    document.getElementById ("AgeInterval_I").addEventListener ("change", LiveUpdate);
+    document.getElementById ("Male_I").addEventListener ("change", LiveUpdate);
+    document.getElementById ("Female_I").addEventListener ("change", LiveUpdate);
+    document.getElementById ("n/a (Machine)_I").addEventListener ("change", LiveUpdate);
+    document.getElementById ("Physique_I").addEventListener ("change", LiveUpdate);
+    document.getElementById ("StrTweak_I").addEventListener ("change", LiveUpdate);
+    document.getElementById ("IntTweak_I").addEventListener ("change", LiveUpdate);
+    document.getElementById ("PhyIntTweak_I").addEventListener ("change", LiveUpdate);
+    document.getElementById ("MenIntTweak_I").addEventListener ("change", LiveUpdate);
+
+
+    // StrRefInt Click Action
+    function StrFefIntByDiagram (Strength, Reflex, Intelligence)
+    {
+        if (EditModeFlag)
+        {
+            document.getElementById ("RedValueTSpan").textContent = Strength;
+            document.getElementById ("GreenValueTSpan").textContent = Reflex;
+            document.getElementById ("BlueValueTSpan").textContent = Intelligence;
+            Character.BaseStr = Strength;
+            Character.BaseRef = Reflex;
+            Character.BaseInt = Intelligence;
+            let Var = -1 - Strength;
+            if (parseInt (Strength) < 0)
+                Var = 0;
+            document.getElementById ("StrTweak_I").min = Var;
+            Var = 5 - parseInt (Strength);
+
+            document.getElementById ("StrTweak_I").max = Var;
+            if (parseInt (Reflex) < 0)
+                Var = 0;
+            else
+                Var = -1 - Reflex;
+            document.getElementById ("RefTweak_I").min = Var;
+            Var = 5 - parseInt (Reflex);
+            document.getElementById ("RefTweak_I").max = Var;
+            if (parseInt (Intelligence) < 0)
+                Var = 0;
+            else
+                Var = -1 - Intelligence;
+            document.getElementById ("IntTweak_I").min = Var;
+            Var = 5 - parseInt (Intelligence);
+            document.getElementById ("IntTweak_I").max = Var;
+            LiveUpdate ();
+        }
+    }
+
+
 
 
 
 /* Document specific */
-
-    let Character = {};
-    let ListOfKeys = ["PName","Campaign","CName","Age","Race","Sex","IMGURL","BaM","Disposition","StrTweak","RefTweak","IntTweak","PhyInt","MenInt"];
-    let SpecialKeys = ["BaseStr","BaseRef","BaseInt"];
-    let CharacterCalc = {};
-    let CalcKeys = ["Str","Ref","Int"];
-    let EditModeFlag = false;
 
 
     function EditMode ()
@@ -469,7 +643,17 @@
         ShowClassInline ("InputField");
         ShowElementInline ("SaveDataLink");
         ShowElementInline ("ClearDataLink");
-        //ShowElementInline ("ImportDataFile");
+
+        SexTerms.forEach (key => {document.getElementById (key + "_O").style.display = "inline";});
+
+        // Special
+        if (Character.Sex == 2)
+            document.getElementById ("AgeInterval_I").style.display = "none";
+        else
+            document.getElementById ("AgeInterval_I").style.display = "inline";
+        document.getElementById ("IMGLabel").style.display = "inline";
+
+        // Set flag
         EditModeFlag = true;
     }
 
@@ -482,7 +666,12 @@
         HideClass ("InputField");
         HideElement ("SaveDataLink");
         HideElement ("ClearDataLink");
-        //HideElement ("ImportDataFile");
+
+        // Special
+        SexTerms.forEach (key => {if (!document.getElementById (key + "_I").checked) {document.getElementById (key + "_O").style.display = "none";};});
+        document.getElementById ("IMGLabel").style.display = "none";
+
+        // Set flag
         EditModeFlag = false;
     }
 
@@ -493,24 +682,33 @@
         document.getElementById ("GreenValueTSpan").textContent = Character.BaseRef;
         document.getElementById ("BlueValueTSpan").textContent = Character.BaseInt;
         CalcKeys.forEach (key => {if (CharacterCalc[key] !== undefined) {document.getElementById (key + "_O").textContent = CharacterCalc[key];}});
+
+        // Picture
         if (Character.IMGURL !== "" && Character.IMGURL !== undefined)
-            document.getElementById("CharacterProfilePicture").src = Character.IMGURL;
+            document.getElementById ("CharacterProfilePicture").src = Character.IMGURL;
+
+        // Special
+        document.getElementById (SexTerms [Character.Sex] + "_O").textContent = SexTerms [Character.Sex];
+        document.getElementById ("AgeInterval_O").textContent = AgeTerms[Character.AgeInt + 2];
+        document.getElementById ("Physique_O").textContent = PhysiqueTerms[Character.Physique - 4];
     }
 
     function FillInput ()
     {
         if (Object.keys (Character).length !== 0)
             ListOfKeys.forEach (key => {if (Character[key] !== undefined) {document.getElementById (key + "_I").value = Character[key];}});
+        
+        // Picture
         if (Character.IMGURL !== "" && Character.IMGURL !== undefined)
-            document.getElementById("CharacterProfilePicture").src = Character.IMGURL;
-    }
+        {
+            document.getElementById ("CharacterProfilePicture").src = Character.IMGURL;
+            document.getElementById ("IMGURL_I").value = Character.IMGURL;
+        }
 
-    function Calculate ()
-    {
-        // Calculate Values
-        CharacterCalc.Str = parseInt (Character.BaseStr) + parseInt (Character.StrTweak);
-        CharacterCalc.Ref = parseInt (Character.BaseRef) + parseInt (Character.RefTweak);
-        CharacterCalc.Int = parseInt (Character.BaseInt) + parseInt (Character.IntTweak);
+        // Special
+        document.getElementById (SexTerms [Character.Sex] + "_I").checked = true;
+        document.getElementById ("AgeInterval_I").value = Character.AgeInt;
+        document.getElementById ("Physique_I").value = Character.Physique;
     }
 
 
@@ -519,9 +717,18 @@
         // Clear object and collect data
         ListOfKeys.forEach (key => {delete Character[key];});
         ListOfKeys.forEach (key => {if (document.getElementById (key + "_I").value !== "") {Character[key] = document.getElementById (key + "_I").value;}});
+
+        // Special
+        SexTerms.forEach (key => {let Value = document.getElementById (key + "_I").checked; if (Value) {Character.Sex = parseInt (document.getElementById (key + "_I").value);}});
+        if (Character.Sex == 2)
+            Character.AgeInt = 2; // Ageless
+        else
+            Character.AgeInt = parseInt (document.getElementById ("AgeInterval_I").value);
         Character.BaseStr = document.getElementById ("RedValueTSpan").textContent;
         Character.BaseRef = document.getElementById ("GreenValueTSpan").textContent;
         Character.BaseInt = document.getElementById ("BlueValueTSpan").textContent;
+        Character.Physique = parseInt (document.getElementById ("Physique_I").value);
+        Character.IMGURL = document.getElementById ("IMGURL_I").value;
 
         // Calculate Values
         Calculate ();
@@ -536,8 +743,8 @@
         DisplayMode ();
         FillOutput ();
     }
-    // Save on click
-    document.getElementById("SaveDataLink").addEventListener("click", function(event) {event.preventDefault (); SaveCharacterData ();});
+    // Save on click UNFINISHED
+    document.getElementById ("SaveDataLink").addEventListener ("click", function(event) {event.preventDefault (); SaveCharacterData ();});
 
 
     function EditCharacterData ()
@@ -565,55 +772,141 @@
         Var = 5 - parseInt (Character.BaseInt);
         document.getElementById ("IntTweak_I").max = Var;
     }
-    // Edit on click
-    document.getElementById("EditDataLink").addEventListener("click", function(event) {event.preventDefault (); EditCharacterData ();});
+    // Edit on click UNFINISHED
+    document.getElementById ("EditDataLink").addEventListener ("click", function(event) {event.preventDefault (); EditCharacterData ();});
 
 
     function ClearCharacterData ()
     {
-        // Clear Character
-        ListOfKeys.forEach(key => {Character[key] = "";});
-        FillInput ();
-        FillOutput ();
-        ListOfKeys.forEach(key => {delete Character[key];});
+        // Reset I/O Fields to default values
+        document.getElementById ("PName_I").value = "(Optional)";
+        document.getElementById ("PName_I").addEventListener ('focus', function () {this.value = ''; this.removeEventListener ('focus', arguments.callee);});
+        document.getElementById ("Campaign_I").value = "(Optional)";
+        document.getElementById ("Campaign_I").addEventListener ('focus', function () {this.value = ''; this.removeEventListener ('focus', arguments.callee);});
+        document.getElementById ("CName_I").value = "(Required)";
+        document.getElementById ("CName_I").addEventListener ('focus', function () {this.value = ''; this.removeEventListener ('focus', arguments.callee);});
+        document.getElementById ("Age_I").value = "(Optional)";
+        document.getElementById ("Age_I").addEventListener ('focus', function () {this.value = ''; this.removeEventListener ('focus', arguments.callee);});
+        document.getElementById ("AgeInterval_I").value = 0;
+        document.getElementById ("Race_I").value = "(Optional)";
+        document.getElementById ("Race_I").addEventListener ('focus', function () {this.value = ''; this.removeEventListener ('focus', arguments.callee);});
+        document.getElementById ("Male_I").checked = true;
+        document.getElementById ("Physique_I").value = 0;
+        document.getElementById ("IMGURL_I").src = "";
+        document.getElementById ("IMGURL_I").value = "(Optional)";
+        document.getElementById ("IMGURL_I").addEventListener ('focus', function () {this.value = ''; this.removeEventListener ('focus', arguments.callee);});
+        document.getElementById ("BaM_I").value = "(Optional)";
+        document.getElementById ("BaM_I").addEventListener ('focus', function () {this.value = ''; this.removeEventListener ('focus', arguments.callee);});
+        document.getElementById ("Disposition_I").value = "(Optional)";
+        document.getElementById ("Disposition_I").addEventListener ('focus', function () {this.value = ''; this.removeEventListener ('focus', arguments.callee);});
+        document.getElementById ("RedValueTSpan").textContent = 0;
+        document.getElementById ("GreenValueTSpan").textContent = 0;
+        document.getElementById ("BlueValueTSpan").textContent = 0;
+        document.getElementById ("Str_O").textContent = 0;
+        document.getElementById ("Ref_O").textContent = 0;
+        document.getElementById ("Int_O").textContent = 0;
+        document.getElementById ("StrTweak_I").min = -1;
+        document.getElementById ("StrTweak_I").max = 5;
+        document.getElementById ("StrTweak_I").value = 0;
+        document.getElementById ("RefTweak_I").min = -1;
+        document.getElementById ("RefTweak_I").max = 5;
+        document.getElementById ("RefTweak_I").value = 0;
+        document.getElementById ("IntTweak_I").min = -1;
+        document.getElementById ("IntTweak_I").max = 5;
+        document.getElementById ("IntTweak_I").value = 0;
+        document.getElementById ("PhyInt_O").textContent = 0;
+        document.getElementById ("MenInt_O").textContent = 0;
+        document.getElementById ("PhyIntTweak_I").value = 0;
+        document.getElementById ("MenIntTweak_I").value = 0;
+        
+        ListOfKeys.forEach (key => {delete Character[key];});
+        SpecialKeys.forEach (key => {delete Character[key];});
+        CalcKeys.forEach (key => {delete CharacterCalc[key];});
     }
-    // Clear on click
-    document.getElementById("ClearDataLink").addEventListener("click", function (event) {event.preventDefault (); ClearCharacterData ();});
+    // Clear on click UNFINISHED
+    document.getElementById ("ClearDataLink").addEventListener ("click", function (event) {event.preventDefault (); ClearCharacterData ();});
 
 
-    function StrFefIntByDiagram (Strength, Reflex, Intelligence)
+    // Load from cookie
+    function LoadCookies ()
     {
-        if (EditModeFlag)
+        // Character data
+        let CharacterDataJson = GetCookieValue ("CharacterCookie");
+
+        // Parse Character if exists.
+        if (CharacterDataJson !== "" && CharacterDataJson !== undefined)
         {
-            document.getElementById ("RedValueTSpan").textContent = Strength;
-            document.getElementById ("GreenValueTSpan").textContent = Reflex;
-            document.getElementById ("BlueValueTSpan").textContent = Intelligence;
-            let Var = -1 - Strength;
-            if (parseInt (Strength) < 0)
-                Var = 0;
-            document.getElementById ("StrTweak_I").min = Var;
-            Var = 5 - parseInt (Strength);
-            document.getElementById ("StrTweak_I").max = Var;
-            if (parseInt (Reflex) < 0)
-                Var = 0;
-            else
-                Var = -1 - Reflex;
-            document.getElementById ("RefTweak_I").min = Var;
-            Var = 5 - parseInt (Reflex);
-            document.getElementById ("RefTweak_I").max = Var;
-            if (parseInt (Intelligence) < 0)
-                Var = 0;
-            else
-                Var = -1 - Intelligence;
-            document.getElementById ("IntTweak_I").min = Var;
-            Var = 5 - parseInt (Intelligence);
-            document.getElementById ("IntTweak_I").max = Var;
+            Character = JSON.parse (CharacterDataJson);
+            // EditMode (); // Radio type inputs won't always be updated without swithcing to edit mode... (<< edit mode is default, so this is only a problem when importing from display mode.)
+            Calculate ();
+            FillInput ();
+            FillOutput ();
+            DisplayMode ();
+        }
+        else
+        {
+            ClearCharacterData ();
+            EditMode ();
         }
     }
 
-    // SVG Path Click Action
-    function SVGClickEvent (PathID)
+
+    // Export / Import
+    function ExportData ()
     {
+        const CharacterBlob = new Blob ([JSON.stringify (Character)], { type: "application/json" });
+        const CharBlobURL = URL.createObjectURL (CharacterBlob);
+        const ExportLink = document.createElement("a");
+        ExportLink.href = CharBlobURL;
+        if (Character.PName)
+            if (Character.CName)
+                ExportLink.download = Character.PName + " - " + Character.CName + ".json";
+            else
+                ExportLink.download = Character.PName + " - Unnamed.json";
+        else
+            ExportLink.download = "Unnamed.json";
+        document.body.appendChild (ExportLink);
+        ExportLink.click();
+        document.body.removeChild (ExportLink);
+    }
+    document.getElementById ("ExportDataLink").addEventListener ("click", function (event) {event.preventDefault (); ExportData ();});
+
+    function ImportData (event)
+    {
+        const File = event.target.files[0];
+        
+        const Reader = new FileReader ();
+        Reader.onload = function (e)
+        {
+            Character = JSON.parse (e.target.result);
+
+            EditMode (); // Radio type inputs won't always be updated without swithcing to edit mode...
+            Calculate ();
+            FillInput ();
+            FillOutput ();
+            DisplayMode ();
+
+            // Save Character to cookie
+            if (Object.keys(Character).length !== 0)
+                SetCookie ("CharacterCookie", JSON.stringify (Character), 365);
+            else
+                DeleteCookie ("CharacterCookie");
+        };
+
+        Reader.readAsText (File);
+    }
+    document.getElementById ("ImportDataFile").addEventListener ("change", ImportData);
+
+
+    // main ()
+    function main ()
+    {
+        // Load and Refresh cookie for 1 more year.
+        // FIX THIS >> This has not version checking yet...
+        LoadCookies ();
+        RefreshCookie ("CharacterCookie", 365);
+
+        // StrRefInt SVG click events
         document.getElementById ("Grey").onclick = function () {StrFefIntByDiagram (0, 0, 0);};
 
         document.getElementById ("Red3").onclick = function () {StrFefIntByDiagram (3, -1, -1);};
@@ -640,77 +933,7 @@
         document.getElementById ("Magenta1").onclick = function () {StrFefIntByDiagram (1, 0, 1);};
         document.getElementById ("Purple2").onclick = function () {StrFefIntByDiagram (1, -1, 2);};
     }
-    window.onload = SVGClickEvent ();
-
-
-    // Load from cookie
-    function LoadCookies ()
-    {
-        // Character data
-        let CharacterDataJson = GetCookieValue ("CharacterCookie");
-
-        // Parse Character if exists.
-        if (CharacterDataJson !== "" && CharacterDataJson !== undefined)
-        {
-            Character = JSON.parse(CharacterDataJson);
-            Calculate ();
-            DisplayMode ();
-            FillOutput ();
-        }
-        else
-            EditMode ();
-
-        // Refresh cookie for 30 more days
-        RefreshCookie ("CharacterCookie", 365);
-    }
-    // Load cookies when opening the page.
-    window.onload = function() {LoadCookies ();};
-
-
-    // Export / Import
-    function ExportData ()
-    {
-        const CharacterBlob = new Blob ([JSON.stringify (Character)], { type: "application/json" });
-        const CharBlobURL = URL.createObjectURL (CharacterBlob);
-        const ExportLink = document.createElement("a");
-        ExportLink.href = CharBlobURL;
-        if (Character.PName)
-            if (Character.CName)
-                ExportLink.download = Character.PName + " - " + Character.CName + ".json";
-            else
-                ExportLink.download = Character.PName + " - Unnamed.json";
-        else
-            ExportLink.download = "Unnamed.json";
-        document.body.appendChild (ExportLink);
-        ExportLink.click();
-        document.body.removeChild (ExportLink);
-    }
-    document.getElementById("ExportDataLink").addEventListener("click", function (event) {event.preventDefault (); ExportData ();});
-
-    function ImportData (event)
-    {
-        const File = event.target.files[0];
-        
-        const Reader = new FileReader ();
-        Reader.onload = function (e)
-        {
-            Character = JSON.parse (e.target.result);
-
-            Calculate ();
-            DisplayMode ();
-            FillOutput ();
-            console.log (Character);
-
-            // Save Character to cookie
-            if (Object.keys(Character).length !== 0)
-                SetCookie ("CharacterCookie", JSON.stringify (Character), 365);
-            else
-                DeleteCookie ("CharacterCookie");
-        };
-
-        Reader.readAsText (File);
-    }
-    document.getElementById ("ImportDataFile").addEventListener ("change", ImportData);
+    window.onload = main ();
 
 
 </script>

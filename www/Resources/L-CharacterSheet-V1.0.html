@@ -69,7 +69,7 @@
         <!--When adjustung the style of the div below also need to change it in ImgOrientation function-->
         <div id="BeliefsAndMorality" class="PanelArea" style="position: static; float: left;">
             <h2 class="IOLabel" id="IMGLabel" style="white-space: nowrap; overflow: hidden;">Image URL: &nbsp; <input class="InputField" type="text" id="IMGURL_I" style="width: 80%; text-align: left; display: inline;"></h2>
-            <p class="InputField"><br> &nbsp &nbsp - The image will be scaled automatically depending on it's orientation.<br> &nbsp &nbsp - You can also use image from the internet or your PC (although your local image fill will not be visible on other PC if you send the exported data to someone.): Right click on the image on your pc -> Open with other application or something like that -> choose your web browser to open it -> copy-paste the URL from the address bar as usual and save it. (It should be something like "file://path/to/file.jpg". I only tested it on linux, but should work similarly on windows as well.)<br></p>
+            <p class="InputField"><br> &nbsp &nbsp - The image will be scaled automatically depending on it's orientation.<br> &nbsp &nbsp - You can also use image from the internet or your PC (although your local image fill will not be visible on other device if you send the exported data to someone, and firefox supports it but chrome doesn't.): Right click on the image on your pc -> Open with other application or something like that -> choose your web browser to open it -> copy-paste the URL from the address bar as usual and save it. (It should be something like "file://path/to/file.jpg". I only tested it on linux, but should work similarly on windows as well.)<br></p>
             <h2 class="IOLabel">Beliefs and Morality:</h2>
             <p class="IOLabel"><input class="InputField" type="text" id="BaM_I" style="display: inline;"><span class="OutputField" id="BaM_O" style="display: none;"></span></p>
             <h2 class="IOLabel">Disposition:</h2>
@@ -520,7 +520,7 @@
         }
 
         // PhyInt
-        if (!Var || Var === "Attributes")
+        if (!Var || Var === "Attributes") // FIX THIS >> Vorst case scenario -> -1D6?!? (2 less then acceptable)
         {
             let MaleBonus = 0;
             if (Character.Sex == 0)
@@ -575,7 +575,7 @@
         Character.PhyIntTweak = parseInt (document.getElementById ("PhyIntTweak_I").value);
         Calculate ("Attributes");
         document.getElementById ("Str_O").textContent = CharacterCalc.Str;
-        document.getElementById ("Ref_O").textContent = CharacterCalc.Ref;
+        document.getElementById ("Ref_O").textContent = CharacterCalc.Ref; // FIX THIS >> On any mobile browser reflex is set to NaN...
         document.getElementById ("Int_O").textContent = CharacterCalc.Int;
         document.getElementById ("PhyInt_O").textContent = CharacterCalc.PhyInt;
         document.getElementById ("MenInt_O").textContent = CharacterCalc.MenInt;
@@ -607,7 +607,6 @@
                 Var = 0;
             document.getElementById ("StrTweak_I").min = Var;
             Var = 5 - parseInt (Strength);
-
             document.getElementById ("StrTweak_I").max = Var;
             if (parseInt (Reflex) < 0)
                 Var = 0;

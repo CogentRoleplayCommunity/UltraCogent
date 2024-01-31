@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+<!-- Beginning of head content -->
+
+    <link rel="canonical" href="./DiceRoll.html" />
+    <!-- Meta data (Title, keywords, and description should be changed for each page...) -->
+    <title>OSRC/DiceRoll</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="googlebot" content="noindex">
+    <meta name="robots" content="noindex">
+    <link rel="icon" href="../Images/Common/Icon.png" type="image/x-icon">
+    <!-- Google font(s) -->
+    <link href="https://fonts.googleapis.com/css?family=Spectral+SC|Vollkorn" rel="stylesheet">
+    <!-- Style -->
+    <!-- Style sheets are managed by the construct.sh scipt, if you need to add another style sheet do it here for this page, of in the construct script for all pages or for Dark/Light pages separately-->
+    <link rel="stylesheet" type="text/css" href="../CSS/PageStyleLight.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/ContentStyleLight.css">
+<!-- Animation -->
+<style>.dice {display: flex; align-items: center; margin: 10px;} .dice input[type="range"] {width: calc(100% - 70px); vertical-align: middle;} .dice label {width: 50px; margin-right: 5px;} #roll-button {display: block; margin: 0 auto; padding: 10px 20px; font-size: 16px;} #result-container { text-align: center;} #result-list { list-style-type: none; padding: 0;} #result-list li { margin-bottom: 5px;}</style>
+
+<!-- End of head content -->
+
+  </head>
+  <body>
+    <div class="Shading">
+      <div class="PageContent">
+      <div class="TopOffset"></div>
+
+<!-- Beginning of page content -->
+
+    <!-- Remember! In order to insert an image or link to downloadable file, from Files or Images folder, the path must start with ../ in front instead of ./ since this file is in a subdirectory already. -->
+    <!-- Leave the markers untouched! -->
+<!--TitleMarker--><h1 style="text-align: center">Dice Rolling Page (Experimental)
+</h1>
+
+
+<div class="TranslucentPanel">
+  <div class="PanelArea">
+    <div id="dice-container">
+      <div class="dice">
+        <label for="D4">D4:</label>
+        <span id="D4-value">0</span>
+        <input type="range" id="D4" min="0" max="24" value="0">
+      </div>
+      <div class="dice">
+        <label for="D6">D6:</label>
+        <span id="D6-value">0</span>
+        <input type="range" id="D6" min="0" max="24" value="0">
+      </div>
+      <div class="dice">
+        <label for="D8">D8:</label>
+        <span id="D8-value">0</span>
+        <input type="range" id="D8" min="0" max="24" value="0">
+      </div>
+      <div class="dice">
+        <label for="D10">D10:</label>
+        <span id="D10-value">0</span>
+        <input type="range" id="D10" min="0" max="24" value="0">
+      </div>
+      <div class="dice">
+        <label for="D12">D12:</label>
+        <span id="D12-value">0</span>
+        <input type="range" id="D12" min="0" max="24" value="0">
+      </div>
+      <div class="dice">
+        <label for="D20">D20:</label>
+        <span id="D20-value">0</span>
+        <input type="range" id="D20" min="0" max="24" value="0">
+      </div>
+      <br>
+      <div class="dice">
+        <label for="D%">D%:</label>
+        <span id="D%-value">0</span>
+        <input type="range" id="D%" min="0" max="24" value="0">
+      </div>
+      <div class="dice">
+        <label for="D100">D100:</label>
+        <span id="D100-value">0</span>
+        <input type="range" id="D100" min="0" max="24" value="0">
+      </div>
+    </div>
+  
+    <button id="roll-button">Roll</button>
+  
+    <div id="result-container">
+      <h2>Results:</h2>
+      <ul id="result-list"></ul>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<script>
+  // Get all the input sliders
+  const sliders = document.querySelectorAll('input[type="range"]');
+
+  // Loop through each slider
+  sliders.forEach(slider => {
+    // Get the corresponding span element
+    const span = document.querySelector(`#${slider.id.replace('%', '\\%')}-value`);
+    //const span = document.querySelector(`#${slider.id}-value`);
+    console.log (`#${slider.id}-value`);
+
+    // Update the span value when the slider value changes
+    slider.addEventListener('input', () => {
+      span.textContent = slider.value;
+    });
+  });
+
+  document.getElementById('roll-button').addEventListener('click', rollDice);
+
+  function rollDice() {
+    var diceTypes = ['D4', 'D6', 'D8', 'D10', 'D12', 'D20', 'D%', 'D100'];
+    var results = [];
+
+    diceTypes.forEach(function(diceType) {
+      var diceAmount = parseInt(document.getElementById(diceType).value);
+      var diceResults = Array.from({ length: diceAmount }, () => rollSingleDice(diceType));
+
+      if (diceAmount > 0) {
+        results.push({
+          type: diceType.toUpperCase(),
+          amount: diceAmount,
+          rolls: diceResults
+        });
+      }
+    });
+
+    displayResults(results);
+  }
+
+  function rollSingleDice(diceType) {
+    var maxNumber;
+
+    switch (diceType) {
+      case 'D4':
+        maxNumber = 4;
+        break;
+      case 'D6':
+        maxNumber = 6;
+        break;
+      case 'D8':
+        maxNumber = 8;
+        break;
+      case 'D10':
+        maxNumber = 10;
+        break;
+      case 'D12':
+        maxNumber = 12;
+        break;
+      case 'D20':
+        maxNumber = 20;
+        break;
+      case 'D100':
+        maxNumber = 100;
+        break;
+      case 'D%':
+        maxNumber = 10;
+        return (Math.floor(Math.random() * maxNumber) + 1 - 1) * 10;
+    }
+
+    return Math.floor(Math.random() * maxNumber) + 1;
+  }
+
+  function displayResults(results) {
+    var resultList = document.getElementById('result-list');
+    resultList.innerHTML = '';
+
+    var totalExtremeAdvantageCount = 0;
+    var totalAdvantageCount = 0;
+    var totalRegularCount = 0;
+    var totalDisadvantageCount = 0;
+    var totalExtremeDisadvantageCount = 0;
+    let EmptyLineFlag = false;
+    let CalcFlag = false;
+
+    results.forEach(function(result) {
+      var listItem = document.createElement('li');
+      var rolls = result.rolls;
+
+      if (result.type == 'D%' && EmptyLineFlag == false || result.type == 'D100' && EmptyLineFlag == false)
+      {
+        EmptyLineFlag = true;
+        resultList.appendChild(document.createElement('br'));
+      }
+
+      listItem.textContent =
+        result.type +
+        ': ' +
+        rolls.join(' + ');
+
+      resultList.appendChild(listItem);
+
+      if (result.type !== 'D%' && result.type !== 'D100') {
+        CalcFlag = true;
+        rolls.forEach(function(roll) {
+          if (roll > 1) {
+            totalExtremeAdvantageCount++;
+          }
+          if (roll > 2) {
+            totalAdvantageCount++;
+          }
+          if (roll > 3) {
+            totalRegularCount++;
+          }
+          if (roll > 4) {
+            totalDisadvantageCount++;
+          }
+          if (roll > 5) {
+            totalExtremeDisadvantageCount++;
+          }
+        });
+      }
+    });
+
+    if (CalcFlag)
+    {
+      resultList.appendChild(document.createElement('br'));
+      var totalListItem = document.createElement('li');
+      totalListItem.innerHTML =
+        'Extreme Advantage Roll: ' +
+        totalExtremeAdvantageCount +
+        '<br>' +
+        'Advantage Roll: ' +
+        totalAdvantageCount +
+        '<br>' +
+        'Regular Roll: ' +
+        totalRegularCount +
+        '<br>' +
+        'Disadvantage Roll: ' +
+        totalDisadvantageCount +
+        '<br>' +
+        'Extreme Disadvantage Roll: ' +
+        totalExtremeDisadvantageCount;
+
+      resultList.appendChild(totalListItem);
+    }
+  }
+
+
+
+
+</script>
+<!-- End of page content -->
+
+        <div class="BottomOffset"></div>
+      </div>
+
+<!-- Beginning of page title -->
+
+      <div class="TitleArea">
+        <span style="position: absolute; top: 0px; left: 0px;"><img src="../Images/Common/M.svg"></span>
+        <span style="position: absolute; top: 0px; right: 0px;"><a href="./DiceRoll.html"><img src="../Images/Light/Moon.svg"></a></span>
+        <div class="PageTitle">
+          <b><span style="color: rgb(0,180,255)">U</span>ltra <span style="color: rgb(0,180,255)">C</span>ogent</b>
+        </div>
+        <div class="PageSubtitle">
+          <span class="Slogan"><span style="color: rgb(0,180,255)">U</span>ltra <span style="color: rgb(0,180,255)">R</span>ealistic <span style="color: rgb(0,180,255)">U</span>niversal <span style="color: rgb(0,180,255)">R</span>oleplay <span style="color: rgb(0,180,255)">S</span>ystem
+          </span>
+        </div>
+        <div class="FadeUp"></div>
+      </div>
+
+<!-- End of page title -->
+
+      <div class="FadeDown"></div>
+
+<!-- Beginning of Menu -->
+
+      <div class="Menu">
+        <div class="TopOffset"></div>
+        <a href="../L-index.html"><div class="MenuPoint">Start Page</div></a>
+        <a href="../L-Resources.html"><div class="MenuPoint">Resources</div></a>
+        <a href="../L-Support.html"><div class="MenuPoint">Support</div></a>
+        <a href="../L-ZZZ-Dev-DevHelp.html"><div class="MenuPoint">Dev Section</div></a>
+        <div class="BottomOffset"></div>
+      </div>
+
+<!-- End of Menu -->
+
+    </div>
+  </body>
+</html>

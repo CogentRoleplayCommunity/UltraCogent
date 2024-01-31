@@ -2,6 +2,8 @@
 ./L-index.html
 ./Resources/CharacterSheet-V1.0.html
 ./Resources/L-CharacterSheet-V1.0.html
+./Resources/DiceRoll.html
+./Resources/L-DiceRoll.html
 ./Resources/RuleBook-V1.0.html
 ./Resources/L-RuleBook-V1.0.html
 ./Resources.html

@@ -317,9 +317,9 @@
 
 
 
-<script src="../../JS/Version.js"></script>
-<script src="../../JS/Cookie.js"></script>
-<script src="../../JS/HideAndSeek.js"></script>
+<script src="../../JS/Common/Version.js"></script>
+<script src="../../JS/Common/Cookie.js"></script>
+<script src="../../JS/Common/HideAndSeek.js"></script>
 <script>
 
 
@@ -441,9 +441,9 @@
         // Str, Ref, Int
         if (!Var || Var === "Attributes")
         {
-            CharacterCalc.Str = parseInt (Character.BaseStr) + parseInt (Character.StrTweak);
-            CharacterCalc.Ref = parseInt (Character.BaseRef) + parseInt (Character.RefTweak);
-            CharacterCalc.Int = parseInt (Character.BaseInt) + parseInt (Character.IntTweak);
+            CharacterCalc.Str = Character.BaseStr + Character.StrTweak;
+            CharacterCalc.Ref = Character.BaseRef + Character.RefTweak;
+            CharacterCalc.Int = Character.BaseInt + Character.IntTweak;
         }
 
         // PhyInt
@@ -452,9 +452,9 @@
             let MaleBonus = 0;
             if (Character.Sex == 0)
                 MaleBonus = 1;
-            CharacterCalc.PhyInt = parseInt (Character.Physique) + MaleBonus + parseInt (CharacterCalc.Str) + parseInt (Character.PhyIntTweak); // Ageless (Non-Biological)
+            CharacterCalc.PhyInt = Character.Physique + MaleBonus + CharacterCalc.Str + Character.PhyIntTweak; // Ageless (Non-Biological)
             if (Character.AgeInt <= 0) // Child, Youth or Adult
-                CharacterCalc.PhyInt += parseInt (Character.AgeInt);
+                CharacterCalc.PhyInt += Character.AgeInt;
             else
                 if (Character.AgeInt == 1) // Elderly
                     CharacterCalc.PhyInt -= 1;
@@ -466,13 +466,12 @@
             let FemaleBonus = 0;
             if (Character.Sex == 1)
                 FemaleBonus = 1;
-            CharacterCalc.MenInt = 6 + FemaleBonus + parseInt (CharacterCalc.Int) + parseInt (Character.MenIntTweak); // Ageless (Non-Biological)
+            CharacterCalc.MenInt = 6 + FemaleBonus + CharacterCalc.Int + Character.MenIntTweak; // Ageless (Non-Biological)
             if (Character.AgeInt <= 0) // Child, Youth or Adult
-                CharacterCalc.MenInt += parseInt (Character.AgeInt);
+                CharacterCalc.MenInt += Character.AgeInt;
             else
                 if (Character.AgeInt == 1) // Elderly
                     CharacterCalc.MenInt -= 1;
-                    
         }
     }
 
@@ -494,18 +493,13 @@
             Character.AgeInt = parseInt (document.getElementById ("AgeInterval_I").value);
         }
         document.getElementById ("AgeInterval_O").textContent = AgeTerms[Character.AgeInt + 2];
-        Character.Physique = parseInt (document.getElementById ("Physique_I").value);
+        let IntList = ["Physique", "StrTweak", "RefTweak", "IntTweak", "MenIntTweak", "PhyIntTweak"];
+        IntList.forEach (key => {Character[key] = parseInt (document.getElementById (key + "_I").value);});
         document.getElementById ("Physique_O").textContent = PhysiqueTerms[Character.Physique - 4];
-        Character.IntTweak = parseInt (document.getElementById ("IntTweak_I").value);
-        Character.MenIntTweak = parseInt (document.getElementById ("MenIntTweak_I").value);
-        Character.StrTweak = parseInt (document.getElementById ("StrTweak_I").value);
-        Character.PhyIntTweak = parseInt (document.getElementById ("PhyIntTweak_I").value);
         Calculate ("Attributes");
-        document.getElementById ("Str_O").textContent = CharacterCalc.Str;
-        document.getElementById ("Ref_O").textContent = CharacterCalc.Ref; // FIX THIS >> On any mobile browser reflex is set to NaN...
-        document.getElementById ("Int_O").textContent = CharacterCalc.Int;
-        document.getElementById ("PhyInt_O").textContent = CharacterCalc.PhyInt;
-        document.getElementById ("MenInt_O").textContent = CharacterCalc.MenInt;
+        document.getElementById ("Physique_O").textContent = PhysiqueTerms[Character.Physique - 4];
+        let OutVars = ["Str", "Ref", "Int", "PhyInt", "MenInt"];
+        OutVars.forEach (key => {document.getElementById (key + "_O").textContent = CharacterCalc[key];});
     }
     document.getElementById ("AgeInterval_I").addEventListener ("change", LiveUpdate);
     document.getElementById ("Male_I").addEventListener ("change", LiveUpdate);
@@ -513,6 +507,7 @@
     document.getElementById ("n/a (Machine)_I").addEventListener ("change", LiveUpdate);
     document.getElementById ("Physique_I").addEventListener ("change", LiveUpdate);
     document.getElementById ("StrTweak_I").addEventListener ("change", LiveUpdate);
+    document.getElementById ("RefTweak_I").addEventListener ("change", LiveUpdate);
     document.getElementById ("IntTweak_I").addEventListener ("change", LiveUpdate);
     document.getElementById ("PhyIntTweak_I").addEventListener ("change", LiveUpdate);
     document.getElementById ("MenIntTweak_I").addEventListener ("change", LiveUpdate);
@@ -530,24 +525,24 @@
             Character.BaseRef = Reflex;
             Character.BaseInt = Intelligence;
             let Var = -1 - Strength;
-            if (parseInt (Strength) < 0)
+            if (Strength < 0)
                 Var = 0;
             document.getElementById ("StrTweak_I").min = Var;
-            Var = 5 - parseInt (Strength);
+            Var = 5 - Strength;
             document.getElementById ("StrTweak_I").max = Var;
-            if (parseInt (Reflex) < 0)
+            if (Reflex < 0)
                 Var = 0;
             else
                 Var = -1 - Reflex;
             document.getElementById ("RefTweak_I").min = Var;
-            Var = 5 - parseInt (Reflex);
+            Var = 5 - Reflex;
             document.getElementById ("RefTweak_I").max = Var;
-            if (parseInt (Intelligence) < 0)
+            if (Intelligence < 0)
                 Var = 0;
             else
                 Var = -1 - Intelligence;
             document.getElementById ("IntTweak_I").min = Var;
-            Var = 5 - parseInt (Intelligence);
+            Var = 5 - Intelligence;
             document.getElementById ("IntTweak_I").max = Var;
             LiveUpdate ();
         }
@@ -562,7 +557,8 @@
 
     function HandleVersion ()
     {
-        LastVersion = GetCookieValue ("UC-CS-Version");
+        // Commit Testing...
+        // Everything works until I say it does, then shit hits the fan... :S
     }
 
 
@@ -659,10 +655,12 @@
         Character.BaseStr = document.getElementById ("RedValueTSpan").textContent;
         Character.BaseRef = document.getElementById ("GreenValueTSpan").textContent;
         Character.BaseInt = document.getElementById ("BlueValueTSpan").textContent;
-        Character.Physique = parseInt (document.getElementById ("Physique_I").value);
+        Character.Physique = document.getElementById ("Physique_I").value;
         Character.IMGURL = document.getElementById ("IMGURL_I").value;
 
         // Calculate Values
+        let IntList = ["BaseStr", "BaseRef", "BaseInt", "Physique", "StrTweak", "RefTweak", "IntTweak", "MenIntTweak", "PhyIntTweak"];
+        IntList.forEach (key => {Character[key] = parseInt (Character[key]);});
         Calculate ();
 
         // Save to cookie
@@ -685,24 +683,24 @@
         EditMode ();
         FillInput ();
         let Var = -1 - Character.BaseStr;
-        if (parseInt (Character.BaseStr) < 0)
+        if (Character.BaseStr < 0)
             Var = 0;
         document.getElementById ("StrTweak_I").min = Var;
-        Var = 5 - parseInt (Character.BaseStr);
+        Var = 5 - Character.BaseStr;
         document.getElementById ("StrTweak_I").max = Var;
-        if (parseInt (Character.BaseRef) < 0)
+        if (Character.BaseRef < 0)
             Var = 0;
         else
             Var = -1 - Character.BaseRef;
         document.getElementById ("RefTweak_I").min = Var;
-        Var = 5 - parseInt (Character.BaseRef);
+        Var = 5 - Character.BaseRef;
         document.getElementById ("RefTweak_I").max = Var;
-        if (parseInt (Character.BaseInt) < 0)
+        if (Character.BaseInt < 0)
             Var = 0;
         else
             Var = -1 - Character.BaseInt;
         document.getElementById ("IntTweak_I").min = Var;
-        Var = 5 - parseInt (Character.BaseInt);
+        Var = 5 - Character.BaseInt;
         document.getElementById ("IntTweak_I").max = Var;
     }
     // Edit on click UNFINISHED
@@ -759,6 +757,12 @@
     // Clear on click UNFINISHED
     document.getElementById ("ClearDataLink").addEventListener ("click", function (event) {event.preventDefault (); ClearCharacterData ();});
 
+    // Used when importing JSON from cookie / file
+    function ParseIntValues ()
+    {
+       let IntList = ["Age","StrTweak","RefTweak","IntTweak","PhyIntTweak","MenIntTweak","Sex","AgeInt","Physique","BaseStr","BaseRef","BaseInt"];
+       IntList.forEach (key => {Character[key] = parseInt (Character[key]);});
+    }
 
     // Load from cookie
     function LoadCookies ()
@@ -771,6 +775,7 @@
         if (CharacterDataJson !== "" && CharacterDataJson !== undefined)
         {
             Character = JSON.parse (CharacterDataJson);
+            ParseIntValues ();
             // EditMode (); // Radio type inputs won't always be updated without swithcing to edit mode... (<< edit mode is default, so this is only a problem when importing from display mode.)
             Calculate ();
             FillInput ();
@@ -813,6 +818,7 @@
         Reader.onload = function (e)
         {
             Character = JSON.parse (e.target.result);
+            ParseIntValues ();
 
             EditMode (); // Radio type inputs won't always be updated without swithcing to edit mode...
             Calculate ();

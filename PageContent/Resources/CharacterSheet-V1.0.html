@@ -481,7 +481,7 @@
 
 
     // StrRefInt Click Action
-    function StrFefIntByDiagram (Strength, Reflex, Intelligence)
+    function StrRefIntByDiagram (Strength, Reflex, Intelligence)
     {
         if (EditModeFlag)
         {
@@ -522,9 +522,13 @@
 /* Document specific */
 
 
-    function HandleVersion ()
+    function HandleVersion (CookieVersion, CurrentVersion)
     {
-        console.log ("HandleVersion: Executed!");
+        if (CookieVersion.MinorVersion < 1)
+        {
+            // The site isn't usable yet so old data is deleted on update.
+            DeleteCookie ("CharacterCookie");
+        }
     }
 
 
@@ -644,7 +648,7 @@
     document.getElementById ("SaveDataLink").addEventListener ("click", function(event) {event.preventDefault (); SaveCharacterData ();});
 
 
-    function EditCharacterData ()
+    function EditCharacterData () // FIX THIS! This is mostly duplicate of StrRefIntByDiagram content.
     {
         EditMode ();
         FillInput ();
@@ -733,7 +737,9 @@
     // Load from cookie
     function LoadCookies ()
     {
+        // This meant to solve compatibility issues before loading cookies.
         CheckVersion (HandleVersion);
+
         // Character data
         let CharacterDataJson = GetCookieValue ("CharacterCookie");
 
@@ -813,31 +819,31 @@
         RefreshCookie ("CharacterCookie", 365);
 
         // StrRefInt SVG click events
-        document.getElementById ("Grey").onclick = function () {StrFefIntByDiagram (0, 0, 0);};
+        document.getElementById ("Grey").onclick = function () {StrRefIntByDiagram (0, 0, 0);};
 
-        document.getElementById ("Red3").onclick = function () {StrFefIntByDiagram (3, -1, -1);};
-        document.getElementById ("Red2").onclick = function () {StrFefIntByDiagram (2, 0, 0);};
-        document.getElementById ("Red1").onclick = function () {StrFefIntByDiagram (1, 0, 0);};
+        document.getElementById ("Red3").onclick = function () {StrRefIntByDiagram (3, -1, -1);};
+        document.getElementById ("Red2").onclick = function () {StrRefIntByDiagram (2, 0, 0);};
+        document.getElementById ("Red1").onclick = function () {StrRefIntByDiagram (1, 0, 0);};
 
-        document.getElementById ("Orange2").onclick = function () {StrFefIntByDiagram (2, 1, -1);};
-        document.getElementById ("Yellow1").onclick = function () {StrFefIntByDiagram (1, 1, 0);};
-        document.getElementById ("Apple2").onclick = function () {StrFefIntByDiagram (1, 2, -1);};
+        document.getElementById ("Orange2").onclick = function () {StrRefIntByDiagram (2, 1, -1);};
+        document.getElementById ("Yellow1").onclick = function () {StrRefIntByDiagram (1, 1, 0);};
+        document.getElementById ("Apple2").onclick = function () {StrRefIntByDiagram (1, 2, -1);};
 
-        document.getElementById ("Green3").onclick = function () {StrFefIntByDiagram (-1, 3, -1);};
-        document.getElementById ("Green2").onclick = function () {StrFefIntByDiagram (0, 2, 0);};
-        document.getElementById ("Green1").onclick = function () {StrFefIntByDiagram (0, 1, 0);};
+        document.getElementById ("Green3").onclick = function () {StrRefIntByDiagram (-1, 3, -1);};
+        document.getElementById ("Green2").onclick = function () {StrRefIntByDiagram (0, 2, 0);};
+        document.getElementById ("Green1").onclick = function () {StrRefIntByDiagram (0, 1, 0);};
 
-        document.getElementById ("Emerald2").onclick = function () {StrFefIntByDiagram (-1, 2, 1);};
-        document.getElementById ("Cyan1").onclick = function () {StrFefIntByDiagram (0, 1, 1);};
-        document.getElementById ("Royal2").onclick = function () {StrFefIntByDiagram (-1, 1, 2);};
+        document.getElementById ("Emerald2").onclick = function () {StrRefIntByDiagram (-1, 2, 1);};
+        document.getElementById ("Cyan1").onclick = function () {StrRefIntByDiagram (0, 1, 1);};
+        document.getElementById ("Royal2").onclick = function () {StrRefIntByDiagram (-1, 1, 2);};
 
-        document.getElementById ("Blue3").onclick = function () {StrFefIntByDiagram (-1, -1, 3);};
-        document.getElementById ("Blue2").onclick = function () {StrFefIntByDiagram (0, 0, 2);};
-        document.getElementById ("Blue1").onclick = function () {StrFefIntByDiagram (0, 0, 1);};
+        document.getElementById ("Blue3").onclick = function () {StrRefIntByDiagram (-1, -1, 3);};
+        document.getElementById ("Blue2").onclick = function () {StrRefIntByDiagram (0, 0, 2);};
+        document.getElementById ("Blue1").onclick = function () {StrRefIntByDiagram (0, 0, 1);};
 
-        document.getElementById ("Rose2").onclick = function () {StrFefIntByDiagram (2, -1, 1);};
-        document.getElementById ("Magenta1").onclick = function () {StrFefIntByDiagram (1, 0, 1);};
-        document.getElementById ("Purple2").onclick = function () {StrFefIntByDiagram (1, -1, 2);};
+        document.getElementById ("Rose2").onclick = function () {StrRefIntByDiagram (2, -1, 1);};
+        document.getElementById ("Magenta1").onclick = function () {StrRefIntByDiagram (1, 0, 1);};
+        document.getElementById ("Purple2").onclick = function () {StrRefIntByDiagram (1, -1, 2);};
     }
     window.onload = main ();
 

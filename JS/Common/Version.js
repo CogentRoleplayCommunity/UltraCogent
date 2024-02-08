@@ -1,8 +1,8 @@
 // CAUTION! The following line is updated by git hook(The patch number is incremented.). Don't forget to update the hook script if any of the names are changed.
 // The patch value is read from the README.md file...
-let Version = {MajorVersion: 0, MinorVersion: 0, Patch: 2};
+let Version = {MajorVersion: 0, MinorVersion: 0, Patch: 3};
 
-function CheckVersion ()
+function CheckVersion (VersionHandler)
 {
     let StoredVersion = undefined;
     let StoredVersionJSON = GetCookieValue ('VersionCookie');
@@ -25,11 +25,16 @@ function CheckVersion ()
     }
 
     if (StoredVersion)
+    {
         if (Version.MajorVersion > StoredVersion.MajorVersion || Version.MinorVersion > StoredVersion.MinorVersion || Version.Patch > StoredVersion.Patch)
         {
-            //VersionHandler ();
+            let CookieVersion = "v" +  StoredVersion.MajorVersion + "." + StoredVersion.MinorVersion + "." + StoredVersion.Patch;
+            let CurrentVersion = "v" +  Version.MajorVersion + "." + Version.MinorVersion + "." + Version.Patch;
+            console.log ("CheckVersion: Page has been updated since last visit: " + CookieVersion + " -> " + CurrentVersion + " >> Calling VersionHandler()");
+            VersionHandler ();
             SetCookie ('VersionCookie', JSON.stringify (Version), 365);
         }
+    }
     else
         RefreshCookie ('VersionCookie', 365);
 }

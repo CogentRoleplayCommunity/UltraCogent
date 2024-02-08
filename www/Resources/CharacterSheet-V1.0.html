@@ -556,8 +556,7 @@
 
     function HandleVersion ()
     {
-        // Commit Testing...
-        // Everything works until I say it does, then shit hits the fan... :S
+        console.log ("HandleVersion: Executed!");
     }
 
 
@@ -663,7 +662,7 @@
         Calculate ();
 
         // Save to cookie
-        HandleVersion ();
+        CheckVersion (HandleVersion);
         if (Object.keys(Character).length !== 0)
             SetCookie ("CharacterCookie", JSON.stringify (Character), 365);
         else
@@ -766,7 +765,7 @@
     // Load from cookie
     function LoadCookies ()
     {
-        HandleVersion ();
+        CheckVersion (HandleVersion);
         // Character data
         let CharacterDataJson = GetCookieValue ("CharacterCookie");
 
@@ -841,10 +840,9 @@
     function main ()
     {
         // Load and Refresh cookie for 1 more year.
-        // FIX THIS >> This has not version checking yet...
+        CheckVersion (HandleVersion);
         LoadCookies ();
         RefreshCookie ("CharacterCookie", 365);
-        CheckVersion ();
 
         // StrRefInt SVG click events
         document.getElementById ("Grey").onclick = function () {StrFefIntByDiagram (0, 0, 0);};

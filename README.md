@@ -1,4 +1,5 @@
 # Ultra Cogent - Ultra Realistic Universal Roleplaying System
+### Version: 0.0.0
 
 ***In early development!***
 

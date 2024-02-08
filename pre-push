@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Read the current version line from README.md
+VERSION_LINE=$(grep "### Version: " README.md)
+
+# Extract the current version numbers
+MAJOR_MINOR_PATCH=$(echo $VERSION_LINE | grep -o -P '(?<=### Version: )\d+\.\d+\.\d+')
+
+# Extract the patch number
+PATCH_NUMBER=$(echo $MAJOR_MINOR_PATCH | grep -o -P '\d+$')
+
+# Increment the patch number
+((PATCH_NUMBER++))
+
+# Construct the new version line with the updated patch number
+NEW_PATCH_LINE="### Version: $MAJOR_MINOR_PATCH.$PATCH_NUMBER"
+
+# Update the version line with the new patch number
+sed -i "s/$VERSION_LINE/$NEW_PATCH_LINE/" README.md
+
+# Update the Version.js file with the new patch number
+sed -i "s/MajorVersion: $MAJOR, MinorVersion: $MINOR, Patch: $((PATCH-1))/MajorVersion: $MAJOR, MinorVersion: $MINOR, Patch: $PATCH/" JS/Common/Version.js
+
+# Add the updated README.md and Version.js files to the staging area
+git add README.md JS/Common/Version.js

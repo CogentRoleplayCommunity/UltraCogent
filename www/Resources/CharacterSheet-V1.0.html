@@ -316,7 +316,9 @@
 
 
 
-
+<script src="../../JS/Version.js"></script>
+<script src="../../JS/Cookie.js"></script>
+<script src="../../JS/HideAndSeek.js"></script>
 <script>
 
 
@@ -333,81 +335,6 @@
     const SexTerms = ["Male","Female","n/a (Machine)"];
     const AgeTerms = ["Child","Youth","Adult","Elderly","Ageless"];
     const PhysiqueTerms = ["Fragile","Weak","Average","Strong","Monstrous"];
-
-
-/* Reusable code */
-
-    // Element / Class visibility
-    function HideElement (ElementID)
-    {
-        document.getElementById (ElementID).style.display = "none";
-    }
-
-    function ShowElementInline (ElementID)
-    {
-        document.getElementById (ElementID).style.display = "inline";
-    }
-
-    function HideClass (ClassName)
-    {
-        Elements = document.getElementsByClassName (ClassName);
-        for (var i = 0; i < Elements.length; i++) 
-            Elements[i].style.display = "none";
-    }
-
-    function ShowClassInline (ClassName)
-    {
-        Elements = document.getElementsByClassName (ClassName);
-        for (var i = 0; i < Elements.length; i++) 
-            Elements[i].style.display = "inline";
-    }
-
-
-    // Cookies
-    function SetCookie (Name, Value, ExpirationDate = undefined)
-    {
-        if (Name !== undefined && Name !== "" && Value !== undefined && Value !== "")
-            if (ExpirationDate)
-            {
-                let Expiry = new Date();
-                if (ExpirationDate > 0)
-                {
-                    Expiry.setTime (Expiry.getTime () + (ExpirationDate * 24 * 60 * 60 * 1000));
-                    Expiry = "expires=" + Expiry.toUTCString ();
-                }
-                document.cookie = Name + "=" + Value + ";" + Expiry + ";path=/;SameSite=Strict";
-            }
-            else
-                document.cookie = Name + "=" + Value + ";SameSite=Strict";
-    }
-
-    function GetCookieValue (Name)
-    {
-        let CookieReturnValue = undefined;
-        let Cookies = document.cookie.split(";");
-        for (let i = 0; i < Cookies.length; i++)
-        {
-            let Cookie = Cookies[i].trim();
-            if (Cookie.indexOf(Name + "=") === 0)
-            {
-                CookieReturnValue = Cookie.substring (Name.length + 1, Cookie.length);
-                break;
-            }
-        }
-        return CookieReturnValue;
-    }
-
-    function RefreshCookie (Name, ExpirationDate)
-    {
-        let Value = GetCookieValue (Name);
-        if (Value !== "") SetCookie (Name, Value, ExpirationDate);
-    }
-
-    function DeleteCookie (Name)
-    {
-        document.cookie = Name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;SameSite=Strict";
-    }
-
 
 
 /* May be reusable at least as example... */
@@ -632,6 +559,12 @@
 /* Document specific */
 
 
+    function HandleVersion ()
+    {
+        LastVersion = GetCookieValue ("UC-CS-Version");
+    }
+
+
     function EditMode ()
     {
         HideClass ("OutputField");
@@ -732,6 +665,7 @@
         Calculate ();
 
         // Save to cookie
+        HandleVersion ();
         if (Object.keys(Character).length !== 0)
             SetCookie ("CharacterCookie", JSON.stringify (Character), 365);
         else
@@ -828,6 +762,7 @@
     // Load from cookie
     function LoadCookies ()
     {
+        HandleVersion ();
         // Character data
         let CharacterDataJson = GetCookieValue ("CharacterCookie");
 
@@ -903,6 +838,7 @@
         // FIX THIS >> This has not version checking yet...
         LoadCookies ();
         RefreshCookie ("CharacterCookie", 365);
+        CheckVersion ();
 
         // StrRefInt SVG click events
         document.getElementById ("Grey").onclick = function () {StrFefIntByDiagram (0, 0, 0);};

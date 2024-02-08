@@ -1,5 +1,6 @@
 # Ultra Cogent - Ultra Realistic Universal Roleplaying System
-### Version: 0.0.1
+<!-- CAUTION! The following line is updated by git hook(The patch number is incremented.). Don't forget to update the hook script if you change other then numbers.-->
+### Version: 0.0.2
 
 ***In early development!***
 

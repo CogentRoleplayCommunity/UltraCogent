@@ -1,4 +1,4 @@
-let Version = {MajorVersion: 0, MinorVersion: 0, Patch: 0};
+let Version = {MajorVersion: 0, MinorVersion: 0, Patch: 1};
 
 function CheckVersion ()
 {

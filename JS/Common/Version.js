@@ -1,6 +1,6 @@
 // CAUTION! The following line is updated by git hook(The patch number is incremented.). Don't forget to update the hook script if any of the names are changed.
 // The patch value is read from the README.md file...
-let Version = {MajorVersion: 0, MinorVersion: 0, Patch: 9};
+let Version = {MajorVersion: 0, MinorVersion: 0, Patch: 10};
 
 function CheckVersion (VersionHandler)
 {

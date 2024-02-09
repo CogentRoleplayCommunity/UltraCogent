@@ -1,7 +1,7 @@
 # Ultra Cogent - Ultra Realistic Universal Roleplaying System
 <!-- CAUTION! The following line is updated by git hook(The patch number is incremented.). Don't forget to update the hook script if you change other then numbers.-->
 <!-- Btw. The hook reads patch number from here before incrementing it. Change patch value here for updating it manually.-->
-### Version: 0.0.9
+### Version: 0.0.10
 
 ## Author's message
 
@@ -11,13 +11,13 @@
 **It's in early development!**
 ***Not playable yet, and cookies are discarded when the page is updated but [click here to check it out](https://cogentroleplaycommunity.github.io/UltraCogent).***
 
-$---$
+$~~~$
 
 ## Contribution
 
 - You may use it, share it, fork it and/or make suggestions, but keep in mind that Ultra Cogent is mine and thus I may or may not accept your input.
 
-$---$
+$~~~$
 
 # License
 

@@ -1,0 +1,1 @@
+I read that git does not get the client side hooks when it's cloned, so if the version is not getting incremented automatically when committing, copy the "pre-commit" script into UltraCogent/.git/hooks directory.

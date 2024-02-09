@@ -468,17 +468,33 @@
         let OutVars = ["Str", "Ref", "Int", "PhyInt", "MenInt"];
         OutVars.forEach (key => {document.getElementById (key + "_O").textContent = CharacterCalc[key];});
     }
-    document.getElementById ("AgeInterval_I").addEventListener ("change", LiveUpdate);
-    document.getElementById ("Male_I").addEventListener ("change", LiveUpdate);
-    document.getElementById ("Female_I").addEventListener ("change", LiveUpdate);
-    document.getElementById ("n/a (Machine)_I").addEventListener ("change", LiveUpdate);
-    document.getElementById ("Physique_I").addEventListener ("change", LiveUpdate);
-    document.getElementById ("StrTweak_I").addEventListener ("change", LiveUpdate);
-    document.getElementById ("RefTweak_I").addEventListener ("change", LiveUpdate);
-    document.getElementById ("IntTweak_I").addEventListener ("change", LiveUpdate);
-    document.getElementById ("PhyIntTweak_I").addEventListener ("change", LiveUpdate);
-    document.getElementById ("MenIntTweak_I").addEventListener ("change", LiveUpdate);
+    let Triggers = ["AgeInterval", "Male", "Female", "n/a (Machine)", "Physique", "StrTweak", "RefTweak", "IntTweak", "PhyIntTweak", "MenIntTweak"];
+    Triggers.forEach (key => {document.getElementById (key + "_I").addEventListener ("change", LiveUpdate);});
 
+
+    function SetMinMax ()
+    {
+        let Var = -1 - Character.BaseStr;
+        if (Character.BaseStr < 0)
+            Var = 0;
+        document.getElementById ("StrTweak_I").min = Var;
+        Var = 5 - Character.BaseStr;
+        document.getElementById ("StrTweak_I").max = Var;
+        if (Character.BaseRef < 0)
+            Var = 0;
+        else
+            Var = -1 - Character.BaseRef;
+        document.getElementById ("RefTweak_I").min = Var;
+        Var = 5 - Character.BaseRef;
+        document.getElementById ("RefTweak_I").max = Var;
+        if (Character.BaseInt < 0)
+            Var = 0;
+        else
+            Var = -1 - Character.BaseInt;
+        document.getElementById ("IntTweak_I").min = Var;
+        Var = 5 - Character.BaseInt;
+        document.getElementById ("IntTweak_I").max = Var;
+    }
 
     // StrRefInt Click Action
     function StrRefIntByDiagram (Strength, Reflex, Intelligence)
@@ -491,26 +507,7 @@
             Character.BaseStr = Strength;
             Character.BaseRef = Reflex;
             Character.BaseInt = Intelligence;
-            let Var = -1 - Strength;
-            if (Strength < 0)
-                Var = 0;
-            document.getElementById ("StrTweak_I").min = Var;
-            Var = 5 - Strength;
-            document.getElementById ("StrTweak_I").max = Var;
-            if (Reflex < 0)
-                Var = 0;
-            else
-                Var = -1 - Reflex;
-            document.getElementById ("RefTweak_I").min = Var;
-            Var = 5 - Reflex;
-            document.getElementById ("RefTweak_I").max = Var;
-            if (Intelligence < 0)
-                Var = 0;
-            else
-                Var = -1 - Intelligence;
-            document.getElementById ("IntTweak_I").min = Var;
-            Var = 5 - Intelligence;
-            document.getElementById ("IntTweak_I").max = Var;
+            SetMinMax ();
             LiveUpdate ();
         }
     }
@@ -646,30 +643,12 @@
     document.getElementById ("SaveDataLink").addEventListener ("click", function(event) {event.preventDefault (); SaveCharacterData ();});
 
 
-    function EditCharacterData () // FIX THIS! This is mostly duplicate of StrRefIntByDiagram content.
+    function EditCharacterData ()
     {
         EditMode ();
         FillInput ();
-        let Var = -1 - Character.BaseStr;
-        if (Character.BaseStr < 0)
-            Var = 0;
-        document.getElementById ("StrTweak_I").min = Var;
-        Var = 5 - Character.BaseStr;
-        document.getElementById ("StrTweak_I").max = Var;
-        if (Character.BaseRef < 0)
-            Var = 0;
-        else
-            Var = -1 - Character.BaseRef;
-        document.getElementById ("RefTweak_I").min = Var;
-        Var = 5 - Character.BaseRef;
-        document.getElementById ("RefTweak_I").max = Var;
-        if (Character.BaseInt < 0)
-            Var = 0;
-        else
-            Var = -1 - Character.BaseInt;
-        document.getElementById ("IntTweak_I").min = Var;
-        Var = 5 - Character.BaseInt;
-        document.getElementById ("IntTweak_I").max = Var;
+        SetMinMax ();
+        LiveUpdate ();
     }
     // Edit on click UNFINISHED
     document.getElementById ("EditDataLink").addEventListener ("click", function(event) {event.preventDefault (); EditCharacterData ();});

@@ -564,7 +564,6 @@
         }
     }
 
-
     function EditMode ()
     {
         HideClass ("OutputField");
@@ -667,7 +666,6 @@
         Calculate ();
 
         // Save to cookie
-        CheckVersion (HandleVersion);
         if (Object.keys(Character).length !== 0)
             SetCookie ("CharacterCookie", JSON.stringify (Character), 365);
         else
@@ -770,16 +768,13 @@
     // Load from cookie
     function LoadCookies ()
     {
-        // This meant to solve compatibility issues before loading cookies.
-        CheckVersion (HandleVersion);
-
         // Character data
-        let CharacterDataJson = GetCookieValue ("CharacterCookie");
+        let CharacterDataJSON = GetCookieValue ("CharacterCookie");
 
         // Parse Character if exists.
-        if (CharacterDataJson !== "" && CharacterDataJson !== undefined)
+        if (CharacterDataJSON !== "" && CharacterDataJSON !== undefined)
         {
-            Character = JSON.parse (CharacterDataJson);
+            Character = JSON.parse (CharacterDataJSON);
             ParseIntValues ();
             // EditMode (); // Radio type inputs won't always be updated without swithcing to edit mode... (<< edit mode is default, so this is only a problem when importing from display mode.)
             Calculate ();
@@ -798,7 +793,25 @@
     // Export / Import
     function ExportData ()
     {
-        const CharacterBlob = new Blob ([JSON.stringify (Character)], { type: "application/json" });
+        // Load VersionCookie
+        let VersionDataJSON = GetCookieValue ("VersionCookie");
+        VersionData = undefined;
+        if (VersionDataJSON !== "" && VersionDataJSON !== undefined)
+        {
+            VersionData = JSON.parse (VersionDataJSON);
+            let IntList = ["MajorVersion","MinorVersion","Patch"];
+            IntList.forEach (key => {VersionData[key] = parseInt (VersionData[key]);});
+        }
+
+        // Gather Data
+        const Data =
+        {
+            VersionData: VersionData,
+            CharacterData: Character
+        }
+
+        // Export JSON
+        const CharacterBlob = new Blob ([JSON.stringify (Data)], { type: "application/json" });
         const CharBlobURL = URL.createObjectURL (CharacterBlob);
         const ExportLink = document.createElement("a");
         ExportLink.href = CharBlobURL;
@@ -822,9 +835,31 @@
         const Reader = new FileReader ();
         Reader.onload = function (e)
         {
-            Character = JSON.parse (e.target.result);
-            ParseIntValues ();
+            // Load VersionCookie
+            let VersionDataJSON = GetCookieValue ("VersionCookie");
+            VersionData = undefined;
+            if (VersionDataJSON !== "" && VersionDataJSON !== undefined)
+            {
+                VersionData = JSON.parse (VersionDataJSON);
+                let IntList = ["MajorVersion","MinorVersion","Patch"];
+                IntList.forEach (key => {VersionData[key] = parseInt (VersionData[key]);});
+            }
 
+            let Data = JSON.parse (e.target.result);
+            console.log (Data);
+
+            
+            if (VersionData.MajorVersion == Data.VersionData.MajorVersion && VersionData.MinorVersion == Data.VersionData.MinorVersion && VersionData.Patch == Data.VersionData.Patch)
+                Character = Data.CharacterData;
+            else
+            {
+                console.log ("The file contains data exported at a different version! Attempting to conversion... This may or may not work properly!");
+                ClearCharacterData ();
+                ListOfKeys.forEach (key => {Character[key] = Data.CharacterData[key];});
+                SpecialKeys.forEach (key => {Character[key] = Data.CharacterData[key];});
+            }
+
+            ParseIntValues ();
             EditMode (); // Radio type inputs won't always be updated without swithcing to edit mode...
             Calculate ();
             FillInput ();

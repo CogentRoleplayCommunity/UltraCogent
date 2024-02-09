@@ -844,9 +844,8 @@
                 IntList.forEach (key => {VersionData[key] = parseInt (VersionData[key]);});
             }
 
+            // Parse data from JSON and if must attempt conversion.
             let Data = JSON.parse (e.target.result);
-            console.log (Data);
-
             
             if (VersionData.MajorVersion == Data.VersionData.MajorVersion && VersionData.MinorVersion == Data.VersionData.MinorVersion && VersionData.Patch == Data.VersionData.Patch)
                 Character = Data.CharacterData;

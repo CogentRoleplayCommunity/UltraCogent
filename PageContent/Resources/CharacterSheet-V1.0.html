@@ -471,7 +471,7 @@
     let Triggers = ["AgeInterval", "Male", "Female", "n/a (Machine)", "Physique", "StrTweak", "RefTweak", "IntTweak", "PhyIntTweak", "MenIntTweak"];
     Triggers.forEach (key => {document.getElementById (key + "_I").addEventListener ("change", LiveUpdate);});
 
-
+    // Used by StrRefIntByDiagram () and EditCharacterData ()
     function SetMinMax ()
     {
         let Var = -1 - Character.BaseStr;

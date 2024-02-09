@@ -1,7 +1,7 @@
 # Ultra Cogent - Ultra Realistic Universal Roleplaying System
 <!-- CAUTION! The following line is updated by git hook(The patch number is incremented.). Don't forget to update the hook script if you change other then numbers.-->
 <!-- Btw. The hook reads patch number from here before incrementing it. Change patch value here for updating it manually.-->
-### Version: 0.0.7
+### Version: 0.0.8
 
 ***In early development!***
 
@@ -9,6 +9,8 @@
 
 - As a fan of Shad's and Jazza's simple and realistic approach to roleplaying, I'm a bit concerned by the realistic aspect getting lost since they handed it over to the community. Quite frankly: While I have no problem sharing stuff, I don't trust public voting to make the right decisions. Cogent is not mine to manage, I have 1 vote of many, and even if the comminity would accept all of my suggestions, the adoption process is far too slow for me, so I started Ultra Cogent (my homebrew) with even more realism in mind. :)
 - Ultra Cogent has substantial changes, mostly my own ideas, but also some adopted ideas.
+
+**[Click here to check it out!](https://cogentroleplaycommunity.github.io/UltraCogent)**
 
 
 

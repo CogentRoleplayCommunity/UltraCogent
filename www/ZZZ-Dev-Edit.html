@@ -36,22 +36,23 @@
 
 <div class="TranslucentPanel"><div class="PanelArea">
 <h2>Creating/editing/deleting pages</h2>
-<p>To create a regular page content >> Run: Edit.sh -c fielname (no extension just filename, cause it acutally creates multiple files with the same name... filename can't have spaces characters...)
+<p>To create a regular page content >> Run: Edit.sh -n fielname (no extension just filename, cause it acutally creates multiple files with the same name... filename can't have spaces characters...)
 <br>To edit a regular page content >> Run: Edit.sh fielname
 <br>To edit a regular page header >> Run: Edit.sh -h fielname
 <br>To remove a regular page content >> Run: Edit.sh -r fielname
 <br>
-<br>To create a project page content >> Run: Edit.sh -cp fielname
+<br>To create a project page content >> Run: Edit.sh -np fielname
 <br>To edit a project page content >> Run: Edit.sh -p fielname
 <br>To edit a project page header >> Run: Edit.sh -ph fielname
 <br>To edit a project page description >> Run: Edit.sh -pd fielname
 <br>To remove a project page content >> Run: Edit.sh -rp fielname
 <br>
-<br>To create an article page content >> Run: Edit.sh -cA fielname
-<br>To edit an article page content >> Run: Edit.sh -A fielname
-<br>To edit an article page header >> Run: Edit.sh -Ah fielname
-<br>To edit an article page description >> Run: Edit.sh -Ad fielname
-<br>To remove an article page content >> Run: Edit.sh -rA fielname
+<br>(Reminder: Resources ware originally Articles, it was renamed here but the bash script may still refer to it as article pages...)
+<br>To create a resource page content >> Run: Edit.sh -nA fielname
+<br>To edit a resource page content >> Run: Edit.sh -A fielname
+<br>To edit a resource page header >> Run: Edit.sh -Ah fielname
+<br>To edit a resource page description >> Run: Edit.sh -Ad fielname
+<br>To remove a resource page content >> Run: Edit.sh -rA fielname
 <br>
 <br>Both project, and article pages are automatically added to the projects.html or articles.html, however it does not do that by default.(This prevents half done pages from being added automatically. This also allows having sub pages that you link in to a particular project/article page but not listed as an individual project.) you need to creat a short description for it by running Edit.sh -pd filename or Edit.sh -Ad filename depending on the page type (project/article).
 <br>

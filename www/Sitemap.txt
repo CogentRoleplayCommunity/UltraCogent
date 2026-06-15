@@ -10,6 +10,8 @@
 ./L-Resources.html
 ./Support.html
 ./L-Support.html
+./Vision.html
+./L-Vision.html
 ./ZZZ-Dev-Archiver.html
 ./L-ZZZ-Dev-Archiver.html
 ./ZZZ-Dev-Construct.html

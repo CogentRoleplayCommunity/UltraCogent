@@ -2,9 +2,37 @@
     <!-- Leave the markers untouched! -->
 <!--TitleMarker--><h1 style="text-align: center">Welcome to Ultra Cogent's Map Generator!
 </h1>
+<p>This is a work in progress, don't expect much for now. When it's done it should be easy to generate realistic map that make sense, and edit it.
+<br>
+<br>Tips:
+<br>- The buttons may get covered by the gradient if you scroll down. If they do not work, try scrolling up a bit more.
+<br>- If you work on a large map, full screen mode gives you more vertical space. (F11 toggles full screen mode in every browser I know. Assuming Windows or Linux on PC or laptop...)
+</p>
+
 <div class="TranslucentPanel"><div class="PanelArea">
 
-<div id="ui" style="flex:0 0 auto;"></div>
+<table>
+<tr><th>Tools:</th><td>
+<div style="margin: 10px 0; display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+    <div>
+        <label for="Rows">Rows:</label>
+        <input type="number" id="Rows" value="4" min="1" style="width: 40px;">
+    </div>
+    <div>
+        <label for="Cols">Cols:</label>
+        <input type="number" id="Cols" value="5" min="1" style="width: 40px;">
+    </div>
+    <button id="GenerateBtn">Generate Map</button>
+    <div>
+        <label for="Scale">Size:</label>
+        <input type="range" id="Scale" value="40" min="15" max="250" style="width: 100px;">
+        <span id="ScaleLabel">40</span>
+    </div>
+</div>
+</td><td><div id="Tools" style="flex:0 0 auto;"></div></td></tr>
+<tr><th>MapFeatures:</th><td><div id="MapFeatures" style="flex:0 0 auto;"></div></td></tr>
+<tr><th>MapOverlay:</th><td><div id="MapOverlay" style="flex:0 0 auto;"></div></td></tr>
+</table>
 
 <div id="mapContainer" style="flex: 1 1 auto; overflow: auto; min-height: 0;">
     <svg id="map" style="display:block;"></svg>
@@ -16,11 +44,16 @@
 
 class Field
 {
-  constructor (cols, rows, size = 40)
+  constructor (cols = 1, rows = 1, size = 40)
+  {
+    this.update (cols, rows, size);
+  }
+  
+  update (cols = 1, rows = 1, size = 40)
   {
     const c = cols - (cols % 2) + 1;
     this.cols = c * 12 + 11;
-    this.rows = rows * 8;
+    this.rows = rows * 4 + 4;
     this.size = size;
     this.triangles = [];
   }
@@ -60,7 +93,7 @@ class Field
 
 class Renderer
 {
-  constructor (svg, field, TriBorder = 1, HexBorder = 3)
+  constructor (svg, field, TriBorder = 1, HexBorder = 2)
   {
     this.svg = svg;
     this.field = field;
@@ -78,15 +111,33 @@ class Renderer
     return g;
   }
 
-  toggleLayer (name, visible)
+  GetLayerVisibility (Name)
+  {
+    const Layer = this.layers.get (Name);
+    if (Layer)
+      if (Layer.style.display !== 'none')
+        return true;
+      else
+        return false;
+  }
+
+  SetLayerVisibility (Name, Value)
+  {
+    const Layer = this.layers.get (Name);
+    if (Layer)
+      if (Value) Layer.style.display = 'block';
+      else Layer.style.display = 'none';
+  }
+
+  ToggleLayerVisibility (name)
   {
     const layer = this.layers.get (name);
-    if (layer) layer.style.display = visible ? "block" : "none";
+    layer.style.display = (layer.style.display === 'none') ? 'block' : 'none';
   }
 
   renderTriangles ()
   {
-    const layer = this.layers.get ("terrain");
+    const layer = this.layers.get ("Terrain");
 
     for (const t of this.field.triangles)
     {
@@ -196,9 +247,8 @@ class Renderer
 
     this.svg.setAttribute ("width", width);
     this.svg.setAttribute ("height", height);
-    this.createLayer ("terrain");
-    this.createLayer ("rivers");
-    this.createLayer ("settlements");
+    this.createLayer ("Terrain");
+    this.createLayer ("Settlements");
     this.createLayer ("S-HexGrid");
     this.createLayer ("M-HexGrid");
     this.createLayer ("L-HexGrid");
@@ -209,35 +259,60 @@ class Renderer
   }
 }
 
-const svg = document.getElementById ("map");
-const field = new Field (11, 4, 25); // Rows of L-Hex (3 + Multiples of 2), Cols of L-Hex (Min 2), TriSize
-field.generate ();
+const SVGMap = document.getElementById ("map");
+const RowsInput = document.getElementById ('Rows');
+const ColsInput = document.getElementById ('Cols');
+const ScaleSlider = document.getElementById ('Scale');
+const ScaleLabel = document.getElementById ('ScaleLabel');
+const GenerateBtn = document.getElementById ('GenerateBtn');
+const Fields = new Field (); // Rows of L-Hex (1 + Multiples of 2, Min 1), Cols of L-Hex (Min 1), Scale
+const R = new Renderer (SVGMap, Fields); // SVGMap, Fields, TriBorder(Min 1), HexBorder(Min 1)
 
-const renderer = new Renderer (svg, field, 1, 2); // TriBorder, HexBorder
-renderer.render ();
+function GenerateMap ()
+{
+  Fields.update(parseInt (ColsInput.value), parseInt (RowsInput.value), parseInt (ScaleSlider.value));
+  ScaleLabel.textContent = parseInt (ScaleSlider.value);  
+  Fields.generate ();
+  R.render ();
+}
+GenerateBtn.addEventListener ('click', GenerateMap);
+GenerateMap ();
 
-
-
-function createLayerButton (name)
+function createLayerButton (Name, Div)
 {
   const btn = document.createElement ("button");
-  btn.textContent = name;
-  let visible = true;
-  btn.onclick = function toggleLayerButton ()
-  {
-      visible = !visible;
-      renderer.toggleLayer (name, visible);
-  };
-  ui.appendChild(btn);
+  btn.textContent = Name;
+  btn.onclick = function toggleLayerButton () {R.ToggleLayerVisibility (Name);};
+  if (Div == "MapFeatures")
+    MapFeatures.appendChild (btn);
+  else if (Div == "MapOverlay")
+    MapOverlay.appendChild (btn);
 }
-const layers = ["terrain", "rivers", "settlements", "S-HexGrid", "M-HexGrid", "L-HexGrid"];
-for (const name of layers) createLayerButton(name);
+const Layers = ["Terrain", "Settlements"];
+for (const Name of Layers) createLayerButton (Name, "MapFeatures");
+const Overlays = ["S-HexGrid", "M-HexGrid", "L-HexGrid"];
+for (const Name of Overlays) createLayerButton (Name, "MapOverlay");
 
+function ReRenderMap ()
+{
+  const Visibility = {};
+  for (const Name of R.layers.keys ())
+    Visibility[Name] = R.GetLayerVisibility (Name);
+  Fields.size = parseInt (ScaleSlider.value);
+  R.render ();
+  for (const [Name, Visible] of Object.entries (Visibility))
+    R.SetLayerVisibility (Name, Visible);
+}
+ScaleSlider.addEventListener ('input', function ()
+{
+  ScaleLabel.textContent = this.value;
+  ReRenderMap ();
+});
 
 
 function saveSvg ()
 {
-    const svgClone = svg.cloneNode (true);
+    const svgClone = SVGMap.cloneNode (true);
     svgClone.setAttribute ("xmlns", "http://www.w3.org/2000/svg");
     const serializer = new XMLSerializer ();
     const svgString = serializer.serializeToString (svgClone);
@@ -252,7 +327,7 @@ function saveSvg ()
 const saveBtn = document.createElement ("button");
 saveBtn.textContent = "Save SVG";
 saveBtn.addEventListener ("click", saveSvg);
-ui.appendChild (saveBtn);
+Tools.appendChild (saveBtn);
 
 
 function lockMapScroll (event)
